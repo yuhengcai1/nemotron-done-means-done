@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "validated_at": "2026-10-17T21:48:35.226346+00:00",
+  "python": "3.10.4 (v3.10.4:9d38120e33, Mar 23 2022, 17:29:05) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "classification": "offline_integration_validation",
+  "native_hermes_new_runs": 0,
+  "new_api_requests": 0,
+  "unit_command": "python3 -m unittest tests.test_hermes_retry_integration -v",
+  "unit_tests_passed": 20,
+  "unit_tests_failed": 0,
+  "config_validation_passed": true,
+  "config_sha256": "29b28e6c1aeb10040ecdf34484a72da2acf05d378c2d8ef3d5fcce843428f0a7",
+  "plugin_sources_sha256": "1c633fc2818b2dcbc48ec52ce724c163107e91a4bd4fe43c70ec931e81539b1f",
+  "plugin_source_pin_verified": true,
+  "core_files_edited_by_this_work": [],
+  "source_hashes": {
+    "examples/hermes_retry_target.py": "9f672ecdadfec3d05353abfa4fe0a3d77de9bb7d634c25047c4e2da2a6954819",
+    "integrations/hermes_retry/__init__.py": "41406c4443fe93acee16b6e9d712253b4402d9dd8f58928b9ad3ce92bf4809db",
+    "integrations/hermes_retry/experience.json": "aa5a32323dcafc687cc470adce0d8874dce17d687cd660617b56389e732b749d",
+    "integrations/hermes_retry/history.py": "b4863927981a1160a914a79d1b2971c378a8fe05200959497618750647553340",
+    "integrations/hermes_retry/memory_sources.json": "a26955cb5f9d9928654b549334c87c77c1f5a9deddb50c136fb2825cfe369f13",
+    "integrations/hermes_retry/offline.py": "944b73fafa62f82938f6938f0d19400e20575814bb9a4f17cb16f5d85810cf98",
+    "integrations/hermes_retry/scenario.py": "6c60e1fae0f00abbfc1eb5a1c75c10d39015c923eec0a0bd5109c7de21894cba",
+    "integrations/hermes_retry/service.py": "c5109fa4abcb286b1ceac61076a9980c42b602141bd5d88fa6027984fbfc04c1",
+    "integrations/hermes_retry/target.py": "e8917e8b47b1930980f4631b851f7f568a0c73421d62d76628546bedd72350ae",
+    "tests/test_hermes_retry_integration.py": "d5445a64b89baddee3b7a0f1edf37f4b008ab812882d73c355e327dc533ba289",
+    "examples/hermes-retry.json": "b96ce93f83b25b7261ea0e08512eb70b5f8047b446ea6bf4c7783776dfeeb784"
+  },
+  "offline_end_to_end": {
+    "simulated": true,
+    "campaign_status": "completed",
+    "counts": {
+      "tasks": 1,
+      "trials": 4,
+      "reproduced": 1,
+      "distinct_oracle_signatures": 1,
+      "inconclusive": 0
+    },
+    "logical_fixture_calls": 45,
+    "role_calls": {
+      "coordinator": 1,
+      "worker": 1,
+      "target": 40,
+      "verifier": 3
+    },
+    "memory_observations": 1
+  },
+  "historical_replay": {
+    "records": 53,
+    "counts": {
+      "matched": 43,
+      "inconclusive": 0,
+      "out_of_scope": 10
+    },
+    "historical_passed": 31,
+    "historical_duplicates": 12,
+    "framework_verified": false
+  },
+  "artifacts": [
+    {
+      "path": "integrations/hermes_retry/experience.json",
+      "sha256": "aa5a32323dcafc687cc470adce0d8874dce17d687cd660617b56389e732b749d"
+    },
+    {
+      "path": "integrations/hermes_retry/memory_sources.json",
+      "sha256": "a26955cb5f9d9928654b549334c87c77c1f5a9deddb50c136fb2825cfe369f13"
+    },
+    {
+      "path": "integrations/hermes_retry/ALIGNMENT.md",
+      "sha256": "6afeb74bb35ef803bfcc493f736610a68c9262523d5a6c76d5527d4b4563595f"
+    },
+    {
+      "path": "integrations/hermes_retry/artifacts/history-audit.json",
+      "sha256": "4c1bfb57d70b9a0811b2d8369277ed504ff76c9c428494f9261223454aeb1419"
+    },
+    {
+      "path": "integrations/hermes_retry/artifacts/offline-smoke/report.json",
+      "sha256": "6747fe398e261eff0b577291a8793c11778140895b4dc312f15bed03fa2e0ea1"
+    },
+    {
+      "path": "integrations/hermes_retry/artifacts/offline-smoke/state.sqlite",
+      "sha256": "f40e9bef729ac091dfedf2a99e892f88e4d9570c94127b5b35898dd19be9c3f8"
+    },
+    {
+      "path": "integrations/hermes_retry/artifacts/offline-smoke/knowledge.sqlite",
+      "sha256": "c16f974fdee97bca02c86d500726c20ef4fcff0e888912d5ef1867ffac0ca4f6"
+    }
+  ],
+  "live_status": "not_run; account coordinator owns scheduling",
+  "remaining_gaps": [
+    "Native Hermes system prompt and discovery/MCP/runtime equivalence",
+    "New live model behavior under compatible input layout",
+    "Native persistent-memory write and failure-review transfer",
+    "Full semantic final-answer verification"
+  ]
+}

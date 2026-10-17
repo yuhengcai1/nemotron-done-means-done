@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "classification": "external_unverified",
+  "source_path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/dynamic_state/experience.json",
+  "source_sha256": "2073acdf4e2047d3ad990b00f2f4df5c00402ad354abde71fb9bc6be311e9c10",
+  "imported_at": "2026-10-17T21:49:55.385484+00:00",
+  "source_claims": {
+    "status": "external_observations_not_current_findings"
+  },
+  "note": "Imported claims retain provenance. No replay or independent verification was performed by this framework."
+}

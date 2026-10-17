@@ -1,0 +1,9 @@
+github-release/
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+.env
+.env.*
+.DS_Store
+recursive-redteam/demo/presentation/.build/node_modules

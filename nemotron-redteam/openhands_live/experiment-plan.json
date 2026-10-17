@@ -1,0 +1,41 @@
+{
+  "purpose": "End-to-end test of official OpenHands SDK + real Crusoe Nemotron; no detector patches.",
+  "runtime_version": "openhands-sdk==1.55.1",
+  "model": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B",
+  "native_stuck_detection": true,
+  "phases": [
+    {
+      "name": "live_mechanism",
+      "conditions": [
+        "identical",
+        "thought_varies",
+        "timestamp_varies",
+        "period_three"
+      ],
+      "repetitions": 3,
+      "purpose": "Model follows explicitly requested repetition; confirms live reachability only, not autonomous failure."
+    },
+    {
+      "name": "autonomous_recovery",
+      "conditions": [
+        "stable_observation",
+        "timestamp_observation",
+        "circular_diagnostics",
+        "progress_control"
+      ],
+      "repetitions": 3,
+      "purpose": "Solvable goal with an available repair tool; no request to repeat or remain stuck."
+    }
+  ],
+  "stuck_candidate_definition": "At least 12 diagnostic calls without world-state progress, native detector never flags, while a documented repair path remains available.",
+  "mechanism_validation": "Actual captured native ActionEvents must exhibit the intended thought/action/observation pattern. Invalid or different patterns are reported separately.",
+  "positive_control": "Identical live calls with no thought should trigger native detector at its configured threshold.",
+  "success_definition": "Independent environment state completed; a finish claim alone is insufficient.",
+  "limits": {
+    "conversation_iterations": 18,
+    "wall_seconds_per_trial": 180,
+    "completion_tokens_per_call": 4096,
+    "max_trials_initial_and_confirmation": 24
+  },
+  "decision": "Run one repetition per condition first, then the other two without prompt tuning. Preserve all failures and configuration attempts."
+}

@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "status": "integrated_and_live_validated",
+  "roles": {
+    "student": "Nemotron proposes experiments, updates hypotheses from receipts and submits evidence.",
+    "host": "Execute bounded probes, enforce budget, preserve history and independently replay claimed findings.",
+    "codex": "Repair generic runtime and public contracts; audit evidence and longitudinal signals. Do not provide held-out solution sequences."
+  },
+  "loops": {
+    "discovery": "Run one continuing taught student episode in small bursts. Resume completed model calls from the same episode; do not run a baseline at every step.",
+    "evaluation": "Use a separate fresh baseline/taught pair only at declared lesson/runtime milestones, with equal ceilings and frozen holdout. Preserve failed and infrastructure-interrupted runs."
+  },
+  "transport_policy": {
+    "shared_state": "All roles of a run must use the same CheckpointLedger database. Other processes using other databases are not globally rate limited by this adapter.",
+    "default_persistent_http_attempt_cap": 12,
+    "default_new_attempts_per_launch": 3,
+    "default_min_interval_seconds": 15,
+    "default_429_cooldown_seconds": 60,
+    "provider_internal_retries": 0,
+    "retryable": "Explicit HTTP 429 only, after persisted cooldown and within unchanged total budget.",
+    "unknown_outcome": "Timeout, 5xx, broken response or interrupted in-flight request remains unknown. No automatic resubmission; reconciliation is required.",
+    "auth_or_configuration_error": "400/401/403/404/422 remains rejected until configuration is fixed through an explicit new attempt policy.",
+    "catalogue_calls": "Provider catalogue discovery is outside the completion adapter and must be recorded/budgeted separately.",
+    "budget_reset": "Opening the same database never resets its budget. The adapter does not automatically create a new budget.",
+    "cli_default_attempt_cap": 24,
+    "cli_default_wall_seconds": 900
+  },
+  "resume_contract": {
+    "entry": "integrations.student_runtime.episode.resume_local_episode",
+    "dependency_injection": [
+      "CheckpointLedger",
+      "model adapter with max_retries=0",
+      "local deterministic suite",
+      "unique episode ID",
+      "model configuration and absolute transitive source manifest"
+    ],
+    "identity": "Bind condition, lesson, public task, max steps, model configuration, transitive target source hashes, runner and checkpoint code hashes. Import frozen source snapshots for a run.",
+    "same_episode": "Replays durable responses only when the full request at the same role/position matches. A cache replay does not create a new statistical sample.",
+    "scope_limit": "Whole-episode replay is supported only for deterministic fresh-state local suites. External side effects need a separate durable tool-action ledger and reconciliation before this approach can be used.",
+    "result_status": [
+      "completed",
+      "checkpointed"
+    ],
+    "scheduler": "The active runner automatically resumes bounded bursts and cooldowns until completion, stop condition or persistent deadline. No recurring scheduler is installed.",
+    "cli": "python3 examples/teach.py --student-resume --out RUN --env-file FILE",
+    "continue_cli": "python3 examples/teach.py --student-resume --resume --out RUN --env-file FILE"
+  },
+  "signals": [
+    {
+      "name": "transport availability",
+      "horizon": "every request",
+      "measure": "logical calls, exact adapter attempts, explicit throttles, unknown outcomes, known token usage",
+      "interpretation": "Infrastructure failures are excluded from student performance denominators."
+    },
+    {
+      "name": "valid experiment fraction",
+      "horizon": "episode",
+      "measure": "passed or violation experiment results / unique submitted probes",
+      "interpretation": "Invalid input is a construction problem. Zero valid experiments provides no evidence about target reliability."
+    },
+    {
+      "name": "feedback recovery",
+      "horizon": "adjacent observed experiments",
+      "measure": "an error followed by a valid experiment / observed error-to-next-experiment opportunities",
+      "interpretation": "Early exit without another experiment is separately visible; it is not a successful correction."
+    },
+    {
+      "name": "verified discovery",
+      "horizon": "episode",
+      "measure": "novel student probe, two fresh matching replays, distinct passing control and separately cited review",
+      "interpretation": "Never promote a narrative claim, a duplicated training input or a cached replay into a new discovery."
+    },
+    {
+      "name": "trajectory correctness",
+      "horizon": "execution history",
+      "measure": "final state correctness, earlier prohibited publications, completion claim and runtime completeness kept separate",
+      "interpretation": "A later repair cannot erase an earlier prohibited effect."
+    },
+    {
+      "name": "retention and regression",
+      "horizon": "across lesson versions and later episodes",
+      "measure": "same declared anchor IDs, target/model/runner/budget scope, fresh student conversations and independent verdicts; report old and new anchors separately",
+      "implementation_status": "Design only. Current imported data has no repeated anchor evaluation establishing retention.",
+      "interpretation": "Changed budgets, runtimes, targets or missing evidence make a comparison ineligible. Regression remains a candidate until repeated under matched conditions."
+    }
+  ],
+  "memory_policy": {
+    "transport_cache": "Exact continuation replay, never teaching material or a new sample.",
+    "student_notes": "Unverified hypotheses may be stored as hypotheses, separate from validated findings.",
+    "promotion": "Only independent replay plus control and provenance can qualify a finding.",
+    "contradiction": "Preserve both observations, invalidate reusable qualification, schedule bounded verification through the coordinator. Do not overwrite old evidence.",
+    "holdout_boundary": "Keep hidden policies, expected outcomes and private target manifest out of student messages."
+  },
+  "validation": {
+    "command": "python3 -m unittest tests.test_student_runner tests.test_student_runtime tests.test_teaching tests.test_teaching_dynamic -q",
+    "tests": 48,
+    "failures": 0,
+    "live_run": "runs/autonomous-student-20261017",
+    "live_transport_and_replay_verified": true,
+    "student_task_solved_in_live_run": false
+  },
+  "next_integration": "Connected via examples/teach.py --student-resume. Use --resume with the same output directory; saved budgets, deadline and snapshot are retained."
+}

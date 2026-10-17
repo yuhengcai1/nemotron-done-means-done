@@ -1,0 +1,37 @@
+RECURSIVE LAB — THREE-MINUTE ENGLISH DEMO
+Stage directions in brackets are not spoken.
+
+00:00–00:20 — SLIDE 1
+Agents can complete a task and still leave a broken framework behind. Recursive Lab gives Nemotron a second job: inspect the framework that runs it, reproduce a defect, and propose a repair. Executable checks decide whether that repair deserves acceptance.
+
+00:20–00:45 — SLIDE 2
+This is a historical failing revision of our real evaluator. It detected a violation, then received an invalid tool call. The finalizer replaced the violation status with an error, despite retaining the evidence. We give Nemotron a maintenance goal and source access, with fixed tests and a bounded edit area.
+
+00:45–02:15 — SLIDE 3, THEN LOCAL APP
+[Switch to the app. Use Stage view. Click “Play recorded run”.]
+We are replaying a captured run made through Crusoe Managed Inference. These model decisions and test receipts come from that actual run. A Nemotron planner delegates the maintenance task to a worker.
+
+First, the worker inspects the source. The tests require it to preserve a detected failure and the later diagnostic error. Ordinary passing cases still have to pass. Unrelated errors cannot become false positives.
+
+[Click “Code patch”.]
+Here is the model's change. It comes from the model response, and the runner applies it to an isolated source copy. Nemotron chooses when to read, test or edit within its budget. The acceptance rules remain fixed.
+
+[Click “Test receipts”, then “Verify repair locally”.]
+This attempt does not earn acceptance. Seven checks still fail after the edit. The run remains inconclusive. This button executes the saved source's checks again in a fresh local process, without a new model call. The receipts make this outcome reproducible after the model call ends.
+
+[Scroll to “Memory”.]
+No verified memory entry is created. The failed attempt remains inspectable in the run history.
+
+02:15–02:40 — SLIDE 4
+[Return to slide 4.]
+Across eleven logical calls, Nemotron planned work and proposed an edit. Fifteen of twenty-two checks pass, but seven still fail. We do not count that as a repair. The demonstrated result is a bounded debugging attempt with an evidence gate that refuses to promote it.
+
+02:40–03:00 — SLIDE 5
+Only a passing repair enters verified memory. Its record links the source, patch and test receipts. The starting framework was built with Codex. Nemotron performs the runtime work without a teacher, and leaves evidence that we can inspect.
+
+PRESENTER SETUP (NOT SPOKEN)
+Open http://127.0.0.1:8765/ before the talk. Use Stage view. The walkthrough replays captured inference. Verify repair locally reruns saved checks without a new model API call.
+
+EVIDENCE
+runs/nemotron-self-debug-20261017/report.json
+Main captured run: 11 logical model calls and 15 HTTP attempts. The real returned model was nvidia/NVIDIA-Nemotron-3-Super-120B-A12B. Both original and proposed source pass 15 of 22 checks, with 7 failures remaining. The run ended inconclusive and created no verified memory entry. The first ineffective edit and test rejection remain in its trace. The separate model reviewer did not complete an acceptance decision. A second bounded attempt used thinking mode and generic loop corrections, with no supplied repair. That attempt stopped after an initial transport timeout and a later HTTP 429 despite bounded retry and checkpoint recovery. It used 5 logical calls, including 2 errors. These attempts do not establish a general model capability limit. The runtime restricts changes to the result aggregation function of an isolated historical source copy. Initial framework code and tests were authored with Codex. No teacher lesson or solution is supplied at runtime.

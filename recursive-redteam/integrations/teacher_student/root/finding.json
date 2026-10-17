@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "teacher": "Codex root",
+  "candidate_origin": "Interrupted Astra review suggested status precedence; Astra did not deliver a verified report. Root independently reproduced and fixed it.",
+  "classification": "verified_framework_correctness_defect",
+  "scope": "Local production evaluator with scripted synthetic receipts; no hosted model vulnerability claim",
+  "source_sha256": "1ea94961e1be6d3b87311eb2e0aac4f358ef15a0974589de6199ee3ef56f40f1",
+  "invariant": "A measured oracle violation cannot be erased by a later protocol-validation failure after input exposure.",
+  "observed": "Two fresh runs retained measured failure receipts while status became error. Removing the later malformed operation returned violation as expected.",
+  "repro": "python3 examples/teach.py --suite root --offline --out runs/root-repro-new",
+  "evidence": "runs/teaching-root-repro-20261017/root/report.json",
+  "fix": "recursive_redteam/targets.py finish preserves violations and retains protocol failure in execution_error metrics. Unexposed candidate remains inconclusive.",
+  "tests": "python3 -m unittest discover -s tests -p test_teaching.py -v",
+  "current_source_sha256": "ee39768ad4e6ab6d0fa8fa52313efd7941bbca29a65c3178df738189047d771a",
+  "teaching_target": "frozen pre-fix evaluator; current production code is fixed"
+}

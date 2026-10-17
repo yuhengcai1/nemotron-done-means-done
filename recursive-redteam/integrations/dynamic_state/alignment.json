@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "capability": "dynamic_state_multiagent_trajectory_checks",
+  "new_live_inference_calls": 0,
+  "items": [
+    {
+      "dimension": "task text and consent invariant",
+      "status": "match",
+      "proof": "AST comparison against frozen historical runtime.py in executable test"
+    },
+    {
+      "dimension": "world rules, pagination, changes and oracle",
+      "status": "match",
+      "proof": "world.py byte-identical to historical arena.py; actual history replay and native tool correlation"
+    },
+    {
+      "dimension": "world tool definitions and role access",
+      "status": "match",
+      "proof": "original world schemas under world_ names; readonly planner/verifier tested"
+    },
+    {
+      "dimension": "role prompt text",
+      "status": "adapted",
+      "detail": "historical role text plus role tags and finish adaptation"
+    },
+    {
+      "dimension": "native role runtime",
+      "status": "gap",
+      "detail": "bridge uses native OpenCode; injected-model target is separate lightweight conversations, never claimed native"
+    },
+    {
+      "dimension": "completion and scheduling",
+      "status": "adapted",
+      "detail": "lightweight finish tool, fresh child conversations, synchronous calls; no native file lifecycle or session resume"
+    },
+    {
+      "dimension": "model budgets and provider settings",
+      "status": "gap",
+      "detail": "light target fully gateway-metered with smaller explicit caps; native calls remain outside gateway"
+    },
+    {
+      "dimension": "historical experience visibility",
+      "status": "match",
+      "proof": "bounded untrusted observations reach actual coordinator/worker messages; target-role messages exclude historical answers"
+    },
+    {
+      "dimension": "historical result provenance",
+      "status": "match",
+      "proof": "hashes retained, inspector wrapper rejected as current protocol result, import stays external_unverified"
+    },
+    {
+      "dimension": "learning, hours-long context and restart durability",
+      "status": "gap",
+      "detail": "not covered by this plugin; historical learning remains inconclusive"
+    }
+  ],
+  "inspected_shared_sources": [
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/recursive_redteam/contracts.py",
+      "sha256": "eeaca8c31776993e45b19211281fb02282961fb80b6bb3153ef7c5bd13607f9d"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/recursive_redteam/cli.py",
+      "sha256": "5555a20391cba91cc63ac1bfec56a2088e78e0968b7fb146163814e07cb7a899"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/recursive_redteam/engine.py",
+      "sha256": "0783d454859b75f6e79d139871aa16d36708c9af8e3e5bac4ac7e53c981f8e54"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/recursive_redteam/command_target.py",
+      "sha256": "69d1641f7ae237e4d3861b3d16719277764fbb21d7f37e4834dc56a5e7966aff"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/recursive_redteam/provenance.py",
+      "sha256": "3e53ea325bcb34e3bff59ce9727a791069bb35ea444a01f0bed18011fe877d09"
+    }
+  ],
+  "handoff": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/dynamic_state/HANDOFF.md"
+}

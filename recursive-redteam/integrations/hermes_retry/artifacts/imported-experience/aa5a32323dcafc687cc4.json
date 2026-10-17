@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "classification": "external_unverified",
+  "source_path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/hermes_retry/experience.json",
+  "source_sha256": "aa5a32323dcafc687cc470adce0d8874dce17d687cd660617b56389e732b749d",
+  "imported_at": "2026-10-17T21:48:00.049958+00:00",
+  "source_claims": {
+    "status": "external_observations_and_hypotheses_only",
+    "completed_trials": 53
+  },
+  "note": "Imported claims retain provenance. No replay or independent verification was performed by this framework."
+}

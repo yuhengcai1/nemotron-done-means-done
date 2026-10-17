@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "capability": "hermes_commit_uncertainty_teaching",
+  "status": "ready_for_integration",
+  "entrypoint": "integrations.teacher_student.hermes.suite:build_suite",
+  "factory": "build_suite() -> HermesTeachingSuite",
+  "protocol": {
+    "describe(split)": "Student-visible task, public contracts and bounded JSON probe schema; split train or holdout; no private labels.",
+    "lesson()": "Generic teaching JSON with preconditions, exploration method, oracle and non-examples; no holdout answer key.",
+    "teacher_probes()": "Training-only teacher-selected probes.",
+    "evaluate(probe, split=...)": "Fresh local state -> status violation/passed/error, stable signature, measurements with receipts and committed effects.",
+    "control(probe, split=...)": "Matched control preserving target and other conditions, removing timeout fault.",
+    "novelty(probe)": "Host-side substantive-condition check for held-out result delivery, read freshness or replay identity; not mere renamed inputs."
+  },
+  "probe_limits": {
+    "service_operations_per_evaluation": 8,
+    "allowed_keys": [
+      "target",
+      "fault",
+      "receipt",
+      "read_view",
+      "transport"
+    ],
+    "arbitrary_actions_or_code": false,
+    "inference_calls_inside_suite": 0,
+    "campaign_budget_owner": "main runner"
+  },
+  "evidence_classes": {
+    "frozen-native.json": "Verified historical native counterexample; current offline replay and source verification only.",
+    "evaluate": "Current deterministic local policy-fixture observation, not native Hermes or live model behavior.",
+    "local-validation.json": "Offline teacher/probe-fixture/host validation, not student learning."
+  },
+  "student_input_allowlist": [
+    "describe(split)",
+    "lesson()",
+    "results of student-selected probes"
+  ],
+  "host_only": [
+    "suite source and private policy mapping",
+    "teacher_probes outputs and teacher evidence",
+    "freeze packet raw references",
+    "tests and local validation artifacts",
+    "novelty checks and oracle internals"
+  ],
+  "runtime_scope": "All side effects are local synthetic export records. No network, credentials, shell or model client inside this suite.",
+  "main_runner_responsibilities": [
+    "Model-authored student proposals",
+    "Two fresh teacher/positive replays and a passing matched control",
+    "Holdout novelty enforcement",
+    "Shared model budget and source identity",
+    "Independent verification and append-only ledger",
+    "Keep failures, negatives and inconclusive observations"
+  ],
+  "ready_for_live": true
+}

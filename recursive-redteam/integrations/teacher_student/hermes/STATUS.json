@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "stage": "local_validation_complete_source_frozen",
+  "complete": true,
+  "ready_for_live": true,
+  "source_edits_stopped": true,
+  "updated_at": "2026-10-17T22:14:17.086788+00:00",
+  "module": "integrations.teacher_student.hermes.suite:build_suite",
+  "split_values": [
+    "train",
+    "holdout"
+  ],
+  "new_live_calls": 0,
+  "live_student_status": "not_run_by_this_component; main thread schedules Nemotron",
+  "student_learning_claim": false,
+  "separate_Astra_API_run": false,
+  "tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_teaching_hermes -v",
+    "passed": 16,
+    "failed": 0,
+    "skipped": 0
+  },
+  "historical_evidence": {
+    "packet": "integrations/teacher_student/hermes/evidence/frozen-native.json",
+    "classification": "verified_historical_counterexample",
+    "native_failures": 2,
+    "native_successful_controls": 4,
+    "source_files_checked": 40,
+    "content_sha256": "43e7c4b4c5775f54bf539fd30ff8c0128072fc95cab328faa68d9a5a94213554",
+    "fresh_native_inference": false
+  },
+  "current_local_validation": {
+    "teacher_verified_synthetic_cases": 1,
+    "heldout_fixture_counterexamples": 3,
+    "heldout_fixture_scoped_negatives": 5,
+    "heldout_fixture_inconclusive": 1
+  },
+  "main_thread_reported_independent_teacher_validation": {
+    "source_thread_id": "01a14b75-141e-74d3-b03a-54e0d55e4da2",
+    "two_reproductions_and_control_passed": true,
+    "evidence_location": "main-thread ledger; not copied or relabeled here"
+  },
+  "source_hashes": {
+    "integrations/teacher_student/hermes/__init__.py": "6b88d3efda9e3723bedf43d88d68b6d030308f2542d0958b5f72002efcac4fd6",
+    "integrations/teacher_student/hermes/freeze.py": "74e18120f7a62210a33b957cf886c4e3d28af3306d1e972d9bcac63750e49110",
+    "integrations/teacher_student/hermes/local_validation.py": "6fa3d30d6675d4a2e825a875cee9fca5c9189b7e9526e0639e611ddac51ab8ad",
+    "integrations/teacher_student/hermes/suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+    "integrations/teacher_student/hermes/lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86",
+    "tests/test_teaching_hermes.py": "5322ad5f62025fbfd8a0d9232f8fbe12e6021d2af174bc7a800d92e2e9a374e5"
+  },
+  "artifacts": {
+    "integrations/teacher_student/hermes/evidence/frozen-native.json": "7cf1c93a4afd651ac6229b952538934ef47e04cfc9d9e6c24e774f7e02a5a6a5",
+    "integrations/teacher_student/hermes/evidence/local-validation.json": "f99dfb63f42722eb13b45cc50e84ab95745a3156459cc8db9494657ab19028f1",
+    "integrations/teacher_student/hermes/CONTRACT.json": "a84564c94aa6e3e47fc058d56259b9c10f5d0c1926cb0f5fa05e6d0529926616",
+    "integrations/teacher_student/hermes/README.md": "91fde619d78f4338a0ca30c0eddbe13f6dc793162fa8dca0280383484294db0f"
+  },
+  "shared_core_modified": false,
+  "limitations": [
+    "Teaching targets are deterministic local policy programs, not a native Hermes execution.",
+    "Historical model aliases do not expose immutable weights/checkpoint hashes.",
+    "Offline probe fixtures do not establish live student learning or holdout transfer.",
+    "Host must not expose source/tests/answer mappings as student prompts."
+  ]
+}

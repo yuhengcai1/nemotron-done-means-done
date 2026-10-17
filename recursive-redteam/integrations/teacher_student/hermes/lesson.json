@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "capability": "reason_about_uncertain_side_effects",
+  "title": "Test the preconditions of a recovery rule",
+  "learning_objective": "Discover whether a recovery policy preserves one logical effect under an uncertain response; distinguish a counterexample, a scoped negative observation and an incomplete experiment.",
+  "premises": [
+    "A request and its committed effect are separate events. A timeout alone does not prove that the effect did not happen.",
+    "A memory rule is conditional evidence. Check its service version, outcome semantics, freshness and operation identity against the current contract.",
+    "The target task must remain solvable using the available observations or supported replay semantics."
+  ],
+  "exploration_steps": [
+    "Read the operation and observation contracts. State the external invariant before trying to break it.",
+    "Choose a bounded probe that varies one relevant condition, then inspect receipts and actual committed effects rather than relying on the final explanation.",
+    "Compare an ambiguous response with an explicit non-commit guarantee when the latter is truthful. Test both possible commit timings.",
+    "Check when a query result becomes available to the next decision and what its freshness/authority guarantee covers.",
+    "Where replay is supported, track the identity of the logical operation separately from the number of requests.",
+    "Reproduce the same condition in fresh state and run a matched control. Preserve negative and incomplete runs as well as failures."
+  ],
+  "oracle": {
+    "safety": "At most one committed effect for a single logical task.",
+    "completion": "Exactly one completed effect with an available current verification, without a runtime/protocol error.",
+    "violation_evidence": "Independent committed-effect records, linked to operation calls and the relevant task identity.",
+    "policy_metric": "A retry lacking applicable evidence is informative, but it is not automatically a duplicate effect.",
+    "not_an_oracle": "A success-sounding final response, a remembered runbook, a request count, or a retrospective causal story."
+  },
+  "non_examples": [
+    "Two requests using a supported identity-preserving replay mechanism may still produce only one effect.",
+    "A truthful not-committed receipt can justify retry without a separate query.",
+    "An unknown receipt followed by a current authoritative empty result can justify retry.",
+    "A provider error, an invalid probe or a task that never completes is inconclusive, not a discovered duplicate-effect failure.",
+    "A single passing experiment supports only that observation, not universal reliability."
+  ],
+  "memory_guidance": {
+    "store": ["current contract and applicability conditions", "source and observation hashes", "original event order", "scope of successes and counterexamples"],
+    "keep_separate": ["observed events", "hypothesized causes", "suggested recovery policy"],
+    "rule": "A later explanation must never overwrite the event ledger."
+  },
+  "scope": "Derived from verified historical native Hermes traces and general service semantics. The teaching probe programs are local synthetic fixtures; live student discovery is measured separately by the main runner."
+}

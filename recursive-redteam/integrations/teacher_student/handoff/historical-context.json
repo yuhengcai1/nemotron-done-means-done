@@ -1,0 +1,20 @@
+{
+  "classification": "historical_single_observation_with_passing_replay",
+  "model": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B",
+  "immutable_model_checkpoint_hash": null,
+  "finding": "One prose-prefixed JSON final despite correct staged state; fresh replay passed. This is not the reproduced oracle-code defect.",
+  "sources": [
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/runs/reasoning-stress-20261017b/review.json",
+      "sha256": "683e7d5db52599c7fbceabd1b607b2816f314078b4aee465bf4420c303bbf9de"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/runs/reasoning-stress-20261017b/2-direct-changed/verdict.json",
+      "sha256": "c143a467b9185a47c68f09d09b2140bd5132a91dd3657c6fbb2160cc96c48dee"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/runs/reasoning-stress-20261017b/format-followup/direct-changed-replay/verdict.json",
+      "sha256": "372524ec5cc39f4fafc325892481514e886cf026e9a7dae62b67da40c2e90cee"
+    }
+  ]
+}

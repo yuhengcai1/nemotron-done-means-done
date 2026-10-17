@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "planner": {
+    "kind": "openai-compatible",
+    "base_url": "https://api.inference.crusoecloud.com/v1",
+    "model": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B",
+    "api_key_env": "CRUSOE_API_KEY",
+    "max_tokens": 2048,
+    "request_parameters": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      }
+    },
+    "max_retries": 0,
+    "timeout": 120
+  },
+  "verifier": {
+    "kind": "openai-compatible",
+    "base_url": "https://api.inference.crusoecloud.com/v1",
+    "model": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B",
+    "api_key_env": "CRUSOE_API_KEY",
+    "max_tokens": 2048,
+    "request_parameters": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      }
+    },
+    "max_retries": 0,
+    "timeout": 120
+  },
+  "target": {
+    "kind": "plugin",
+    "factory": "examples.dynamic_state_target:make_target",
+    "model": {
+      "kind": "openai-compatible",
+      "base_url": "https://api.inference.crusoecloud.com/v1",
+      "model": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B",
+      "api_key_env": "CRUSOE_API_KEY",
+      "max_tokens": 4096,
+      "request_parameters": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "max_retries": 0,
+      "timeout": 120
+    },
+    "options": {
+      "max_calls": 32,
+      "max_steps": 12,
+      "max_delegations": 9
+    }
+  },
+  "limits": {
+    "max_rounds": 1,
+    "parallelism": 1,
+    "max_depth": 0,
+    "max_candidates": 1,
+    "replays": 1,
+    "max_model_calls": 140
+  },
+  "request_interval_seconds": 2,
+  "memory": {
+    "enabled": false
+  }
+}

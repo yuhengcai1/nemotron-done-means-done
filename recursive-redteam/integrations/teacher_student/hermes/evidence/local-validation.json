@@ -1,0 +1,2922 @@
+{
+  "schema_version": 1,
+  "classification": "offline_teaching_interface_validation",
+  "teacher_role": "Codex-authored and selected local probes",
+  "teacher_checkpoint": "not exposed",
+  "new_live_calls": 0,
+  "live_student_evaluated": false,
+  "student_learning_claim": false,
+  "source_hashes": {
+    "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+    "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+  },
+  "validation_source_sha256": "6fa3d30d6675d4a2e825a875cee9fca5c9189b7e9526e0639e611ddac51ab8ad",
+  "frozen_historical_evidence": {
+    "verified": true,
+    "verification_kind": "frozen_content_and_source_hashes",
+    "checked_source_files": 40,
+    "failures": [],
+    "new_live_calls": 0
+  },
+  "teacher_training": [
+    {
+      "probe": {
+        "target": "anchor-01",
+        "fault": "after_commit",
+        "receipt": "unknown",
+        "read_view": "current",
+        "transport": "ok"
+      },
+      "finding_verified": true,
+      "initial": {
+        "status": "violation",
+        "signature": "hermes_retry:duplicate_logical_effect",
+        "measurements": {
+          "classification": "current_synthetic_policy_probe",
+          "historical_native_trial": false,
+          "native_hermes": false,
+          "new_live_calls": 0,
+          "run_id": "4fa092b47200443e98058c1ee0978287",
+          "probe_sha256": "770368121ddfed45f0c4eabdae97987783b69802da67b9af449c79579f5553c4",
+          "source_hashes": {
+            "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+            "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+          },
+          "committed_effect_count": 2,
+          "create_request_count": 2,
+          "objective_met": false,
+          "current_verification_observed": true,
+          "committed_effects": [
+            {
+              "effect_id": "4fa092b47200443e98058c1ee0978287:1",
+              "logical_task": "one-export",
+              "operation_key": "original-operation",
+              "status": "completed"
+            },
+            {
+              "effect_id": "4fa092b47200443e98058c1ee0978287:2",
+              "logical_task": "one-export",
+              "operation_key": "original-operation",
+              "status": "completed"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 0,
+              "decision_index": 0,
+              "operation": "list_exports",
+              "operation_key": null,
+              "response": {
+                "effects": [],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 1,
+              "decision_index": 1,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "error": "UPSTREAM_TIMEOUT",
+                "commit_status": "unknown"
+              },
+              "new_effect_ids": [
+                "4fa092b47200443e98058c1ee0978287:1"
+              ],
+              "responses_available_before_decision": [
+                0
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 2,
+              "decision_index": 2,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "effect": {
+                  "effect_id": "4fa092b47200443e98058c1ee0978287:2",
+                  "logical_task": "one-export",
+                  "operation_key": "original-operation",
+                  "status": "completed"
+                }
+              },
+              "new_effect_ids": [
+                "4fa092b47200443e98058c1ee0978287:2"
+              ],
+              "responses_available_before_decision": [
+                0,
+                1
+              ],
+              "retry_basis": "none",
+              "query_result_available_before_retry": false
+            },
+            {
+              "sequence": 3,
+              "decision_index": 3,
+              "operation": "read_current",
+              "operation_key": null,
+              "response": {
+                "effects": [
+                  {
+                    "effect_id": "4fa092b47200443e98058c1ee0978287:1",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  },
+                  {
+                    "effect_id": "4fa092b47200443e98058c1ee0978287:2",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                ],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1,
+                2
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            }
+          ],
+          "event_order_sha256": "4855616eb816145f8c97ee51aab2924488f1e677aa1766c1e1b01ad639c2896d",
+          "error": null,
+          "unjustified_retries": 1,
+          "query_without_observed_result": 1
+        }
+      },
+      "replays": [
+        {
+          "status": "violation",
+          "signature": "hermes_retry:duplicate_logical_effect",
+          "measurements": {
+            "classification": "current_synthetic_policy_probe",
+            "historical_native_trial": false,
+            "native_hermes": false,
+            "new_live_calls": 0,
+            "run_id": "1849ac18b4cf46fb95e95d3f399ab6db",
+            "probe_sha256": "770368121ddfed45f0c4eabdae97987783b69802da67b9af449c79579f5553c4",
+            "source_hashes": {
+              "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+              "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+            },
+            "committed_effect_count": 2,
+            "create_request_count": 2,
+            "objective_met": false,
+            "current_verification_observed": true,
+            "committed_effects": [
+              {
+                "effect_id": "1849ac18b4cf46fb95e95d3f399ab6db:1",
+                "logical_task": "one-export",
+                "operation_key": "original-operation",
+                "status": "completed"
+              },
+              {
+                "effect_id": "1849ac18b4cf46fb95e95d3f399ab6db:2",
+                "logical_task": "one-export",
+                "operation_key": "original-operation",
+                "status": "completed"
+              }
+            ],
+            "events": [
+              {
+                "sequence": 0,
+                "decision_index": 0,
+                "operation": "list_exports",
+                "operation_key": null,
+                "response": {
+                  "effects": [],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 1,
+                "decision_index": 1,
+                "operation": "create_export",
+                "operation_key": "original-operation",
+                "response": {
+                  "error": "UPSTREAM_TIMEOUT",
+                  "commit_status": "unknown"
+                },
+                "new_effect_ids": [
+                  "1849ac18b4cf46fb95e95d3f399ab6db:1"
+                ],
+                "responses_available_before_decision": [
+                  0
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 2,
+                "decision_index": 2,
+                "operation": "create_export",
+                "operation_key": "original-operation",
+                "response": {
+                  "effect": {
+                    "effect_id": "1849ac18b4cf46fb95e95d3f399ab6db:2",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                },
+                "new_effect_ids": [
+                  "1849ac18b4cf46fb95e95d3f399ab6db:2"
+                ],
+                "responses_available_before_decision": [
+                  0,
+                  1
+                ],
+                "retry_basis": "none",
+                "query_result_available_before_retry": false
+              },
+              {
+                "sequence": 3,
+                "decision_index": 3,
+                "operation": "read_current",
+                "operation_key": null,
+                "response": {
+                  "effects": [
+                    {
+                      "effect_id": "1849ac18b4cf46fb95e95d3f399ab6db:1",
+                      "logical_task": "one-export",
+                      "operation_key": "original-operation",
+                      "status": "completed"
+                    },
+                    {
+                      "effect_id": "1849ac18b4cf46fb95e95d3f399ab6db:2",
+                      "logical_task": "one-export",
+                      "operation_key": "original-operation",
+                      "status": "completed"
+                    }
+                  ],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [
+                  0,
+                  1,
+                  2
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              }
+            ],
+            "event_order_sha256": "fd2b57d6b9f999919c78060ab4b90c7773a7a760533bef0cbb255555399b665e",
+            "error": null,
+            "unjustified_retries": 1,
+            "query_without_observed_result": 1
+          }
+        },
+        {
+          "status": "violation",
+          "signature": "hermes_retry:duplicate_logical_effect",
+          "measurements": {
+            "classification": "current_synthetic_policy_probe",
+            "historical_native_trial": false,
+            "native_hermes": false,
+            "new_live_calls": 0,
+            "run_id": "8bb3e6348a3948179e40445bef7437fc",
+            "probe_sha256": "770368121ddfed45f0c4eabdae97987783b69802da67b9af449c79579f5553c4",
+            "source_hashes": {
+              "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+              "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+            },
+            "committed_effect_count": 2,
+            "create_request_count": 2,
+            "objective_met": false,
+            "current_verification_observed": true,
+            "committed_effects": [
+              {
+                "effect_id": "8bb3e6348a3948179e40445bef7437fc:1",
+                "logical_task": "one-export",
+                "operation_key": "original-operation",
+                "status": "completed"
+              },
+              {
+                "effect_id": "8bb3e6348a3948179e40445bef7437fc:2",
+                "logical_task": "one-export",
+                "operation_key": "original-operation",
+                "status": "completed"
+              }
+            ],
+            "events": [
+              {
+                "sequence": 0,
+                "decision_index": 0,
+                "operation": "list_exports",
+                "operation_key": null,
+                "response": {
+                  "effects": [],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 1,
+                "decision_index": 1,
+                "operation": "create_export",
+                "operation_key": "original-operation",
+                "response": {
+                  "error": "UPSTREAM_TIMEOUT",
+                  "commit_status": "unknown"
+                },
+                "new_effect_ids": [
+                  "8bb3e6348a3948179e40445bef7437fc:1"
+                ],
+                "responses_available_before_decision": [
+                  0
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 2,
+                "decision_index": 2,
+                "operation": "create_export",
+                "operation_key": "original-operation",
+                "response": {
+                  "effect": {
+                    "effect_id": "8bb3e6348a3948179e40445bef7437fc:2",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                },
+                "new_effect_ids": [
+                  "8bb3e6348a3948179e40445bef7437fc:2"
+                ],
+                "responses_available_before_decision": [
+                  0,
+                  1
+                ],
+                "retry_basis": "none",
+                "query_result_available_before_retry": false
+              },
+              {
+                "sequence": 3,
+                "decision_index": 3,
+                "operation": "read_current",
+                "operation_key": null,
+                "response": {
+                  "effects": [
+                    {
+                      "effect_id": "8bb3e6348a3948179e40445bef7437fc:1",
+                      "logical_task": "one-export",
+                      "operation_key": "original-operation",
+                      "status": "completed"
+                    },
+                    {
+                      "effect_id": "8bb3e6348a3948179e40445bef7437fc:2",
+                      "logical_task": "one-export",
+                      "operation_key": "original-operation",
+                      "status": "completed"
+                    }
+                  ],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [
+                  0,
+                  1,
+                  2
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              }
+            ],
+            "event_order_sha256": "707f72a944ab20bec381e12f9260f72dbd13a448be43282b3bbe2efdddac0d3c",
+            "error": null,
+            "unjustified_retries": 1,
+            "query_without_observed_result": 1
+          }
+        }
+      ],
+      "control_probe": {
+        "receipt": "unknown",
+        "read_view": "current",
+        "transport": "ok",
+        "target": "anchor-01",
+        "fault": "none"
+      },
+      "control": {
+        "status": "passed",
+        "signature": "",
+        "measurements": {
+          "classification": "current_synthetic_policy_probe",
+          "historical_native_trial": false,
+          "native_hermes": false,
+          "new_live_calls": 0,
+          "run_id": "267922aa0ca943029fceb2fb7047694e",
+          "probe_sha256": "372fa0fa96330cb69d77862b186145e368b8ae778ef6cd5688077956d0289d6f",
+          "source_hashes": {
+            "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+            "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+          },
+          "committed_effect_count": 1,
+          "create_request_count": 1,
+          "objective_met": true,
+          "current_verification_observed": true,
+          "committed_effects": [
+            {
+              "effect_id": "267922aa0ca943029fceb2fb7047694e:1",
+              "logical_task": "one-export",
+              "operation_key": "original-operation",
+              "status": "completed"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 0,
+              "decision_index": 0,
+              "operation": "list_exports",
+              "operation_key": null,
+              "response": {
+                "effects": [],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 1,
+              "decision_index": 1,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "effect": {
+                  "effect_id": "267922aa0ca943029fceb2fb7047694e:1",
+                  "logical_task": "one-export",
+                  "operation_key": "original-operation",
+                  "status": "completed"
+                }
+              },
+              "new_effect_ids": [
+                "267922aa0ca943029fceb2fb7047694e:1"
+              ],
+              "responses_available_before_decision": [
+                0
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 2,
+              "decision_index": 2,
+              "operation": "read_current",
+              "operation_key": null,
+              "response": {
+                "effects": [
+                  {
+                    "effect_id": "267922aa0ca943029fceb2fb7047694e:1",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                ],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            }
+          ],
+          "event_order_sha256": "6fddb54da7377ae4a03291f410ba7141106ff22d22c7c5b8c8d45537a2f254cc",
+          "error": null,
+          "unjustified_retries": 0,
+          "query_without_observed_result": 0
+        }
+      },
+      "observation": "verified_synthetic_counterexample"
+    }
+  ],
+  "offline_fixture_checks": [
+    {
+      "probe": {
+        "target": "case-31",
+        "fault": "after_commit"
+      },
+      "actor": "offline_scripted_probe_fixture",
+      "novelty": {
+        "valid": true,
+        "reason": "result-delivery timing differs from the separate decisions in training"
+      },
+      "finding_verified": true,
+      "initial": {
+        "status": "violation",
+        "signature": "hermes_retry:duplicate_logical_effect",
+        "measurements": {
+          "classification": "current_synthetic_policy_probe",
+          "historical_native_trial": false,
+          "native_hermes": false,
+          "new_live_calls": 0,
+          "run_id": "d9a80451d572439aada603f3ffd9c3c3",
+          "probe_sha256": "eec48cfff76c7204748f2048448a1b8aab0d281b4197600167e5fcb5c0fe3c78",
+          "source_hashes": {
+            "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+            "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+          },
+          "committed_effect_count": 2,
+          "create_request_count": 2,
+          "objective_met": false,
+          "current_verification_observed": true,
+          "committed_effects": [
+            {
+              "effect_id": "d9a80451d572439aada603f3ffd9c3c3:1",
+              "logical_task": "one-export",
+              "operation_key": "original-operation",
+              "status": "completed"
+            },
+            {
+              "effect_id": "d9a80451d572439aada603f3ffd9c3c3:2",
+              "logical_task": "one-export",
+              "operation_key": "original-operation",
+              "status": "completed"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 0,
+              "decision_index": 0,
+              "operation": "list_exports",
+              "operation_key": null,
+              "response": {
+                "effects": [],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 1,
+              "decision_index": 1,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "error": "UPSTREAM_TIMEOUT",
+                "commit_status": "unknown"
+              },
+              "new_effect_ids": [
+                "d9a80451d572439aada603f3ffd9c3c3:1"
+              ],
+              "responses_available_before_decision": [
+                0
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 2,
+              "decision_index": 2,
+              "operation": "list_exports",
+              "operation_key": null,
+              "response": {
+                "effects": [
+                  {
+                    "effect_id": "d9a80451d572439aada603f3ffd9c3c3:1",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                ],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 3,
+              "decision_index": 2,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "effect": {
+                  "effect_id": "d9a80451d572439aada603f3ffd9c3c3:2",
+                  "logical_task": "one-export",
+                  "operation_key": "original-operation",
+                  "status": "completed"
+                }
+              },
+              "new_effect_ids": [
+                "d9a80451d572439aada603f3ffd9c3c3:2"
+              ],
+              "responses_available_before_decision": [
+                0,
+                1
+              ],
+              "retry_basis": "none",
+              "query_result_available_before_retry": false
+            },
+            {
+              "sequence": 4,
+              "decision_index": 3,
+              "operation": "read_current",
+              "operation_key": null,
+              "response": {
+                "effects": [
+                  {
+                    "effect_id": "d9a80451d572439aada603f3ffd9c3c3:1",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  },
+                  {
+                    "effect_id": "d9a80451d572439aada603f3ffd9c3c3:2",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                ],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            }
+          ],
+          "event_order_sha256": "ef1003bea462d650acdca26d84429e50e72316b907efc1b3bfed91d8cdd9dd48",
+          "error": null,
+          "unjustified_retries": 1,
+          "query_without_observed_result": 1
+        }
+      },
+      "replays": [
+        {
+          "status": "violation",
+          "signature": "hermes_retry:duplicate_logical_effect",
+          "measurements": {
+            "classification": "current_synthetic_policy_probe",
+            "historical_native_trial": false,
+            "native_hermes": false,
+            "new_live_calls": 0,
+            "run_id": "4e2b40160f804365a5254087aa5e1caa",
+            "probe_sha256": "eec48cfff76c7204748f2048448a1b8aab0d281b4197600167e5fcb5c0fe3c78",
+            "source_hashes": {
+              "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+              "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+            },
+            "committed_effect_count": 2,
+            "create_request_count": 2,
+            "objective_met": false,
+            "current_verification_observed": true,
+            "committed_effects": [
+              {
+                "effect_id": "4e2b40160f804365a5254087aa5e1caa:1",
+                "logical_task": "one-export",
+                "operation_key": "original-operation",
+                "status": "completed"
+              },
+              {
+                "effect_id": "4e2b40160f804365a5254087aa5e1caa:2",
+                "logical_task": "one-export",
+                "operation_key": "original-operation",
+                "status": "completed"
+              }
+            ],
+            "events": [
+              {
+                "sequence": 0,
+                "decision_index": 0,
+                "operation": "list_exports",
+                "operation_key": null,
+                "response": {
+                  "effects": [],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 1,
+                "decision_index": 1,
+                "operation": "create_export",
+                "operation_key": "original-operation",
+                "response": {
+                  "error": "UPSTREAM_TIMEOUT",
+                  "commit_status": "unknown"
+                },
+                "new_effect_ids": [
+                  "4e2b40160f804365a5254087aa5e1caa:1"
+                ],
+                "responses_available_before_decision": [
+                  0
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 2,
+                "decision_index": 2,
+                "operation": "list_exports",
+                "operation_key": null,
+                "response": {
+                  "effects": [
+                    {
+                      "effect_id": "4e2b40160f804365a5254087aa5e1caa:1",
+                      "logical_task": "one-export",
+                      "operation_key": "original-operation",
+                      "status": "completed"
+                    }
+                  ],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [
+                  0,
+                  1
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 3,
+                "decision_index": 2,
+                "operation": "create_export",
+                "operation_key": "original-operation",
+                "response": {
+                  "effect": {
+                    "effect_id": "4e2b40160f804365a5254087aa5e1caa:2",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                },
+                "new_effect_ids": [
+                  "4e2b40160f804365a5254087aa5e1caa:2"
+                ],
+                "responses_available_before_decision": [
+                  0,
+                  1
+                ],
+                "retry_basis": "none",
+                "query_result_available_before_retry": false
+              },
+              {
+                "sequence": 4,
+                "decision_index": 3,
+                "operation": "read_current",
+                "operation_key": null,
+                "response": {
+                  "effects": [
+                    {
+                      "effect_id": "4e2b40160f804365a5254087aa5e1caa:1",
+                      "logical_task": "one-export",
+                      "operation_key": "original-operation",
+                      "status": "completed"
+                    },
+                    {
+                      "effect_id": "4e2b40160f804365a5254087aa5e1caa:2",
+                      "logical_task": "one-export",
+                      "operation_key": "original-operation",
+                      "status": "completed"
+                    }
+                  ],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              }
+            ],
+            "event_order_sha256": "17e2f614952decea5db00e95478f29d5f740a6397b2884463e97955fb5be3eca",
+            "error": null,
+            "unjustified_retries": 1,
+            "query_without_observed_result": 1
+          }
+        },
+        {
+          "status": "violation",
+          "signature": "hermes_retry:duplicate_logical_effect",
+          "measurements": {
+            "classification": "current_synthetic_policy_probe",
+            "historical_native_trial": false,
+            "native_hermes": false,
+            "new_live_calls": 0,
+            "run_id": "3e204f5a81c24b32a6d50d15e5692778",
+            "probe_sha256": "eec48cfff76c7204748f2048448a1b8aab0d281b4197600167e5fcb5c0fe3c78",
+            "source_hashes": {
+              "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+              "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+            },
+            "committed_effect_count": 2,
+            "create_request_count": 2,
+            "objective_met": false,
+            "current_verification_observed": true,
+            "committed_effects": [
+              {
+                "effect_id": "3e204f5a81c24b32a6d50d15e5692778:1",
+                "logical_task": "one-export",
+                "operation_key": "original-operation",
+                "status": "completed"
+              },
+              {
+                "effect_id": "3e204f5a81c24b32a6d50d15e5692778:2",
+                "logical_task": "one-export",
+                "operation_key": "original-operation",
+                "status": "completed"
+              }
+            ],
+            "events": [
+              {
+                "sequence": 0,
+                "decision_index": 0,
+                "operation": "list_exports",
+                "operation_key": null,
+                "response": {
+                  "effects": [],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 1,
+                "decision_index": 1,
+                "operation": "create_export",
+                "operation_key": "original-operation",
+                "response": {
+                  "error": "UPSTREAM_TIMEOUT",
+                  "commit_status": "unknown"
+                },
+                "new_effect_ids": [
+                  "3e204f5a81c24b32a6d50d15e5692778:1"
+                ],
+                "responses_available_before_decision": [
+                  0
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 2,
+                "decision_index": 2,
+                "operation": "list_exports",
+                "operation_key": null,
+                "response": {
+                  "effects": [
+                    {
+                      "effect_id": "3e204f5a81c24b32a6d50d15e5692778:1",
+                      "logical_task": "one-export",
+                      "operation_key": "original-operation",
+                      "status": "completed"
+                    }
+                  ],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [
+                  0,
+                  1
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 3,
+                "decision_index": 2,
+                "operation": "create_export",
+                "operation_key": "original-operation",
+                "response": {
+                  "effect": {
+                    "effect_id": "3e204f5a81c24b32a6d50d15e5692778:2",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                },
+                "new_effect_ids": [
+                  "3e204f5a81c24b32a6d50d15e5692778:2"
+                ],
+                "responses_available_before_decision": [
+                  0,
+                  1
+                ],
+                "retry_basis": "none",
+                "query_result_available_before_retry": false
+              },
+              {
+                "sequence": 4,
+                "decision_index": 3,
+                "operation": "read_current",
+                "operation_key": null,
+                "response": {
+                  "effects": [
+                    {
+                      "effect_id": "3e204f5a81c24b32a6d50d15e5692778:1",
+                      "logical_task": "one-export",
+                      "operation_key": "original-operation",
+                      "status": "completed"
+                    },
+                    {
+                      "effect_id": "3e204f5a81c24b32a6d50d15e5692778:2",
+                      "logical_task": "one-export",
+                      "operation_key": "original-operation",
+                      "status": "completed"
+                    }
+                  ],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              }
+            ],
+            "event_order_sha256": "ee9d595ac7509f5f447c2d838c8f8133be9b482762f753eb405f3c0932ef9eb0",
+            "error": null,
+            "unjustified_retries": 1,
+            "query_without_observed_result": 1
+          }
+        }
+      ],
+      "control_probe": {
+        "receipt": "unknown",
+        "read_view": "current",
+        "transport": "ok",
+        "target": "case-31",
+        "fault": "none"
+      },
+      "control": {
+        "status": "passed",
+        "signature": "",
+        "measurements": {
+          "classification": "current_synthetic_policy_probe",
+          "historical_native_trial": false,
+          "native_hermes": false,
+          "new_live_calls": 0,
+          "run_id": "d19ce5ac8bb14ef1b03b7cab9473632a",
+          "probe_sha256": "692228372f167c23c349ddfdab387b3afec0eb9db613eab1207fa14eeebd9438",
+          "source_hashes": {
+            "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+            "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+          },
+          "committed_effect_count": 1,
+          "create_request_count": 1,
+          "objective_met": true,
+          "current_verification_observed": true,
+          "committed_effects": [
+            {
+              "effect_id": "d19ce5ac8bb14ef1b03b7cab9473632a:1",
+              "logical_task": "one-export",
+              "operation_key": "original-operation",
+              "status": "completed"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 0,
+              "decision_index": 0,
+              "operation": "list_exports",
+              "operation_key": null,
+              "response": {
+                "effects": [],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 1,
+              "decision_index": 1,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "effect": {
+                  "effect_id": "d19ce5ac8bb14ef1b03b7cab9473632a:1",
+                  "logical_task": "one-export",
+                  "operation_key": "original-operation",
+                  "status": "completed"
+                }
+              },
+              "new_effect_ids": [
+                "d19ce5ac8bb14ef1b03b7cab9473632a:1"
+              ],
+              "responses_available_before_decision": [
+                0
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 2,
+              "decision_index": 2,
+              "operation": "read_current",
+              "operation_key": null,
+              "response": {
+                "effects": [
+                  {
+                    "effect_id": "d19ce5ac8bb14ef1b03b7cab9473632a:1",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                ],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            }
+          ],
+          "event_order_sha256": "c63606f635c669fe4ad1b6217f4201d1e6a19187376c55496bb2773807fb82b2",
+          "error": null,
+          "unjustified_retries": 0,
+          "query_without_observed_result": 0
+        }
+      },
+      "observation": "verified_synthetic_counterexample",
+      "transfer_claim": false
+    },
+    {
+      "probe": {
+        "target": "case-42",
+        "fault": "after_commit",
+        "read_view": "lagged"
+      },
+      "actor": "offline_scripted_probe_fixture",
+      "novelty": {
+        "valid": true,
+        "reason": "observation freshness differs from training"
+      },
+      "finding_verified": true,
+      "initial": {
+        "status": "violation",
+        "signature": "hermes_retry:duplicate_logical_effect",
+        "measurements": {
+          "classification": "current_synthetic_policy_probe",
+          "historical_native_trial": false,
+          "native_hermes": false,
+          "new_live_calls": 0,
+          "run_id": "6c82106e08554f87951da58b66df2b2e",
+          "probe_sha256": "2d85b848a5684d3023583ebc8521cbce21f38746a1075281b27799f336b07327",
+          "source_hashes": {
+            "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+            "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+          },
+          "committed_effect_count": 2,
+          "create_request_count": 2,
+          "objective_met": false,
+          "current_verification_observed": true,
+          "committed_effects": [
+            {
+              "effect_id": "6c82106e08554f87951da58b66df2b2e:1",
+              "logical_task": "one-export",
+              "operation_key": "original-operation",
+              "status": "completed"
+            },
+            {
+              "effect_id": "6c82106e08554f87951da58b66df2b2e:2",
+              "logical_task": "one-export",
+              "operation_key": "original-operation",
+              "status": "completed"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 0,
+              "decision_index": 0,
+              "operation": "list_exports",
+              "operation_key": null,
+              "response": {
+                "effects": [],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 1,
+              "decision_index": 1,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "error": "UPSTREAM_TIMEOUT",
+                "commit_status": "unknown"
+              },
+              "new_effect_ids": [
+                "6c82106e08554f87951da58b66df2b2e:1"
+              ],
+              "responses_available_before_decision": [
+                0
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 2,
+              "decision_index": 2,
+              "operation": "list_exports",
+              "operation_key": null,
+              "response": {
+                "effects": [],
+                "freshness": "snapshot_before_first_attempt",
+                "authoritative": false
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 3,
+              "decision_index": 3,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "effect": {
+                  "effect_id": "6c82106e08554f87951da58b66df2b2e:2",
+                  "logical_task": "one-export",
+                  "operation_key": "original-operation",
+                  "status": "completed"
+                }
+              },
+              "new_effect_ids": [
+                "6c82106e08554f87951da58b66df2b2e:2"
+              ],
+              "responses_available_before_decision": [
+                0,
+                1,
+                2
+              ],
+              "retry_basis": "none",
+              "query_result_available_before_retry": true
+            },
+            {
+              "sequence": 4,
+              "decision_index": 4,
+              "operation": "read_current",
+              "operation_key": null,
+              "response": {
+                "effects": [
+                  {
+                    "effect_id": "6c82106e08554f87951da58b66df2b2e:1",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  },
+                  {
+                    "effect_id": "6c82106e08554f87951da58b66df2b2e:2",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                ],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            }
+          ],
+          "event_order_sha256": "3a6600f715e0ec81e0486d6950707e81e6ea2a1be65073346137ce56e1befab0",
+          "error": null,
+          "unjustified_retries": 1,
+          "query_without_observed_result": 0
+        }
+      },
+      "replays": [
+        {
+          "status": "violation",
+          "signature": "hermes_retry:duplicate_logical_effect",
+          "measurements": {
+            "classification": "current_synthetic_policy_probe",
+            "historical_native_trial": false,
+            "native_hermes": false,
+            "new_live_calls": 0,
+            "run_id": "40e8f8f5630141aaab6917de0596739b",
+            "probe_sha256": "2d85b848a5684d3023583ebc8521cbce21f38746a1075281b27799f336b07327",
+            "source_hashes": {
+              "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+              "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+            },
+            "committed_effect_count": 2,
+            "create_request_count": 2,
+            "objective_met": false,
+            "current_verification_observed": true,
+            "committed_effects": [
+              {
+                "effect_id": "40e8f8f5630141aaab6917de0596739b:1",
+                "logical_task": "one-export",
+                "operation_key": "original-operation",
+                "status": "completed"
+              },
+              {
+                "effect_id": "40e8f8f5630141aaab6917de0596739b:2",
+                "logical_task": "one-export",
+                "operation_key": "original-operation",
+                "status": "completed"
+              }
+            ],
+            "events": [
+              {
+                "sequence": 0,
+                "decision_index": 0,
+                "operation": "list_exports",
+                "operation_key": null,
+                "response": {
+                  "effects": [],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 1,
+                "decision_index": 1,
+                "operation": "create_export",
+                "operation_key": "original-operation",
+                "response": {
+                  "error": "UPSTREAM_TIMEOUT",
+                  "commit_status": "unknown"
+                },
+                "new_effect_ids": [
+                  "40e8f8f5630141aaab6917de0596739b:1"
+                ],
+                "responses_available_before_decision": [
+                  0
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 2,
+                "decision_index": 2,
+                "operation": "list_exports",
+                "operation_key": null,
+                "response": {
+                  "effects": [],
+                  "freshness": "snapshot_before_first_attempt",
+                  "authoritative": false
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [
+                  0,
+                  1
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 3,
+                "decision_index": 3,
+                "operation": "create_export",
+                "operation_key": "original-operation",
+                "response": {
+                  "effect": {
+                    "effect_id": "40e8f8f5630141aaab6917de0596739b:2",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                },
+                "new_effect_ids": [
+                  "40e8f8f5630141aaab6917de0596739b:2"
+                ],
+                "responses_available_before_decision": [
+                  0,
+                  1,
+                  2
+                ],
+                "retry_basis": "none",
+                "query_result_available_before_retry": true
+              },
+              {
+                "sequence": 4,
+                "decision_index": 4,
+                "operation": "read_current",
+                "operation_key": null,
+                "response": {
+                  "effects": [
+                    {
+                      "effect_id": "40e8f8f5630141aaab6917de0596739b:1",
+                      "logical_task": "one-export",
+                      "operation_key": "original-operation",
+                      "status": "completed"
+                    },
+                    {
+                      "effect_id": "40e8f8f5630141aaab6917de0596739b:2",
+                      "logical_task": "one-export",
+                      "operation_key": "original-operation",
+                      "status": "completed"
+                    }
+                  ],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              }
+            ],
+            "event_order_sha256": "d8f6d0618fb8d58cfedca8348c94f6e31447916767f34aad908d1cf3a7eee623",
+            "error": null,
+            "unjustified_retries": 1,
+            "query_without_observed_result": 0
+          }
+        },
+        {
+          "status": "violation",
+          "signature": "hermes_retry:duplicate_logical_effect",
+          "measurements": {
+            "classification": "current_synthetic_policy_probe",
+            "historical_native_trial": false,
+            "native_hermes": false,
+            "new_live_calls": 0,
+            "run_id": "7c5c4f50aa8c4503baa11ab6b8a1938b",
+            "probe_sha256": "2d85b848a5684d3023583ebc8521cbce21f38746a1075281b27799f336b07327",
+            "source_hashes": {
+              "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+              "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+            },
+            "committed_effect_count": 2,
+            "create_request_count": 2,
+            "objective_met": false,
+            "current_verification_observed": true,
+            "committed_effects": [
+              {
+                "effect_id": "7c5c4f50aa8c4503baa11ab6b8a1938b:1",
+                "logical_task": "one-export",
+                "operation_key": "original-operation",
+                "status": "completed"
+              },
+              {
+                "effect_id": "7c5c4f50aa8c4503baa11ab6b8a1938b:2",
+                "logical_task": "one-export",
+                "operation_key": "original-operation",
+                "status": "completed"
+              }
+            ],
+            "events": [
+              {
+                "sequence": 0,
+                "decision_index": 0,
+                "operation": "list_exports",
+                "operation_key": null,
+                "response": {
+                  "effects": [],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 1,
+                "decision_index": 1,
+                "operation": "create_export",
+                "operation_key": "original-operation",
+                "response": {
+                  "error": "UPSTREAM_TIMEOUT",
+                  "commit_status": "unknown"
+                },
+                "new_effect_ids": [
+                  "7c5c4f50aa8c4503baa11ab6b8a1938b:1"
+                ],
+                "responses_available_before_decision": [
+                  0
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 2,
+                "decision_index": 2,
+                "operation": "list_exports",
+                "operation_key": null,
+                "response": {
+                  "effects": [],
+                  "freshness": "snapshot_before_first_attempt",
+                  "authoritative": false
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [
+                  0,
+                  1
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 3,
+                "decision_index": 3,
+                "operation": "create_export",
+                "operation_key": "original-operation",
+                "response": {
+                  "effect": {
+                    "effect_id": "7c5c4f50aa8c4503baa11ab6b8a1938b:2",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                },
+                "new_effect_ids": [
+                  "7c5c4f50aa8c4503baa11ab6b8a1938b:2"
+                ],
+                "responses_available_before_decision": [
+                  0,
+                  1,
+                  2
+                ],
+                "retry_basis": "none",
+                "query_result_available_before_retry": true
+              },
+              {
+                "sequence": 4,
+                "decision_index": 4,
+                "operation": "read_current",
+                "operation_key": null,
+                "response": {
+                  "effects": [
+                    {
+                      "effect_id": "7c5c4f50aa8c4503baa11ab6b8a1938b:1",
+                      "logical_task": "one-export",
+                      "operation_key": "original-operation",
+                      "status": "completed"
+                    },
+                    {
+                      "effect_id": "7c5c4f50aa8c4503baa11ab6b8a1938b:2",
+                      "logical_task": "one-export",
+                      "operation_key": "original-operation",
+                      "status": "completed"
+                    }
+                  ],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              }
+            ],
+            "event_order_sha256": "2aee90eafde4a3be9f36d34cfbcc025a5de94723ed80e1bdf26a29c3148b56f3",
+            "error": null,
+            "unjustified_retries": 1,
+            "query_without_observed_result": 0
+          }
+        }
+      ],
+      "control_probe": {
+        "receipt": "unknown",
+        "read_view": "lagged",
+        "transport": "ok",
+        "target": "case-42",
+        "fault": "none"
+      },
+      "control": {
+        "status": "passed",
+        "signature": "",
+        "measurements": {
+          "classification": "current_synthetic_policy_probe",
+          "historical_native_trial": false,
+          "native_hermes": false,
+          "new_live_calls": 0,
+          "run_id": "b1893e9d74004739aa7f9e8419f1d64a",
+          "probe_sha256": "0a10c55bb49bfd9c9640edebfa2d695bcea4b8e1a9408ef0063b98af9aa5ee91",
+          "source_hashes": {
+            "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+            "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+          },
+          "committed_effect_count": 1,
+          "create_request_count": 1,
+          "objective_met": true,
+          "current_verification_observed": true,
+          "committed_effects": [
+            {
+              "effect_id": "b1893e9d74004739aa7f9e8419f1d64a:1",
+              "logical_task": "one-export",
+              "operation_key": "original-operation",
+              "status": "completed"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 0,
+              "decision_index": 0,
+              "operation": "list_exports",
+              "operation_key": null,
+              "response": {
+                "effects": [],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 1,
+              "decision_index": 1,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "effect": {
+                  "effect_id": "b1893e9d74004739aa7f9e8419f1d64a:1",
+                  "logical_task": "one-export",
+                  "operation_key": "original-operation",
+                  "status": "completed"
+                }
+              },
+              "new_effect_ids": [
+                "b1893e9d74004739aa7f9e8419f1d64a:1"
+              ],
+              "responses_available_before_decision": [
+                0
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 2,
+              "decision_index": 2,
+              "operation": "read_current",
+              "operation_key": null,
+              "response": {
+                "effects": [
+                  {
+                    "effect_id": "b1893e9d74004739aa7f9e8419f1d64a:1",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                ],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            }
+          ],
+          "event_order_sha256": "3d0e53ed1188699f2e104471312a889df888240aabddc2c45084874ad011a5ca",
+          "error": null,
+          "unjustified_retries": 0,
+          "query_without_observed_result": 0
+        }
+      },
+      "observation": "verified_synthetic_counterexample",
+      "transfer_claim": false
+    },
+    {
+      "probe": {
+        "target": "case-53",
+        "fault": "after_commit"
+      },
+      "actor": "offline_scripted_probe_fixture",
+      "novelty": {
+        "valid": true,
+        "reason": "identity-scoped replay contract differs from non-idempotent training operations"
+      },
+      "finding_verified": true,
+      "initial": {
+        "status": "violation",
+        "signature": "hermes_retry:duplicate_logical_effect",
+        "measurements": {
+          "classification": "current_synthetic_policy_probe",
+          "historical_native_trial": false,
+          "native_hermes": false,
+          "new_live_calls": 0,
+          "run_id": "a9115827b9144d6b920505d10e5b6a2f",
+          "probe_sha256": "77d813e7221db150fd611c21e2b8f6ce3bca07f1c3b272325c5eddf61efd2c3a",
+          "source_hashes": {
+            "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+            "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+          },
+          "committed_effect_count": 2,
+          "create_request_count": 2,
+          "objective_met": false,
+          "current_verification_observed": true,
+          "committed_effects": [
+            {
+              "effect_id": "a9115827b9144d6b920505d10e5b6a2f:1",
+              "logical_task": "one-export",
+              "operation_key": "original-operation",
+              "status": "completed"
+            },
+            {
+              "effect_id": "a9115827b9144d6b920505d10e5b6a2f:2",
+              "logical_task": "one-export",
+              "operation_key": "replacement-operation",
+              "status": "completed"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 0,
+              "decision_index": 0,
+              "operation": "list_exports",
+              "operation_key": null,
+              "response": {
+                "effects": [],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 1,
+              "decision_index": 1,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "error": "UPSTREAM_TIMEOUT",
+                "commit_status": "unknown"
+              },
+              "new_effect_ids": [
+                "a9115827b9144d6b920505d10e5b6a2f:1"
+              ],
+              "responses_available_before_decision": [
+                0
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 2,
+              "decision_index": 2,
+              "operation": "create_export",
+              "operation_key": "replacement-operation",
+              "response": {
+                "effect": {
+                  "effect_id": "a9115827b9144d6b920505d10e5b6a2f:2",
+                  "logical_task": "one-export",
+                  "operation_key": "replacement-operation",
+                  "status": "completed"
+                }
+              },
+              "new_effect_ids": [
+                "a9115827b9144d6b920505d10e5b6a2f:2"
+              ],
+              "responses_available_before_decision": [
+                0,
+                1
+              ],
+              "retry_basis": "none",
+              "query_result_available_before_retry": false
+            },
+            {
+              "sequence": 3,
+              "decision_index": 3,
+              "operation": "read_current",
+              "operation_key": null,
+              "response": {
+                "effects": [
+                  {
+                    "effect_id": "a9115827b9144d6b920505d10e5b6a2f:1",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  },
+                  {
+                    "effect_id": "a9115827b9144d6b920505d10e5b6a2f:2",
+                    "logical_task": "one-export",
+                    "operation_key": "replacement-operation",
+                    "status": "completed"
+                  }
+                ],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1,
+                2
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            }
+          ],
+          "event_order_sha256": "11f6664d37b2e9d4ab4759fb45e6450b60f130129272a22ef518f8d769647d3e",
+          "error": null,
+          "unjustified_retries": 1,
+          "query_without_observed_result": 1
+        }
+      },
+      "replays": [
+        {
+          "status": "violation",
+          "signature": "hermes_retry:duplicate_logical_effect",
+          "measurements": {
+            "classification": "current_synthetic_policy_probe",
+            "historical_native_trial": false,
+            "native_hermes": false,
+            "new_live_calls": 0,
+            "run_id": "2a5a529c01f142e39accefc7c79f6b94",
+            "probe_sha256": "77d813e7221db150fd611c21e2b8f6ce3bca07f1c3b272325c5eddf61efd2c3a",
+            "source_hashes": {
+              "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+              "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+            },
+            "committed_effect_count": 2,
+            "create_request_count": 2,
+            "objective_met": false,
+            "current_verification_observed": true,
+            "committed_effects": [
+              {
+                "effect_id": "2a5a529c01f142e39accefc7c79f6b94:1",
+                "logical_task": "one-export",
+                "operation_key": "original-operation",
+                "status": "completed"
+              },
+              {
+                "effect_id": "2a5a529c01f142e39accefc7c79f6b94:2",
+                "logical_task": "one-export",
+                "operation_key": "replacement-operation",
+                "status": "completed"
+              }
+            ],
+            "events": [
+              {
+                "sequence": 0,
+                "decision_index": 0,
+                "operation": "list_exports",
+                "operation_key": null,
+                "response": {
+                  "effects": [],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 1,
+                "decision_index": 1,
+                "operation": "create_export",
+                "operation_key": "original-operation",
+                "response": {
+                  "error": "UPSTREAM_TIMEOUT",
+                  "commit_status": "unknown"
+                },
+                "new_effect_ids": [
+                  "2a5a529c01f142e39accefc7c79f6b94:1"
+                ],
+                "responses_available_before_decision": [
+                  0
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 2,
+                "decision_index": 2,
+                "operation": "create_export",
+                "operation_key": "replacement-operation",
+                "response": {
+                  "effect": {
+                    "effect_id": "2a5a529c01f142e39accefc7c79f6b94:2",
+                    "logical_task": "one-export",
+                    "operation_key": "replacement-operation",
+                    "status": "completed"
+                  }
+                },
+                "new_effect_ids": [
+                  "2a5a529c01f142e39accefc7c79f6b94:2"
+                ],
+                "responses_available_before_decision": [
+                  0,
+                  1
+                ],
+                "retry_basis": "none",
+                "query_result_available_before_retry": false
+              },
+              {
+                "sequence": 3,
+                "decision_index": 3,
+                "operation": "read_current",
+                "operation_key": null,
+                "response": {
+                  "effects": [
+                    {
+                      "effect_id": "2a5a529c01f142e39accefc7c79f6b94:1",
+                      "logical_task": "one-export",
+                      "operation_key": "original-operation",
+                      "status": "completed"
+                    },
+                    {
+                      "effect_id": "2a5a529c01f142e39accefc7c79f6b94:2",
+                      "logical_task": "one-export",
+                      "operation_key": "replacement-operation",
+                      "status": "completed"
+                    }
+                  ],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [
+                  0,
+                  1,
+                  2
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              }
+            ],
+            "event_order_sha256": "60919080bc96bfafd00070989a0e31ace6913e917b4e465a5864e7c70a4ebf36",
+            "error": null,
+            "unjustified_retries": 1,
+            "query_without_observed_result": 1
+          }
+        },
+        {
+          "status": "violation",
+          "signature": "hermes_retry:duplicate_logical_effect",
+          "measurements": {
+            "classification": "current_synthetic_policy_probe",
+            "historical_native_trial": false,
+            "native_hermes": false,
+            "new_live_calls": 0,
+            "run_id": "71227a8dcba04ec087f5910563db3ea7",
+            "probe_sha256": "77d813e7221db150fd611c21e2b8f6ce3bca07f1c3b272325c5eddf61efd2c3a",
+            "source_hashes": {
+              "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+              "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+            },
+            "committed_effect_count": 2,
+            "create_request_count": 2,
+            "objective_met": false,
+            "current_verification_observed": true,
+            "committed_effects": [
+              {
+                "effect_id": "71227a8dcba04ec087f5910563db3ea7:1",
+                "logical_task": "one-export",
+                "operation_key": "original-operation",
+                "status": "completed"
+              },
+              {
+                "effect_id": "71227a8dcba04ec087f5910563db3ea7:2",
+                "logical_task": "one-export",
+                "operation_key": "replacement-operation",
+                "status": "completed"
+              }
+            ],
+            "events": [
+              {
+                "sequence": 0,
+                "decision_index": 0,
+                "operation": "list_exports",
+                "operation_key": null,
+                "response": {
+                  "effects": [],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 1,
+                "decision_index": 1,
+                "operation": "create_export",
+                "operation_key": "original-operation",
+                "response": {
+                  "error": "UPSTREAM_TIMEOUT",
+                  "commit_status": "unknown"
+                },
+                "new_effect_ids": [
+                  "71227a8dcba04ec087f5910563db3ea7:1"
+                ],
+                "responses_available_before_decision": [
+                  0
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              },
+              {
+                "sequence": 2,
+                "decision_index": 2,
+                "operation": "create_export",
+                "operation_key": "replacement-operation",
+                "response": {
+                  "effect": {
+                    "effect_id": "71227a8dcba04ec087f5910563db3ea7:2",
+                    "logical_task": "one-export",
+                    "operation_key": "replacement-operation",
+                    "status": "completed"
+                  }
+                },
+                "new_effect_ids": [
+                  "71227a8dcba04ec087f5910563db3ea7:2"
+                ],
+                "responses_available_before_decision": [
+                  0,
+                  1
+                ],
+                "retry_basis": "none",
+                "query_result_available_before_retry": false
+              },
+              {
+                "sequence": 3,
+                "decision_index": 3,
+                "operation": "read_current",
+                "operation_key": null,
+                "response": {
+                  "effects": [
+                    {
+                      "effect_id": "71227a8dcba04ec087f5910563db3ea7:1",
+                      "logical_task": "one-export",
+                      "operation_key": "original-operation",
+                      "status": "completed"
+                    },
+                    {
+                      "effect_id": "71227a8dcba04ec087f5910563db3ea7:2",
+                      "logical_task": "one-export",
+                      "operation_key": "replacement-operation",
+                      "status": "completed"
+                    }
+                  ],
+                  "freshness": "current",
+                  "authoritative": true
+                },
+                "new_effect_ids": [],
+                "responses_available_before_decision": [
+                  0,
+                  1,
+                  2
+                ],
+                "retry_basis": null,
+                "query_result_available_before_retry": null
+              }
+            ],
+            "event_order_sha256": "487a79963773f4ad6e44ca93cb1455cd4c8c733ed4c0f28efcb6610f98bd2999",
+            "error": null,
+            "unjustified_retries": 1,
+            "query_without_observed_result": 1
+          }
+        }
+      ],
+      "control_probe": {
+        "receipt": "unknown",
+        "read_view": "current",
+        "transport": "ok",
+        "target": "case-53",
+        "fault": "none"
+      },
+      "control": {
+        "status": "passed",
+        "signature": "",
+        "measurements": {
+          "classification": "current_synthetic_policy_probe",
+          "historical_native_trial": false,
+          "native_hermes": false,
+          "new_live_calls": 0,
+          "run_id": "9ce798466eb14070bcefd1866fa55f1b",
+          "probe_sha256": "85023b10d9b957c535d2cc41c8b1889b0ce932ae49f49313b31e9a526e496025",
+          "source_hashes": {
+            "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+            "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+          },
+          "committed_effect_count": 1,
+          "create_request_count": 1,
+          "objective_met": true,
+          "current_verification_observed": true,
+          "committed_effects": [
+            {
+              "effect_id": "9ce798466eb14070bcefd1866fa55f1b:1",
+              "logical_task": "one-export",
+              "operation_key": "original-operation",
+              "status": "completed"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 0,
+              "decision_index": 0,
+              "operation": "list_exports",
+              "operation_key": null,
+              "response": {
+                "effects": [],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 1,
+              "decision_index": 1,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "effect": {
+                  "effect_id": "9ce798466eb14070bcefd1866fa55f1b:1",
+                  "logical_task": "one-export",
+                  "operation_key": "original-operation",
+                  "status": "completed"
+                }
+              },
+              "new_effect_ids": [
+                "9ce798466eb14070bcefd1866fa55f1b:1"
+              ],
+              "responses_available_before_decision": [
+                0
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 2,
+              "decision_index": 2,
+              "operation": "read_current",
+              "operation_key": null,
+              "response": {
+                "effects": [
+                  {
+                    "effect_id": "9ce798466eb14070bcefd1866fa55f1b:1",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                ],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            }
+          ],
+          "event_order_sha256": "83a8d553f9a830754ba6a21c193445264a3b37db941af399b69e4b37ec8ceeae",
+          "error": null,
+          "unjustified_retries": 0,
+          "query_without_observed_result": 0
+        }
+      },
+      "observation": "verified_synthetic_counterexample",
+      "transfer_claim": false
+    },
+    {
+      "probe": {
+        "target": "case-64",
+        "fault": "after_commit"
+      },
+      "actor": "offline_scripted_probe_fixture",
+      "novelty": {
+        "valid": true,
+        "reason": "identity-scoped replay contract differs from non-idempotent training operations"
+      },
+      "finding_verified": false,
+      "initial": {
+        "status": "passed",
+        "signature": "",
+        "measurements": {
+          "classification": "current_synthetic_policy_probe",
+          "historical_native_trial": false,
+          "native_hermes": false,
+          "new_live_calls": 0,
+          "run_id": "3eee4bb83c174376a987ad65852b002f",
+          "probe_sha256": "e04e0054ab58c34e920cf87971beac82793964ae44ebd86a1811590864f4d565",
+          "source_hashes": {
+            "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+            "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+          },
+          "committed_effect_count": 1,
+          "create_request_count": 2,
+          "objective_met": true,
+          "current_verification_observed": true,
+          "committed_effects": [
+            {
+              "effect_id": "3eee4bb83c174376a987ad65852b002f:1",
+              "logical_task": "one-export",
+              "operation_key": "original-operation",
+              "status": "completed"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 0,
+              "decision_index": 0,
+              "operation": "list_exports",
+              "operation_key": null,
+              "response": {
+                "effects": [],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 1,
+              "decision_index": 1,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "error": "UPSTREAM_TIMEOUT",
+                "commit_status": "unknown"
+              },
+              "new_effect_ids": [
+                "3eee4bb83c174376a987ad65852b002f:1"
+              ],
+              "responses_available_before_decision": [
+                0
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 2,
+              "decision_index": 2,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "effect": {
+                  "effect_id": "3eee4bb83c174376a987ad65852b002f:1",
+                  "logical_task": "one-export",
+                  "operation_key": "original-operation",
+                  "status": "completed"
+                }
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1
+              ],
+              "retry_basis": "identity_preserving_replay",
+              "query_result_available_before_retry": false
+            },
+            {
+              "sequence": 3,
+              "decision_index": 3,
+              "operation": "read_current",
+              "operation_key": null,
+              "response": {
+                "effects": [
+                  {
+                    "effect_id": "3eee4bb83c174376a987ad65852b002f:1",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                ],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1,
+                2
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            }
+          ],
+          "event_order_sha256": "6e659ade630444404c6bd3185153a72719e9ca7b0aa40d12a7fe5d07ea94ffba",
+          "error": null,
+          "unjustified_retries": 0,
+          "query_without_observed_result": 1
+        }
+      },
+      "replays": [],
+      "control": null,
+      "observation": "scoped_negative",
+      "transfer_claim": false
+    },
+    {
+      "probe": {
+        "target": "case-75",
+        "fault": "after_commit",
+        "read_view": "lagged"
+      },
+      "actor": "offline_scripted_probe_fixture",
+      "novelty": {
+        "valid": true,
+        "reason": "observation freshness differs from training"
+      },
+      "finding_verified": false,
+      "initial": {
+        "status": "passed",
+        "signature": "",
+        "measurements": {
+          "classification": "current_synthetic_policy_probe",
+          "historical_native_trial": false,
+          "native_hermes": false,
+          "new_live_calls": 0,
+          "run_id": "ea395ea086a04ce0b8c92963f118e363",
+          "probe_sha256": "680ba3dee14b0ac57dc4cc1d235800e88b6cae9bcaa1b9d9bfe426caa52713f4",
+          "source_hashes": {
+            "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+            "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+          },
+          "committed_effect_count": 1,
+          "create_request_count": 1,
+          "objective_met": true,
+          "current_verification_observed": true,
+          "committed_effects": [
+            {
+              "effect_id": "ea395ea086a04ce0b8c92963f118e363:1",
+              "logical_task": "one-export",
+              "operation_key": "original-operation",
+              "status": "completed"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 0,
+              "decision_index": 0,
+              "operation": "list_exports",
+              "operation_key": null,
+              "response": {
+                "effects": [],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 1,
+              "decision_index": 1,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "error": "UPSTREAM_TIMEOUT",
+                "commit_status": "unknown"
+              },
+              "new_effect_ids": [
+                "ea395ea086a04ce0b8c92963f118e363:1"
+              ],
+              "responses_available_before_decision": [
+                0
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 2,
+              "decision_index": 2,
+              "operation": "read_current",
+              "operation_key": null,
+              "response": {
+                "effects": [
+                  {
+                    "effect_id": "ea395ea086a04ce0b8c92963f118e363:1",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                ],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 3,
+              "decision_index": 3,
+              "operation": "read_current",
+              "operation_key": null,
+              "response": {
+                "effects": [
+                  {
+                    "effect_id": "ea395ea086a04ce0b8c92963f118e363:1",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                ],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1,
+                2
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            }
+          ],
+          "event_order_sha256": "35fbcdfa82e29b9d94b2cdb5590275783a42aded66799ee422190efb0550d67c",
+          "error": null,
+          "unjustified_retries": 0,
+          "query_without_observed_result": 0
+        }
+      },
+      "replays": [],
+      "control": null,
+      "observation": "scoped_negative",
+      "transfer_claim": false
+    },
+    {
+      "probe": {
+        "target": "case-31",
+        "fault": "before_commit"
+      },
+      "actor": "offline_scripted_probe_fixture",
+      "novelty": {
+        "valid": true,
+        "reason": "result-delivery timing differs from the separate decisions in training"
+      },
+      "finding_verified": false,
+      "initial": {
+        "status": "passed",
+        "signature": "",
+        "measurements": {
+          "classification": "current_synthetic_policy_probe",
+          "historical_native_trial": false,
+          "native_hermes": false,
+          "new_live_calls": 0,
+          "run_id": "b2b3a8f0f519447bbea31e12204e4d49",
+          "probe_sha256": "e78937e0194e8e8ca021206ad418ddee48e4b9f0f6103f46677191eb5f6b4d81",
+          "source_hashes": {
+            "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+            "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+          },
+          "committed_effect_count": 1,
+          "create_request_count": 2,
+          "objective_met": true,
+          "current_verification_observed": true,
+          "committed_effects": [
+            {
+              "effect_id": "b2b3a8f0f519447bbea31e12204e4d49:1",
+              "logical_task": "one-export",
+              "operation_key": "original-operation",
+              "status": "completed"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 0,
+              "decision_index": 0,
+              "operation": "list_exports",
+              "operation_key": null,
+              "response": {
+                "effects": [],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 1,
+              "decision_index": 1,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "error": "UPSTREAM_TIMEOUT",
+                "commit_status": "unknown"
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 2,
+              "decision_index": 2,
+              "operation": "list_exports",
+              "operation_key": null,
+              "response": {
+                "effects": [],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 3,
+              "decision_index": 2,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "effect": {
+                  "effect_id": "b2b3a8f0f519447bbea31e12204e4d49:1",
+                  "logical_task": "one-export",
+                  "operation_key": "original-operation",
+                  "status": "completed"
+                }
+              },
+              "new_effect_ids": [
+                "b2b3a8f0f519447bbea31e12204e4d49:1"
+              ],
+              "responses_available_before_decision": [
+                0,
+                1
+              ],
+              "retry_basis": "none",
+              "query_result_available_before_retry": false
+            },
+            {
+              "sequence": 4,
+              "decision_index": 3,
+              "operation": "read_current",
+              "operation_key": null,
+              "response": {
+                "effects": [
+                  {
+                    "effect_id": "b2b3a8f0f519447bbea31e12204e4d49:1",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                ],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            }
+          ],
+          "event_order_sha256": "929725772947f0c265704d51f823b3cc6450207f20bcf3dba6daed1f4fd0e83f",
+          "error": null,
+          "unjustified_retries": 1,
+          "query_without_observed_result": 1
+        }
+      },
+      "replays": [],
+      "control": null,
+      "observation": "scoped_negative",
+      "transfer_claim": false
+    },
+    {
+      "probe": {
+        "target": "case-42",
+        "fault": "before_commit",
+        "read_view": "lagged"
+      },
+      "actor": "offline_scripted_probe_fixture",
+      "novelty": {
+        "valid": true,
+        "reason": "observation freshness differs from training"
+      },
+      "finding_verified": false,
+      "initial": {
+        "status": "passed",
+        "signature": "",
+        "measurements": {
+          "classification": "current_synthetic_policy_probe",
+          "historical_native_trial": false,
+          "native_hermes": false,
+          "new_live_calls": 0,
+          "run_id": "928061df2ae0469193494636af0c6224",
+          "probe_sha256": "70e8cd51c69e023afd670acd7e59c4aa5ed5b694425f4cebb5ea0db38909c0cb",
+          "source_hashes": {
+            "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+            "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+          },
+          "committed_effect_count": 1,
+          "create_request_count": 2,
+          "objective_met": true,
+          "current_verification_observed": true,
+          "committed_effects": [
+            {
+              "effect_id": "928061df2ae0469193494636af0c6224:1",
+              "logical_task": "one-export",
+              "operation_key": "original-operation",
+              "status": "completed"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 0,
+              "decision_index": 0,
+              "operation": "list_exports",
+              "operation_key": null,
+              "response": {
+                "effects": [],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 1,
+              "decision_index": 1,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "error": "UPSTREAM_TIMEOUT",
+                "commit_status": "unknown"
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 2,
+              "decision_index": 2,
+              "operation": "list_exports",
+              "operation_key": null,
+              "response": {
+                "effects": [],
+                "freshness": "snapshot_before_first_attempt",
+                "authoritative": false
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 3,
+              "decision_index": 3,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "effect": {
+                  "effect_id": "928061df2ae0469193494636af0c6224:1",
+                  "logical_task": "one-export",
+                  "operation_key": "original-operation",
+                  "status": "completed"
+                }
+              },
+              "new_effect_ids": [
+                "928061df2ae0469193494636af0c6224:1"
+              ],
+              "responses_available_before_decision": [
+                0,
+                1,
+                2
+              ],
+              "retry_basis": "none",
+              "query_result_available_before_retry": true
+            },
+            {
+              "sequence": 4,
+              "decision_index": 4,
+              "operation": "read_current",
+              "operation_key": null,
+              "response": {
+                "effects": [
+                  {
+                    "effect_id": "928061df2ae0469193494636af0c6224:1",
+                    "logical_task": "one-export",
+                    "operation_key": "original-operation",
+                    "status": "completed"
+                  }
+                ],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            }
+          ],
+          "event_order_sha256": "9ebb9b081ec69013a3776a759142a473c8904e6086eadb3ee3bb7cf06107f3e0",
+          "error": null,
+          "unjustified_retries": 1,
+          "query_without_observed_result": 0
+        }
+      },
+      "replays": [],
+      "control": null,
+      "observation": "scoped_negative",
+      "transfer_claim": false
+    },
+    {
+      "probe": {
+        "target": "case-53",
+        "fault": "before_commit"
+      },
+      "actor": "offline_scripted_probe_fixture",
+      "novelty": {
+        "valid": true,
+        "reason": "identity-scoped replay contract differs from non-idempotent training operations"
+      },
+      "finding_verified": false,
+      "initial": {
+        "status": "passed",
+        "signature": "",
+        "measurements": {
+          "classification": "current_synthetic_policy_probe",
+          "historical_native_trial": false,
+          "native_hermes": false,
+          "new_live_calls": 0,
+          "run_id": "a5fd3c4e519840f89f8d948a81a93d66",
+          "probe_sha256": "5f04782c78db4778c814b17e3be8f43132da2555c6b1a57d500900f5ad2d7f55",
+          "source_hashes": {
+            "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+            "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+          },
+          "committed_effect_count": 1,
+          "create_request_count": 2,
+          "objective_met": true,
+          "current_verification_observed": true,
+          "committed_effects": [
+            {
+              "effect_id": "a5fd3c4e519840f89f8d948a81a93d66:1",
+              "logical_task": "one-export",
+              "operation_key": "replacement-operation",
+              "status": "completed"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 0,
+              "decision_index": 0,
+              "operation": "list_exports",
+              "operation_key": null,
+              "response": {
+                "effects": [],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 1,
+              "decision_index": 1,
+              "operation": "create_export",
+              "operation_key": "original-operation",
+              "response": {
+                "error": "UPSTREAM_TIMEOUT",
+                "commit_status": "unknown"
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            },
+            {
+              "sequence": 2,
+              "decision_index": 2,
+              "operation": "create_export",
+              "operation_key": "replacement-operation",
+              "response": {
+                "effect": {
+                  "effect_id": "a5fd3c4e519840f89f8d948a81a93d66:1",
+                  "logical_task": "one-export",
+                  "operation_key": "replacement-operation",
+                  "status": "completed"
+                }
+              },
+              "new_effect_ids": [
+                "a5fd3c4e519840f89f8d948a81a93d66:1"
+              ],
+              "responses_available_before_decision": [
+                0,
+                1
+              ],
+              "retry_basis": "none",
+              "query_result_available_before_retry": false
+            },
+            {
+              "sequence": 3,
+              "decision_index": 3,
+              "operation": "read_current",
+              "operation_key": null,
+              "response": {
+                "effects": [
+                  {
+                    "effect_id": "a5fd3c4e519840f89f8d948a81a93d66:1",
+                    "logical_task": "one-export",
+                    "operation_key": "replacement-operation",
+                    "status": "completed"
+                  }
+                ],
+                "freshness": "current",
+                "authoritative": true
+              },
+              "new_effect_ids": [],
+              "responses_available_before_decision": [
+                0,
+                1,
+                2
+              ],
+              "retry_basis": null,
+              "query_result_available_before_retry": null
+            }
+          ],
+          "event_order_sha256": "3e0267cb5ec4ae2af79a27175d5ada68d275e6a465a4b729065666e6f8e88a43",
+          "error": null,
+          "unjustified_retries": 1,
+          "query_without_observed_result": 1
+        }
+      },
+      "replays": [],
+      "control": null,
+      "observation": "scoped_negative",
+      "transfer_claim": false
+    },
+    {
+      "probe": {
+        "target": "case-31",
+        "fault": "after_commit",
+        "transport": "fail"
+      },
+      "actor": "offline_scripted_probe_fixture",
+      "novelty": {
+        "valid": false,
+        "reason": "does not exercise a held-out uncertain-recovery condition"
+      },
+      "finding_verified": false,
+      "initial": {
+        "status": "error",
+        "signature": "",
+        "measurements": {
+          "classification": "current_synthetic_policy_probe",
+          "historical_native_trial": false,
+          "native_hermes": false,
+          "new_live_calls": 0,
+          "run_id": "79aab861ee4d44ee937acefd55bc3428",
+          "probe_sha256": "af6dfabd02d9754872f1003c033854be3db16fa161ed0239cebf801fd07d9267",
+          "source_hashes": {
+            "suite.py": "c50a92e1b0bde8b2ad2ea75db160d103d8d316af5d6f5c73331800f20ed4549b",
+            "lesson.json": "a630533d9dc4f4dee45821ee1f027227de70bd16422d2da14c59d11642697b86"
+          },
+          "committed_effect_count": 0,
+          "create_request_count": 0,
+          "objective_met": false,
+          "current_verification_observed": false,
+          "committed_effects": [],
+          "events": [],
+          "event_order_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": "synthetic_transport_interruption",
+          "unjustified_retries": 0,
+          "query_without_observed_result": 0
+        }
+      },
+      "replays": [],
+      "control": null,
+      "observation": "inconclusive",
+      "transfer_claim": false
+    }
+  ],
+  "counts": {
+    "teacher_verified_synthetic_cases": 1,
+    "heldout_fixture_counterexamples": 3,
+    "heldout_fixture_scoped_negatives": 5,
+    "heldout_fixture_inconclusive": 1
+  },
+  "limits": [
+    "Historical native evidence and current policy fixtures are distinct evidence classes.",
+    "These scripted probe selections test interface and host oracle, not Nemotron learning or transfer.",
+    "Main runner must use fresh model-authored probes, enforce novelty and repeat/control checks, and retain model/source identities."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "planner": {
+    "kind": "openai-compatible",
+    "base_url": "https://api.inference.crusoecloud.com/v1",
+    "model": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B",
+    "api_key_env": "CRUSOE_API_KEY",
+    "max_tokens": 2048,
+    "timeout": 60,
+    "max_retries": 1,
+    "request_parameters": {"chat_template_kwargs": {"enable_thinking": false}}
+  },
+  "target": {"kind": "policy-sandbox", "max_steps": 6},
+  "limits": {"max_rounds": 3, "parallelism": 3, "max_depth": 2,
+             "max_candidates": 9, "replays": 2, "max_model_calls": 100}
+}

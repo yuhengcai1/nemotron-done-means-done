@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "capability": "execution_truth_vs_structured_handoff",
+  "module": "integrations.teacher_student.handoff.suite",
+  "factory": "build_suite",
+  "interfaces": {
+    "describe(split)": "Public task and bounded probe schema; split is train or holdout; no held-out answers.",
+    "lesson()": "General noninterference/execution/handoff lesson JSON, with scope and non-cases.",
+    "teacher_probes()": "Training probes against a source-pinned real local oracle implementation.",
+    "evaluate(probe, split=...)": "Fresh local state; returns status, stable violation signature and measurements. No model/API calls.",
+    "control(probe, split=...)": "Identical operations and handoff, with diagnostic overrides removed.",
+    "novelty(probe)": "Checks a substantively different temporal scenario, not renamed training IDs.",
+    "verify_student(probe)": "Host-only fresh holdout replay twice plus paired control; no submitted verdict is trusted."
+  },
+  "status_semantics": {
+    "scope": "Correctness of the evaluator's decision, distinct from the simulated workload's success.",
+    "violation": "The actual frozen oracle disagrees with independently computed execution/handoff invariants.",
+    "passed": "The oracle correctly accepts or rejects this workload, including negative workload controls.",
+    "error": "Invalid probe, missing source integrity, unexpected runtime failure; never a discovery."
+  },
+  "evidence_classes": ["current_real_code_defect", "frozen_real_code_regression", "historical_single_observation", "offline_student_action_fixture"],
+  "scope_limits": {
+    "max_actions": 8,
+    "max_probe_bytes": 4096,
+    "side_effects": "fresh in-memory synthetic world only",
+    "new_live_calls": 0,
+    "student_access": "Only describe, lesson and bounded probe interface. Do not provide filesystem/source or host evidence containing held-out probes."
+  },
+  "source_under_test": "examples/reasoning_handoff_target.py:judge",
+  "source_version": "Frozen pre-fix source. The current original plugin has been repaired; student probes deliberately exercise the frozen regression target.",
+  "source_sha256": "855172ab27a3b1f9b8cfa4f2efdb4095cb1aa1f5c0eded12642c4ceac638b9ca",
+  "known_scope_limit": "Requires a diagnostic metadata collision at the pre-fix judge API. The normal plugin constructed non-colliding metadata and the current judge is now repaired; this was not a demonstrated remote or Nemotron failure.",
+  "live_student_status": "pending_main_runner"
+}

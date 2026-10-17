@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#234B3B">
+  <title>Recursive Lab — The self-debugging agent framework</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#workbench" aria-label="Recursive Lab home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Recursive<span class="brand-light"> Lab</span></span></a>
+      <nav aria-label="Main navigation"><a class="nav-link selected" href="#workbench">Workbench</a><a class="nav-link" href="#evidence">Evidence</a><a class="nav-link" href="#memory">Memory</a></nav>
+      <button class="stage-view-toggle" id="stage-view-button" aria-pressed="false">Stage view <span aria-hidden="true">↗</span></button>
+      <div class="header-status"><span class="status-dot"></span><span>LOCAL SANDBOX</span></div>
+    </header>
+
+    <main id="workbench">
+      <section class="intro" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <p class="eyebrow"><span class="small-line"></span> BUILT TO KEEP GOING</p>
+          <h1 id="page-title">Nemotron, debugging<br><em>its own framework.</em></h1>
+          <p class="intro-description">Give Nemotron a goal. It inspects the code, proposes a change,<br class="desktop-break"> and checks whether that change actually works.</p>
+        </div>
+        <aside class="mission-card" aria-label="Runtime configuration">
+          <div class="mission-top"><span class="section-kicker">THE MISSION</span><span class="orbit-icon" aria-hidden="true">↗</span></div>
+          <p id="mission-title">Debug the framework.<br>Leave verified evidence.</p>
+          <div class="mission-meta"><span>REASONING & ACTION</span><strong id="model-short">Nemotron</strong></div>
+          <div class="mission-meta"><span>INFERENCE</span><strong>Crusoe</strong></div>
+          <div class="mission-meta last"><span>RUNTIME</span><strong>No teacher in the loop</strong></div>
+        </aside>
+      </section>
+
+      <section class="metrics" aria-label="Run evidence overview">
+        <div class="metric"><div class="metric-label">FAILING CHECKS · BEFORE<span class="metric-mark before">↘</span></div><strong id="metric-before">—</strong><span id="metric-before-caption">Awaiting test evidence</span></div>
+        <div class="metric"><div class="metric-label">FAILING CHECKS · AFTER<span class="metric-mark after">↗</span></div><strong id="metric-after">—</strong><span id="metric-after-caption">Awaiting test evidence</span></div>
+        <div class="metric"><div class="metric-label">MODEL CALLS<span class="metric-mark">↻</span></div><strong id="metric-calls">—</strong><span id="metric-calls-caption">Logical calls, including errors</span></div>
+        <div class="metric"><div class="metric-label">VERIFIED MEMORY<span class="metric-mark">▤</span></div><strong id="metric-memory">—</strong><span id="metric-memory-caption">Evidence before recall</span></div>
+      </section>
+
+      <p class="run-outcome" id="run-outcome" hidden></p>
+
+      <section class="workspace" aria-labelledby="run-heading">
+        <div class="workspace-header">
+          <div><p class="section-kicker">THE AUTONOMOUS LOOP</p><h2 id="run-heading">Watch the work happen.</h2></div>
+          <div class="run-controls"><span class="recording-label" id="recording-label"><span></span>Loading run evidence</span><button class="icon-button" id="restart-button" title="Restart recorded run" aria-label="Restart recorded run"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7a6.5 6.5 0 1 1-.3 5M4 3v4h4"/></svg></button><button class="button primary" id="play-button" disabled><span id="play-icon" aria-hidden="true">▶</span><span id="play-label">Play recorded run</span></button><button class="icon-button" id="next-button" title="Next event" aria-label="Next event" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 4 7 6-7 6M15 4v12"/></svg></button></div>
+        </div>
+
+        <div class="story-toolbar"><span id="story-guide">A 3-minute walkthrough · four pieces of evidence</span><button id="view-toggle" class="text-button">Open full agent trace ↗</button></div>
+        <div class="showcase" id="showcase">
+          <nav class="story-steps" aria-label="Demo story">
+            <button data-story="0" class="active" aria-current="step"><span>01</span><strong>Before</strong><small>Reproduce the failure</small></button>
+            <button data-story="1"><span>02</span><strong>Nemotron's patch</strong><small>Inspect the model's change</small></button>
+            <button data-story="2"><span>03</span><strong>Independent checks</strong><small>Execution decides</small></button>
+            <button data-story="3"><span>04</span><strong>Memory recall</strong><small>Reuse proven work</small></button>
+          </nav>
+          <div class="story-body">
+            <div class="story-copy"><p class="section-kicker" id="story-kicker">THE STARTING POINT</p><h3 id="story-title">Start with a reproducible failure.</h3><p id="story-summary">Load the recorded run to inspect actual test evidence.</p><div class="story-number"><strong id="story-number">—</strong><span id="story-number-label">checks failing</span></div><div class="story-controls"><button class="button primary" id="story-action" hidden>Verify again, now ↗</button><span id="story-action-note">Recorded evidence · no simulated results</span></div><p class="story-live-result" id="story-live-result" aria-live="polite" hidden></p></div>
+            <div class="story-evidence"><div class="story-evidence-header"><strong id="story-evidence-label">EXECUTION RECEIPT</strong><span id="story-evidence-status">PENDING</span></div><pre id="story-evidence-content">Waiting for a saved run artifact.</pre><p id="story-evidence-source">Source: awaiting artifact</p></div>
+          </div>
+          <div class="story-bottom"><span id="story-position">01 / 04</span><p id="story-next-cue">Next → See the code Nemotron proposed.</p><button id="story-next" class="text-button">Next evidence <span aria-hidden="true">→</span></button></div>
+        </div>
+        <div class="workbench-grid" id="full-trace" hidden>
+          <aside class="loop-panel" aria-label="Agent workflow stages">
+            <div class="loop-caption"><span>ONE GOAL. SIX MOVES.</span><span id="stage-counter">00 / 06</span></div>
+            <ol class="stage-list" id="stage-list">
+              <li><button data-stage="plan"><span class="stage-number">01</span><span><strong>Plan</strong><small>Choose the next useful action</small></span><span class="stage-state" aria-hidden="true"></span></button></li>
+              <li><button data-stage="inspect"><span class="stage-number">02</span><span><strong>Inspect</strong><small>Read the framework source</small></span><span class="stage-state" aria-hidden="true"></span></button></li>
+              <li><button data-stage="test"><span class="stage-number">03</span><span><strong>Test</strong><small>Reproduce the failure</small></span><span class="stage-state" aria-hidden="true"></span></button></li>
+              <li><button data-stage="patch"><span class="stage-number">04</span><span><strong>Patch</strong><small>Make a bounded code change</small></span><span class="stage-state" aria-hidden="true"></span></button></li>
+              <li><button data-stage="verify"><span class="stage-number">05</span><span><strong>Verify</strong><small>Re-run the acceptance checks</small></span><span class="stage-state" aria-hidden="true"></span></button></li>
+              <li><button data-stage="memory"><span class="stage-number">06</span><span><strong>Remember</strong><small>Keep the evidence, skip repeats</small></span><span class="stage-state" aria-hidden="true"></span></button></li>
+            </ol>
+            <div class="loop-note"><span class="loop-note-icon" aria-hidden="true">↻</span><p>Errors become the next input.<br><strong>Progress has to be proven.</strong></p></div>
+          </aside>
+
+          <div class="trace-panel">
+            <div class="trace-tabs" role="tablist" aria-label="Evidence views">
+              <button id="tab-trace" class="trace-tab active" role="tab" aria-selected="true" aria-controls="panel-trace" data-tab="trace">Agent trace <span id="trace-count">0</span></button>
+              <button id="tab-code" class="trace-tab" role="tab" aria-selected="false" aria-controls="panel-code" data-tab="code" tabindex="-1">Code patch</button>
+              <button id="tab-tests" class="trace-tab" role="tab" aria-selected="false" aria-controls="panel-tests" data-tab="tests" tabindex="-1">Test receipts</button>
+              <span class="panel-status" id="panel-status">WAITING</span>
+            </div>
+            <section id="panel-trace" class="tab-panel" role="tabpanel" aria-labelledby="tab-trace">
+              <div class="event-heading"><div class="event-label"><span class="agent-avatar" id="agent-avatar" aria-hidden="true">N</span><span><strong id="event-actor">NEMOTRON</strong><small id="event-role">Autonomous repair agent</small></span></div><span id="event-position" class="mono">—</span></div>
+              <h3 id="event-title">Waiting for a recorded run</h3><p id="event-summary" class="event-summary">The timeline will show actual model decisions and tool receipts from Crusoe-hosted inference.</p>
+              <div class="event-output"><div class="output-caption"><span id="output-label">DECISION & EVIDENCE</span><button class="text-button" id="copy-button" aria-label="Copy displayed evidence">Copy <span aria-hidden="true">↗</span></button></div><pre id="event-detail">No verified run is loaded yet.</pre></div>
+              <div class="event-footer"><span class="source-label" id="event-source">Source: awaiting artifact</span><div class="event-dots" id="event-dots" aria-label="Recorded events"></div></div>
+            </section>
+            <section id="panel-code" class="tab-panel" role="tabpanel" aria-labelledby="tab-code" hidden><div class="panel-title-row"><div><p class="section-kicker">THE MODEL'S CHANGE</p><h3>The proposed code change.</h3></div><span class="code-language">PYTHON</span></div><div class="code-columns"><div><div class="code-caption"><span class="code-dot before"></span>BEFORE<span id="code-before-label"></span></div><pre id="code-before">No source artifact loaded.</pre></div><div><div class="code-caption"><span class="code-dot after"></span>AFTER<span id="code-after-label"></span></div><pre id="code-after">No repair artifact loaded.</pre></div></div><p class="source-label" id="code-source"></p></section>
+            <section id="panel-tests" class="tab-panel" role="tabpanel" aria-labelledby="tab-tests" hidden><div class="panel-title-row"><div><p class="section-kicker">CHECKS, NOT CLAIMS</p><h3>The tests have the last word.</h3></div></div><div class="receipt-pair"><article class="receipt-card"><div class="receipt-heading"><span>BEFORE</span><strong id="before-status">PENDING</strong></div><p id="before-summary">Awaiting original test output.</p><pre id="before-output">No receipt loaded.</pre></article><article class="receipt-card"><div class="receipt-heading"><span>AFTER</span><strong id="after-status">PENDING</strong></div><p id="after-summary">Awaiting repaired test output.</p><pre id="after-output">No receipt loaded.</pre></article></div><p class="source-label" id="tests-source"></p></section>
+          </div>
+        </div>
+        <div class="run-footnote"><span><span class="small-status-dot"></span><span id="run-provenance">Recorded actions, preserved receipts, inspectable evidence.</span></span><span class="mono" id="run-id">RUN —</span></div>
+        <details class="run-history" id="run-history" hidden><summary>Run provenance &amp; previous attempts</summary><p class="prior-run-note" id="prior-run-note"></p></details>
+      </section>
+
+      <section id="evidence" class="verification-strip" aria-labelledby="verify-title">
+        <div class="verification-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="m16 3 10 4v8c0 6-5 10-10 14C11 25 6 21 6 15V7l10-4Z"/><path d="m11 15 4 4 7-8"/></svg></div>
+        <div class="verification-copy"><p class="section-kicker">DON'T TAKE THE AGENT'S WORD FOR IT</p><h2 id="verify-title">Run the checks again.</h2><p>Execute the saved change's checks in a fresh local process.</p></div>
+        <div class="verification-action"><button id="verify-button" class="button primary" disabled>Verify repair locally <span aria-hidden="true">↗</span></button><span>Fresh tests · no new inference</span></div>
+      </section>
+      <section class="verification-result" id="verification-result" aria-live="polite" hidden><div class="verification-result-top"><strong id="verification-result-title">Local verification</strong><button class="text-button" id="close-verification">Close ×</button></div><p id="verification-summary"></p><details class="full-receipt"><summary>Full execution receipt</summary><pre id="verification-output"></pre></details><p id="verification-result-note"></p></section>
+
+      <section class="memory-panel" id="memory" aria-labelledby="memory-title">
+        <div class="memory-copy"><p class="section-kicker">MEMORY THAT EARNS ITS PLACE</p><h2 id="memory-title">A repair is only useful<br>if the next run can trust it.</h2><p>Store the failure, the fix, and the checks together.<br>Reuse only when the source and evidence still match.</p></div>
+        <div class="memory-receipt"><div class="memory-receipt-heading"><span class="memory-icon" aria-hidden="true">▤</span><span>VERIFIED REPAIR RECORD</span><span id="memory-status">PENDING</span></div><dl><div><dt>Framework</dt><dd>Recursive Lab</dd></div><div><dt>Agent</dt><dd id="memory-model">Nemotron on Crusoe</dd></div><div><dt>Evidence</dt><dd id="memory-evidence">Awaiting validation</dd></div><div><dt>Recall rule</dt><dd>Match source + passing checks</dd></div></dl><p id="memory-note">A memory entry is a claim until its receipts check out.</p></div>
+      </section>
+    </main>
+
+    <footer class="footer"><div class="footer-brand">Recursive Lab <span>/</span> The Recursive Agents Hackathon</div><p>Nemotron proposes the code. Execution decides what passes.</p><span class="footer-date">SAN FRANCISCO · 2026</span></footer>
+  </div>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <script src="../data/demo-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

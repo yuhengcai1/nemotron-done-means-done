@@ -1,0 +1,14 @@
+{
+  "planner": {"kind": "demo"},
+  "target": {
+    "kind": "command", "command": ["python3", "examples/stdio_target.py"], "cwd": "..",
+    "timeout": 15, "idempotent": true,
+    "description": {
+      "simulated": true, "families": ["tool-output-injection"],
+      "task": "Demonstrate the local JSON target-adapter protocol.",
+      "allowed_surface": "candidate.payload is text data only",
+      "objective": "Observe the deterministic fixture verdict; no external model is assessed."
+    }
+  },
+  "limits": {"max_rounds": 2, "parallelism": 3, "max_candidates": 4}
+}

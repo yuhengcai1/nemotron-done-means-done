@@ -1,0 +1,30 @@
+RECURSIVE LAB — THREE-MINUTE ENGLISH DEMO
+Draft pending actual run evidence. Stage directions are not spoken.
+
+00:00–00:20 — SLIDE 1
+Agents can complete a task and still leave a broken framework behind. Recursive Lab gives Nemotron a second job: inspect the framework that runs it, reproduce a defect, and propose a repair that independent checks can verify.
+
+00:20–00:45 — SLIDE 2
+This is a historical failing revision of our real evaluator. It detected a violation, then received an invalid tool call. The finalizer replaced the violation status with an error, despite retaining the evidence. We give Nemotron a maintenance goal and source access, with fixed tests and a bounded edit area.
+
+00:45–02:15 — SLIDE 3, THEN LOCAL APP
+[Switch to the app. Click “Play recorded run”.]
+We are replaying a captured run made through Crusoe Managed Inference. These model decisions and test receipts come from that actual run. A Nemotron planner delegates this maintenance task to a worker.
+
+First, Nemotron inspects the source and works through the failure. The tests require it to preserve detected failures and the later diagnostic error. Ordinary passing cases still have to pass. Unrelated errors cannot become false positives.
+
+[Click “Code patch”.]
+Here is the model's change. The edit comes from its response, and the runner applies it to an isolated source copy. Nemotron can read the file, run tests, and replace text within a bounded budget. The acceptance rules stay fixed while the model edits code.
+
+[Click “Test receipts”, then “Verify repair locally”.]
+The runner tests the repaired code. A separate Nemotron reviewer checks the evidence before the system accepts the result. This button executes the saved repair's checks again, in a fresh local process. It makes no new model call.
+
+[Scroll to “Memory”.]
+The memory record keeps the failure, patch and verification together. Every record stays linked to the exact source revision.
+
+02:15–02:40 — SLIDE 4
+[Return to the result slide. Point to the measured run counts.]
+The record includes the original failure, the model's patch, and independent verification receipts. This demonstrates a bounded repair of one local framework defect. We built the starting framework with Codex. Nemotron performs this debugging run without a runtime teacher.
+
+02:40–03:00 — SLIDE 5
+Only a verified repair enters durable memory. Its record links the source, the patch and passing checks. Failed attempts remain in the run history. Recursive Lab connects Nemotron on Crusoe to the framework's own maintenance loop, and leaves evidence we can inspect.

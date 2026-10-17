@@ -1,0 +1,38 @@
+{
+  "complete": true,
+  "verified": false,
+  "screenshot": "demo/presentation/frontend.jpg",
+  "result_source": "runs/nemotron-self-debug-20261017/report.json",
+  "target_source": "runs/nemotron-self-debug-20261017/before/targets.py",
+  "memory_source": "examples/self_debug.py",
+  "additional_sources": [
+    "runs/nemotron-self-debug-20261017/model-journal.json",
+    "runs/nemotron-self-debug-20261017/repair_checks.py",
+    "runs/nemotron-self-debug-20261017-v2/report.json"
+  ],
+  "metrics": [
+    {
+      "value": "11",
+      "label": "logical model calls"
+    },
+    {
+      "value": "15/22",
+      "label": "passing checks"
+    },
+    {
+      "value": "0",
+      "label": "verified repairs"
+    }
+  ],
+  "outcome": "7 checks still fail. No repair enters verified memory.",
+  "scope": "Bounded local historical revision. Initial framework authored with Codex.",
+  "replay_caption": "Captured Crusoe inference. This run did not produce a verified repair.",
+  "provenance_notes": "Main captured run: 11 logical model calls and 15 HTTP attempts. The real returned model was nvidia/NVIDIA-Nemotron-3-Super-120B-A12B. Both original and proposed source pass 15 of 22 checks, with 7 failures remaining. The run ended inconclusive and created no verified memory entry. The first ineffective edit and test rejection remain in its trace. The separate model reviewer did not complete an acceptance decision. A second bounded attempt used thinking mode and generic loop corrections, with no supplied repair. That attempt stopped after an initial transport timeout and a later HTTP 429 despite bounded retry and checkpoint recovery. It used 5 logical calls, including 2 errors. These attempts do not establish a general model capability limit. The runtime restricts changes to the result aggregation function of an isolated historical source copy. Initial framework code and tests were authored with Codex. No teacher lesson or solution is supplied at runtime.",
+  "script": {
+    "opening": "Agents can complete a task and still leave a broken framework behind. Recursive Lab gives Nemotron a second job: inspect the framework that runs it, reproduce a defect, and propose a repair. Executable checks decide whether that repair deserves acceptance.",
+    "problem": "This is a historical failing revision of our real evaluator. It detected a violation, then received an invalid tool call. The finalizer replaced the violation status with an error, despite retaining the evidence. We give Nemotron a maintenance goal and source access, with fixed tests and a bounded edit area.",
+    "demo": "[Switch to the app. Use Stage view. Click “Play recorded run”.]\nWe are replaying a captured run made through Crusoe Managed Inference. These model decisions and test receipts come from that actual run. A Nemotron planner delegates the maintenance task to a worker.\n\nFirst, the worker inspects the source. The tests require it to preserve a detected failure and the later diagnostic error. Ordinary passing cases still have to pass. Unrelated errors cannot become false positives.\n\n[Click “Code patch”.]\nHere is the model's change. It comes from the model response, and the runner applies it to an isolated source copy. Nemotron chooses when to read, test or edit within its budget. The acceptance rules remain fixed.\n\n[Click “Test receipts”, then “Verify repair locally”.]\nThis attempt does not earn acceptance. Seven checks still fail after the edit. The run remains inconclusive. This button executes the saved source's checks again in a fresh local process, without a new model call. The receipts make this outcome reproducible after the model call ends.\n\n[Scroll to “Memory”.]\nNo verified memory entry is created. The failed attempt remains inspectable in the run history.",
+    "results": "[Return to slide 4.]\nAcross eleven logical calls, Nemotron planned work and proposed an edit. Fifteen of twenty-two checks pass, but seven still fail. We do not count that as a repair. The demonstrated result is a bounded debugging attempt with an evidence gate that refuses to promote it.",
+    "close": "Only a passing repair enters verified memory. Its record links the source, patch and test receipts. The starting framework was built with Codex. Nemotron performs the runtime work without a teacher, and leaves evidence that we can inspect."
+  }
+}

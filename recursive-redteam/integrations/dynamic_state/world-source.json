@@ -1,0 +1,11 @@
+{
+  "original": {
+    "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/agentic-redteam/runs/campaign-02/arena.py",
+    "sha256": "46447a75e3b22868e4f943622fe5a6f5e5ff2c30b2c2fc5668668841220ad657"
+  },
+  "vendored": {
+    "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/dynamic_state/world.py",
+    "sha256": "46447a75e3b22868e4f943622fe5a6f5e5ff2c30b2c2fc5668668841220ad657"
+  },
+  "copy_policy": "Byte-identical historical world; no generated code execution."
+}

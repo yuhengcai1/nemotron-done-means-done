@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "state": "complete",
+  "ready_for_live": true,
+  "source_frozen": true,
+  "module": "integrations.teacher_student.handoff.suite",
+  "factory": "build_suite",
+  "interfaces": [
+    "describe",
+    "lesson",
+    "teacher_probes",
+    "evaluate",
+    "control",
+    "novelty",
+    "verify_student"
+  ],
+  "teacher_discovery": {
+    "classification": "real_local_code_defect_discovered_then_fixed",
+    "verified": true,
+    "training_reproductions": 2,
+    "paired_control_passed": true,
+    "frozen_evidence": "integrations/teacher_student/handoff/frozen-evidence.json",
+    "pre_fix_source_sha256": "855172ab27a3b1f9b8cfa4f2efdb4095cb1aa1f5c0eded12642c4ceac638b9ca",
+    "scope": "Direct judge API metadata collision. No remote or Nemotron failure demonstrated."
+  },
+  "production_fix": {
+    "path": "examples/reasoning_handoff_target.py",
+    "sha256": "15345daff8162e65469455bec5bcdbae16f679a8d83a01a750dad4c04ab22c58",
+    "summary": "Diagnostic metadata is namespaced; only explicit routing/provenance fields remain top-level. Oracle facts cannot be replaced.",
+    "config_pins_updated": true
+  },
+  "student_validation": {
+    "offline_protocol_fixture": "passed",
+    "real_model_validation": "verified_near_transfer_on_frozen_holdout",
+    "historical_model_failures_not_promoted": true,
+    "independent_review": "runs/teaching-live-capabilities-20261017/handoff-independent-review.json",
+    "baseline_comparison": "inconclusive: baseline planner format error; no causal teaching gain established"
+  },
+  "tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v tests.test_teaching_handoff tests.test_reasoning_handoff_integration",
+    "passed": 37,
+    "failures": 0,
+    "errors": 0,
+    "historical_requests_replayed": 33,
+    "report": "integrations/teacher_student/handoff/local-validation.json"
+  },
+  "repro_command": "PYTHONDONTWRITEBYTECODE=1 python3 integrations/teacher_student/handoff/verify.py --out /tmp/handoff-teacher-verification.json",
+  "new_live_calls": 0,
+  "shared_runtime_modified": false,
+  "important_scope": "suite probes exercise frozen pre-fix actual code; current production plugin is fixed. Only describe/lesson/probe outputs may enter student context, never holdout source/tests or host evidence.",
+  "source_hashes": [
+    {
+      "path": "integrations/teacher_student/handoff/suite.py",
+      "sha256": "152b012ccca464ff5317f84ac7ab527342399691b9ba5430457cdcbbdb36f22b"
+    },
+    {
+      "path": "integrations/teacher_student/handoff/lesson.json",
+      "sha256": "ce978fc2dc985d2e78553eb2aa5a37e34ae36f77237a4c36d04fed199be4c684"
+    },
+    {
+      "path": "integrations/teacher_student/handoff/verify.py",
+      "sha256": "d1831772037b5cfff026eef361184eef374b67d425380a761b2f9728cd5a3387"
+    },
+    {
+      "path": "examples/reasoning_handoff_target.py",
+      "sha256": "15345daff8162e65469455bec5bcdbae16f679a8d83a01a750dad4c04ab22c58"
+    },
+    {
+      "path": "tests/test_teaching_handoff.py",
+      "sha256": "ddea6658eb1adc2af1bcc9d3352554300472c819c5f1cb1a967d38a71ba085f8"
+    },
+    {
+      "path": "examples/reasoning-handoff.json",
+      "sha256": "a5d68755cd2aa5296bfa6b84934d20a4c2d5f7ec2f3bd1f13dbe3ac9f2c299ff"
+    },
+    {
+      "path": "integrations/reasoning_handoff/configs/direct.json",
+      "sha256": "45ec6e6448c249755a7aa4689fb754e3a6d5c6a1750626d19d717b9c19e292d2"
+    },
+    {
+      "path": "integrations/reasoning_handoff/configs/low_effort.json",
+      "sha256": "a5d68755cd2aa5296bfa6b84934d20a4c2d5f7ec2f3bd1f13dbe3ac9f2c299ff"
+    },
+    {
+      "path": "integrations/reasoning_handoff/configs/thinking.json",
+      "sha256": "a9feeac8c441612b60a8ef25af228b4547fce4031978d491b08fa70aa0e12647"
+    },
+    {
+      "path": "integrations/teacher_student/handoff/repaired-configs/direct.json",
+      "sha256": "45ec6e6448c249755a7aa4689fb754e3a6d5c6a1750626d19d717b9c19e292d2"
+    },
+    {
+      "path": "integrations/teacher_student/handoff/repaired-configs/low_effort.json",
+      "sha256": "a5d68755cd2aa5296bfa6b84934d20a4c2d5f7ec2f3bd1f13dbe3ac9f2c299ff"
+    },
+    {
+      "path": "integrations/teacher_student/handoff/repaired-configs/thinking.json",
+      "sha256": "a9feeac8c441612b60a8ef25af228b4547fce4031978d491b08fa70aa0e12647"
+    }
+  ],
+  "additional_live_stress": {
+    "status": "completed_and_audited",
+    "initial_run": "runs/student-handoff-stress-20261017",
+    "transport_retry_run": "runs/student-handoff-stress-transport-retry-20261017",
+    "summary": "runs/student-handoff-stress-20261017/combined-summary.json",
+    "summary_sha256": "d7edc11912ef459c7718a4d6f4d81ac28016421c8e089ba093f1f2abe26d8ed5",
+    "design": "12 blinded conditions: three new transition variants x original/repaired oracle x baseline/taught; five transport-only retries retained separately.",
+    "lesson_unchanged": true,
+    "shared_runtime_modified": false,
+    "successful_model_responses": 100,
+    "failed_logical_calls": 5,
+    "total_logical_calls": 105,
+    "groups": {
+      "vulnerable_baseline": {
+        "episodes": 3,
+        "verified_findings": 0,
+        "episode_errors": 0,
+        "episodes_with_valid_probes": 1,
+        "episodes_with_two_valid_probes": 1,
+        "unsupported_submissions": 0
+      },
+      "vulnerable_taught": {
+        "episodes": 3,
+        "verified_findings": 1,
+        "episode_errors": 0,
+        "episodes_with_valid_probes": 3,
+        "episodes_with_two_valid_probes": 3,
+        "unsupported_submissions": 0
+      },
+      "repaired_baseline": {
+        "episodes": 3,
+        "verified_findings": 0,
+        "episode_errors": 0,
+        "episodes_with_valid_probes": 0,
+        "episodes_with_two_valid_probes": 0,
+        "unsupported_submissions": 0
+      },
+      "repaired_taught": {
+        "episodes": 3,
+        "verified_findings": 0,
+        "episode_errors": 0,
+        "episodes_with_valid_probes": 3,
+        "episodes_with_two_valid_probes": 3,
+        "unsupported_submissions": 0
+      }
+    },
+    "independent_audit_assertions": 236,
+    "independent_audit_local_reruns": 54,
+    "causal_explanation_review": "runs/student-handoff-stress-transport-retry-20261017/causal-explanation-review.json",
+    "student_causal_explanation_correct": false,
+    "model_reviewer_causal_explanation_correct": false,
+    "ablation_trials": 7,
+    "causal_teaching_gain_established": false,
+    "local_tests_passed": 22,
+    "repaired_oracle_combinations": 216
+  },
+  "new_live_calls_scope": "Original offline teacher packaging only; additional hosted student inference is recorded separately below."
+}

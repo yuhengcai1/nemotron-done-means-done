@@ -1,0 +1,60 @@
+RECURSIVE LAB — THREE-MINUTE DEMO
+
+Presentation language: English
+Product: Nemotron debugs a bounded part of its agent framework, with no teacher
+agent or teacher lesson in the runtime.
+
+START
+From the recursive-redteam project directory:
+    python3 demo/server.py
+
+Open:
+    http://127.0.0.1:8765/?stage=1
+
+If that address already works, use the running server. Do not start a duplicate.
+On this Mac, demo/start.command also starts the local server.
+
+STAGE ORDER
+0:00–0:20  Slide 1: Recursive Lab and the maintenance problem.
+0:20–0:45  Slide 2: A historical evaluator bug and its visible failure.
+0:45–2:15  Slide 3, then switch to the browser.
+            Play recorded run. Use Next or the left-side stages to move faster.
+            Show Code patch, then Test receipts.
+            Click Verify repair locally and read the actual result.
+2:15–2:40  Slide 4: Measured result and the boundaries of the demonstration.
+2:40–3:00  Slide 5: Verified memory and the next maintenance run.
+
+The English speaker script beside the PPTX supplies the exact words and cues.
+Do one timed rehearsal. If time is short, use the stage buttons instead of
+waiting for every recorded event to advance.
+
+WHAT THE AUDIENCE SEES
+Play recorded run replays real saved Crusoe Nemotron decisions and tool results.
+It does not start a fresh inference call. Verify repair locally runs actual
+new local tests on the retained source, without a model call.
+
+The target is an isolated historical revision with a real framework defect.
+The current core was repaired earlier. Initial framework and checks were
+Codex-authored. Any patch attributed to Nemotron must appear in its saved output.
+Failed attempts stay in the record. A rejected patch is not a successful repair.
+
+FALLBACK
+The frontend has no CDN, npm install or internet requirement for saved playback.
+If the local server cannot run, open demo/web/index.html directly. The saved
+timeline and receipts still work. The fresh verification button is disabled
+because it needs the local Python process. Use the slide screenshot as the final
+fallback if switching applications fails.
+
+CAPTURE A NEW RUN (before the presentation, not during the three-minute slot)
+    python3 examples/self_debug.py --env-file /path/to/existing/.env \
+      --out runs/a-new-name --thinking --max-steps 12 --max-calls 16
+
+Resume an interrupted run with the same original action/call ceilings:
+    python3 examples/self_debug.py --env-file /path/to/existing/.env \
+      --out runs/a-new-name --resume --max-steps 12 --max-calls 16 --timeout 180
+
+The server intentionally displays one explicitly selected recorded run. Capturing
+a new run does not silently replace the stage evidence. Keep its source snapshots,
+model journal, failed attempts and checker outputs together.
+
+Never paste a provider key into the browser, slide deck or terminal command line.

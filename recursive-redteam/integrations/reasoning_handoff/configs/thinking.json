@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "planner": {
+    "kind": "openai-compatible",
+    "base_url": "https://api.inference.crusoecloud.com/v1",
+    "model": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B",
+    "api_key_env": "CRUSOE_API_KEY",
+    "timeout": 60,
+    "max_tokens": 2048,
+    "temperature": 1.0,
+    "max_retries": 0,
+    "request_parameters": {
+      "top_p": 0.95,
+      "chat_template_kwargs": {
+        "enable_thinking": false,
+        "force_nonempty_content": true
+      }
+    }
+  },
+  "verifier": {
+    "kind": "openai-compatible",
+    "base_url": "https://api.inference.crusoecloud.com/v1",
+    "model": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B",
+    "api_key_env": "CRUSOE_API_KEY",
+    "timeout": 60,
+    "max_tokens": 4096,
+    "temperature": 1.0,
+    "max_retries": 0,
+    "request_parameters": {
+      "top_p": 0.95,
+      "chat_template_kwargs": {
+        "enable_thinking": false,
+        "force_nonempty_content": true
+      }
+    }
+  },
+  "target": {
+    "kind": "plugin",
+    "factory": "examples.reasoning_handoff_target:make_target",
+    "options": {
+      "profile": "thinking",
+      "handoff_mode": "separate",
+      "max_steps": 6,
+      "expected_adapter_sha256": "15345daff8162e65469455bec5bcdbae16f679a8d83a01a750dad4c04ab22c58",
+      "expected_experience_sha256": "ca57d4594fd4a611892731039785168c1781be6f94e799896a1d7023bb4edc24"
+    },
+    "model": {
+      "kind": "openai-compatible",
+      "base_url": "https://api.inference.crusoecloud.com/v1",
+      "model": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B",
+      "api_key_env": "CRUSOE_API_KEY",
+      "timeout": 60,
+      "max_tokens": 4096,
+      "temperature": 1.0,
+      "max_retries": 0,
+      "request_parameters": {
+        "top_p": 0.95,
+        "chat_template_kwargs": {
+          "enable_thinking": true,
+          "force_nonempty_content": true
+        }
+      }
+    }
+  },
+  "limits": {
+    "max_rounds": 1,
+    "parallelism": 1,
+    "max_depth": 0,
+    "max_candidates": 1,
+    "replays": 1,
+    "max_model_calls": 40
+  },
+  "memory": {
+    "enabled": false
+  },
+  "request_interval_seconds": 8
+}

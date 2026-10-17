@@ -1,0 +1,45 @@
+{
+  "status": "integrated_and_live_validated",
+  "new_live_api_calls": 14,
+  "existing_live_runner_replaced": false,
+  "entrypoint": "examples/teach.py --student-resume",
+  "tests": {
+    "command": "python3 -m unittest tests.test_student_runner tests.test_student_runtime tests.test_teaching tests.test_teaching_dynamic -q",
+    "tests": 48,
+    "failures": 0,
+    "live_run": "runs/autonomous-student-20261017",
+    "live_transport_and_replay_verified": true,
+    "student_task_solved_in_live_run": false
+  },
+  "source_hashes": {
+    "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/student_runtime/signals.py": "b0565705d78f98522d74767ba3181fc85a9c4a656d88c295990883ab66ffd9ce",
+    "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/student_runtime/checkpoint.py": "35f6618092bc2e193a9dee5fe9fd8482e91c7874df70daed4511c0d11794c7a5",
+    "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/student_runtime/episode.py": "554727d93c847c50436d3a0420b4985e53955d708a382883e4efe101e89cd437",
+    "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/student_runtime/__init__.py": "77b9e229d21e7a611fdd24f45f466cdb909785b9383aa3b05bbd2f0945ecf8f6",
+    "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/student_runtime/cli.py": "a6e79ad939c0c966e297800b9417025a67c9e41180aac5a0ca8679c47f1619ba",
+    "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/student_runtime/design.json": "d8b6f0a381883b60ae2bd1a49331f3a9cd2c19c8e829110d03e47a85c79f3acc",
+    "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/examples/teach.py": "a1aa782d5f92c504446338ff52d197d7c306c851a7fafaf98c78e25c6075606a",
+    "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/recursive_redteam/teaching.py": "65946ee0c3f6c95a03bd8229174cfc65df3e0431ce99123cfbbca4f658b9cd38",
+    "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/tests/test_student_runtime.py": "77ce6723be0e79ffb7fb34276d23f60ed3e0e3b2e242205d3ae2c75658bf8260",
+    "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/tests/test_student_runner.py": "ea9d468bd80091777d0d52907343f598b9e311906588b69ff0ae52c9b203d291"
+  },
+  "validated_behaviors": [
+    "resume completed calls without additional inference",
+    "persistent shared attempt limits and pacing",
+    "429 cooldown with internal retries disabled",
+    "unknown outcomes not auto-resubmitted",
+    "condition/source/transcript isolation",
+    "local deterministic episode recovery across four launches",
+    "transport/input/progress/finding signals separated"
+  ],
+  "limitations": [
+    "Autonomous entrypoint integrated; older paired-run entrypoint is preserved.",
+    "Resume supports deterministic fresh-state local targets, not native side-effect tools.",
+    "Unknown provider outcomes stop for reconciliation rather than auto-resubmission.",
+    "Retention/regression requires repeated matched anchors."
+  ],
+  "review_completed": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/runs/teaching-live-recovery-20261017/dynamic-independent-review.json",
+  "last_live_run": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/runs/autonomous-student-20261017",
+  "live_outcome": "Runtime replay/budget verified; student stopped inconclusive with zero valid probes.",
+  "post_run_hardening": "After the frozen campaign completed, added a test/fix for malformed non-object worker JSON in partial checkpoints and clarified unknown model identity before any success. Historical run snapshot was not changed."
+}

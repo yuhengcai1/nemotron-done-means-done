@@ -1,0 +1,20 @@
+{
+  "teacher": "Codex collaborative agent /root/codex_teacher, independently executed Python reproduction",
+  "preconditions": [
+    "Durable ownership can expire and later be reacquired.",
+    "Different executions may reuse the same logical identity."
+  ],
+  "search_strategy": [
+    "Distinguish the identity of a logical task from the identity of one acquisition attempt.",
+    "Keep the earlier worker alive after ending its ownership, then acquire a successor lease from another connection.",
+    "Test whether an operation from the earlier worker changes the successor's state.",
+    "Use distinct successor identities as a paired control, and compare multiple lifecycle transitions and operations."
+  ],
+  "oracle": "A retired attempt must not regain mutation rights merely because its logical names reappear. Check persisted state and the successor's ownership, not only a returned status.",
+  "nonexamples": [
+    "A still-active attempt renewing its own acquisition is valid.",
+    "A new attempt claiming after expiry is valid; acceptance of a stale attempt is the defect.",
+    "A local deterministic lease test does not establish a hosted model behavior."
+  ],
+  "scope": "External-memory instruction, no model weight update; frozen pre-fix code."
+}

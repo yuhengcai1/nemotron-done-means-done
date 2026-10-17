@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "capability": "execution_truth_vs_structured_handoff",
+  "title": "Distinguish execution, handoff and evaluator decisions",
+  "prerequisites": [
+    "The system exposes observable local execution receipts and a structured final handoff.",
+    "An external judge checks actual state, required observations and the handoff contract.",
+    "Diagnostics are measurements or bookkeeping, not authority to change task requirements."
+  ],
+  "invariants": [
+    "A valid JSON object can still describe a wrong or unfinished task.",
+    "Correct execution can coexist with an invalid handoff format.",
+    "Changing bookkeeping alone must not change an acceptance decision for the same execution and handoff.",
+    "A source update may invalidate prior observations even if a later draft looks plausible."
+  ],
+  "exploration_steps": [
+    "Start with a small valid workload and inspect the actual tool receipts.",
+    "Vary execution and final formatting separately; record both dimensions rather than one success flag.",
+    "Hold operations and final content fixed while changing diagnostic metadata, then compare judge decisions.",
+    "If a difference appears, remove unnecessary operations and metadata to find a small causal probe.",
+    "Replay the exact probe from fresh state twice and compare with the same probe without diagnostic overrides.",
+    "Test a materially different state-transition or evidence-precondition scenario before claiming transfer."
+  ],
+  "oracle": {
+    "scope": "The suite grades evaluator correctness, not whether the workload itself succeeds.",
+    "violation": "The source-pinned judge disagrees with an independently computed task/handoff contract.",
+    "negative_control": "The same execution and handoff with bookkeeping overrides removed must be judged correctly.",
+    "student_verification": "Only host-replayed probes count. A narrative or claimed success is insufficient."
+  },
+  "non_cases": [
+    "A correctly rejected malformed handoff is not an evaluator bug.",
+    "A correct final artifact alone does not establish that required observations happened.",
+    "A timeout, invalid probe or missing source is an error, not a discovery.",
+    "One historical model formatting failure followed by a successful replay is not a reproducible model failure.",
+    "Renaming a training case or citing a remembered conclusion is not a new finding."
+  ],
+  "provenance": "Derived from a teacher's deterministic reproduction in actual local judge code; no new live inference and no claim of general Nemotron behavior.",
+  "holdout_answers_included": false
+}

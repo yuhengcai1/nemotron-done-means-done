@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "classification": "offline_input_alignment_audit",
+  "new_provider_calls": 0,
+  "new_verified_findings": 0,
+  "passed": true,
+  "capabilities": [
+    {
+      "capability": "hermes_retry",
+      "configuration": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/examples/hermes-retry.json",
+      "source_thread_id": "01a14b67-56fd-70b3-8b25-441574be74d5",
+      "observations": 6,
+      "experience_sha256": "aa5a32323dcafc687cc470adce0d8874dce17d687cd660617b56389e732b749d",
+      "model_input_observation_ids": {
+        "plan": [
+          "stale-procedure-boundary",
+          "conditional-learned-memory",
+          "success-does-not-prove-verified-retry",
+          "receipt-contract-counterexample",
+          "postmortem-order-error",
+          "failure-review-transfer-hypothesis"
+        ],
+        "propose": [
+          "stale-procedure-boundary",
+          "conditional-learned-memory",
+          "success-does-not-prove-verified-retry",
+          "receipt-contract-counterexample",
+          "postmortem-order-error",
+          "failure-review-transfer-hypothesis"
+        ]
+      },
+      "sources": [
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/hermes_live/runs/boundary/boundary-summary.json",
+          "expected_sha256": "93bfff91c6a86c866d4027555b884078017ab65bb29ed5c85a43cb5221c3b153",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/hermes_live/runs/learning/learned-memory-21.txt",
+          "expected_sha256": "0bb8d8061cfb033e04690d8f410417a0e552a26b633717506f52e300a358b034",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/hermes_live/runs/learning/learned-memory-22.txt",
+          "expected_sha256": "8fd286055bd03e8265c2ebad8e7d61027e492ebcf7885550387e06ed0b473206",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/hermes_live/runs/export-audit.json",
+          "expected_sha256": "7bce26f0af304ffc69a7a508d18e9e41a9f79201b2ecf277ebf0a75444b800e9",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/hermes_live/next-attack-plan.json",
+          "expected_sha256": "403ca3dd501b934b29a9a741fb424c4dd143e124fb93f3a633f209cad9ad9960",
+          "available": true,
+          "hash_matches": true
+        }
+      ],
+      "checks": {
+        "experience_schema_valid": true,
+        "all_source_hashes_match": true,
+        "planner_receives_observations": true,
+        "worker_receives_observations": true,
+        "target_not_evaluated": true
+      },
+      "passed": true
+    },
+    {
+      "capability": "reasoning_handoff",
+      "configuration": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/examples/reasoning-handoff.json",
+      "source_thread_id": "01a14b64-4fe1-7150-b905-9cc6baba51b9",
+      "observations": 4,
+      "experience_sha256": "ca57d4594fd4a611892731039785168c1781be6f94e799896a1d7023bb4edc24",
+      "model_input_observation_ids": {
+        "plan": [
+          "six-cell-state",
+          "format-then-replay",
+          "all-json-incomplete",
+          "terminal-json-only"
+        ],
+        "propose": [
+          "six-cell-state",
+          "format-then-replay",
+          "all-json-incomplete",
+          "terminal-json-only"
+        ]
+      },
+      "sources": [
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/runs/reasoning-stress-20261017b/review.json",
+          "expected_sha256": "683e7d5db52599c7fbceabd1b607b2816f314078b4aee465bf4420c303bbf9de",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/runs/reasoning-stress-20261017b/summary.json",
+          "expected_sha256": "cb66291251c3010f4a4486d6702c8ab71e270c4a2aa2e37926399cbfcb030db4",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/runs/reasoning-stress-20261017b/reasoning_stress.py",
+          "expected_sha256": "d4cd3125f32cc3d79a2738d3f995fa4fb982e01ea3d8cf3bc6c5dd94607b402a",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/runs/reasoning-stress-20261017b/2-direct-changed/verdict.json",
+          "expected_sha256": "c143a467b9185a47c68f09d09b2140bd5132a91dd3657c6fbb2160cc96c48dee",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/runs/reasoning-stress-20261017b/2-direct-changed/response-4.json",
+          "expected_sha256": "6b6abdfea3a74c8f42bef28f46667e752b8131d0f985bddb3acc25d5c1b08665",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/runs/reasoning-stress-20261017b/format-followup/direct-changed-replay/verdict.json",
+          "expected_sha256": "372524ec5cc39f4fafc325892481514e886cf026e9a7dae62b67da40c2e90cee",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/runs/reasoning-stress-20261017b/format-followup/direct-changed-json-mode/request-0.json",
+          "expected_sha256": "cb2975c7439ce539993bf2de1d6bde6d6fd5db3f5faaa981a9fe41a0615e6f10",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/runs/reasoning-stress-20261017b/format-followup/direct-changed-json-mode/verdict.json",
+          "expected_sha256": "af5772078ce4d86d47dcc730ec324f936d69888e38d564152ce1b0c2b79c4bd7",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/runs/reasoning-stress-20261017b/format-followup/final-phase-json-only/request.json",
+          "expected_sha256": "9c82e6ce46722e4c9d3eb3c0d3c33025caf5fc98302a3659fba4724b1f6b98f7",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/nemotron-redteam/runs/reasoning-stress-20261017b/format-followup/final-phase-json-only/verdict.json",
+          "expected_sha256": "6337ac6138ac6b02fe7e953fc48e1c0cf441c698cb36ef78ffec02346acb7516",
+          "available": true,
+          "hash_matches": true
+        }
+      ],
+      "checks": {
+        "experience_schema_valid": true,
+        "all_source_hashes_match": true,
+        "planner_receives_observations": true,
+        "worker_receives_observations": true,
+        "target_not_evaluated": true
+      },
+      "passed": true
+    },
+    {
+      "capability": "dynamic_state",
+      "configuration": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/examples/dynamic-state.json",
+      "source_thread_id": "01a14b1e-d80f-7f33-a2d7-56ac7256b74d",
+      "observations": 3,
+      "experience_sha256": "2073acdf4e2047d3ad990b00f2f4df5c00402ad354abde71fb9bc6be311e9c10",
+      "model_input_observation_ids": {
+        "plan": [
+          "consent-drift-reproduced",
+          "learning-inconclusive",
+          "stage-publish-handoff-hypothesis"
+        ],
+        "propose": [
+          "consent-drift-reproduced",
+          "learning-inconclusive",
+          "stage-publish-handoff-hypothesis"
+        ]
+      },
+      "sources": [
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/agentic-redteam/runs/campaign-02/case-assessment.json",
+          "expected_sha256": "794d6345d7c1b032c1f7414c9fd6aa71254b19ab1e3c32bf6d17517faa058690",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/agentic-redteam/runs/campaign-02/drift-0/reduced/verdict.json",
+          "expected_sha256": "8a29088fff8c8792e0de7fda45ad5323d5d3a2797005bb2ddd3fea67d688ed8b",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/agentic-redteam/runs/campaign-02/drift-0/replay-2/verdict.json",
+          "expected_sha256": "a810a815f0008320d0f5360a0eaf7daea78968d9d51e49919b1681ffe34b1528",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/agentic-redteam/runs/campaign-02/learning-0/reviewed-assessment.json",
+          "expected_sha256": "961aa0edfe7672109dcacd250c401d9364568a8f8096b8cde4db41e59adf9845",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/agentic-redteam/runs/campaign-02/drift-0/attack/events.jsonl",
+          "expected_sha256": "db5f37f64c6de491fdebb90fd84ce69efd9b81b293465b99d154a9c03cf1065f",
+          "available": true,
+          "hash_matches": true
+        },
+        {
+          "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/agentic-redteam/runs/campaign-02/drift-0/replay-2/events.jsonl",
+          "expected_sha256": "9c7abbdb65aae0f5cf7fd6eb789c14701f1b16d47963e387e5e41143b2d15d2e",
+          "available": true,
+          "hash_matches": true
+        }
+      ],
+      "checks": {
+        "experience_schema_valid": true,
+        "all_source_hashes_match": true,
+        "planner_receives_observations": true,
+        "worker_receives_observations": true,
+        "target_not_evaluated": true
+      },
+      "passed": true
+    }
+  ],
+  "meaning": "Checks provenance and actual framework message construction, not behavioral equivalence or new model experiments."
+}

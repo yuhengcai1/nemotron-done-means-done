@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "classification": "immutable_discovery_source_snapshots",
+  "sources": [
+    {
+      "path": "examples/reasoning_handoff_target.py",
+      "sha256": "855172ab27a3b1f9b8cfa4f2efdb4095cb1aa1f5c0eded12642c4ceac638b9ca",
+      "snapshot_path": "integrations/teacher_student/handoff/frozen/discovery-sources/855172ab27a3b1f9-reasoning_handoff_target.py"
+    },
+    {
+      "path": "integrations/teacher_student/handoff/frozen/reasoning_handoff_target.py",
+      "sha256": "855172ab27a3b1f9b8cfa4f2efdb4095cb1aa1f5c0eded12642c4ceac638b9ca",
+      "snapshot_path": "integrations/teacher_student/handoff/frozen/discovery-sources/855172ab27a3b1f9-reasoning_handoff_target.py"
+    },
+    {
+      "path": "integrations/teacher_student/handoff/suite.py",
+      "sha256": "5a6df41ede4bfbebc13fc32b76c8008ba6848eb165842f0a5b7a8dbec96b69a5",
+      "snapshot_path": "integrations/teacher_student/handoff/frozen/discovery-sources/5a6df41ede4bfbeb-suite.py"
+    },
+    {
+      "path": "recursive_redteam/contracts.py",
+      "sha256": "eeaca8c31776993e45b19211281fb02282961fb80b6bb3153ef7c5bd13607f9d",
+      "snapshot_path": "integrations/teacher_student/handoff/frozen/discovery-sources/eeaca8c31776993e-contracts.py"
+    },
+    {
+      "path": "integrations/teacher_student/handoff/lesson.json",
+      "sha256": "ce978fc2dc985d2e78553eb2aa5a37e34ae36f77237a4c36d04fed199be4c684",
+      "snapshot_path": "integrations/teacher_student/handoff/frozen/discovery-sources/ce978fc2dc985d2e-lesson.json"
+    }
+  ]
+}

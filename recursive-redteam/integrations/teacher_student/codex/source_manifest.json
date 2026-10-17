@@ -1,0 +1,7 @@
+{
+  "source_path": "recursive_redteam/memory.py",
+  "source_sha256": "2a849f418fec92a6c8d81a2e38dd4275780c7bd474e563b5ca54575f4b8c3733",
+  "snapshot": "frozen_memory.py",
+  "status": "pre_fix_production_source",
+  "teacher": "Codex collaborative agent /root/codex_teacher; actual session model identity not exposed as public API metadata"
+}

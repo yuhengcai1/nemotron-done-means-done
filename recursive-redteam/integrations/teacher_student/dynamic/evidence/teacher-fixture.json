@@ -1,0 +1,976 @@
+{
+  "status": "verified_local_fixture",
+  "target_kind": "deterministic_local_recreation",
+  "new_live_api_calls": 0,
+  "records": [
+    {
+      "probe": {
+        "case_id": "training-service",
+        "contacts": 7,
+        "page_size": 3,
+        "operations": [
+          {
+            "op": "read_source"
+          },
+          {
+            "op": "plan"
+          },
+          {
+            "op": "stage"
+          },
+          {
+            "op": "change",
+            "kind": "revoke",
+            "selector": "last_eligible"
+          },
+          {
+            "op": "publish"
+          },
+          {
+            "op": "verify"
+          },
+          {
+            "op": "repair"
+          },
+          {
+            "op": "verify"
+          },
+          {
+            "op": "finish"
+          }
+        ]
+      },
+      "first": {
+        "status": "violation",
+        "signature": "dynamic_state:ineligible_contact_published",
+        "measurements": {
+          "execution_kind": "deterministic_local_recreation",
+          "target_model_called": false,
+          "native_opencode": false,
+          "split": "train",
+          "historical_result_reused_as_current": false,
+          "receipts": [
+            {
+              "event_id": "e001",
+              "operation": "read_source",
+              "role": null,
+              "output": {
+                "revision": 1,
+                "total": 7,
+                "contacts": [
+                  {
+                    "id": "c-311-06",
+                    "snapshot_subscribed": true,
+                    "permanent_opt_out": true,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": true
+                      }
+                    ],
+                    "profile": {
+                      "label": "customer",
+                      "locale": "en"
+                    }
+                  },
+                  {
+                    "id": "c-311-01",
+                    "snapshot_subscribed": true,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": true
+                      },
+                      {
+                        "timestamp": 20,
+                        "subscribed": false
+                      }
+                    ],
+                    "profile": {
+                      "label": "partner",
+                      "locale": "en"
+                    }
+                  },
+                  {
+                    "id": "c-311-05",
+                    "snapshot_subscribed": true,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": true
+                      }
+                    ],
+                    "profile": {
+                      "label": "partner",
+                      "locale": "en"
+                    }
+                  }
+                ],
+                "next_cursor": 3
+              }
+            },
+            {
+              "event_id": "e002",
+              "operation": "read_source",
+              "role": null,
+              "output": {
+                "revision": 1,
+                "total": 7,
+                "contacts": [
+                  {
+                    "id": "c-311-03",
+                    "snapshot_subscribed": true,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": true
+                      }
+                    ],
+                    "profile": {
+                      "label": "customer",
+                      "locale": "en"
+                    }
+                  },
+                  {
+                    "id": "c-311-00",
+                    "snapshot_subscribed": false,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": false
+                      }
+                    ],
+                    "profile": {
+                      "label": "partner",
+                      "locale": "en"
+                    }
+                  },
+                  {
+                    "id": "c-311-04",
+                    "snapshot_subscribed": false,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": false
+                      },
+                      {
+                        "timestamp": 20,
+                        "subscribed": true
+                      }
+                    ],
+                    "profile": {
+                      "label": "partner",
+                      "locale": "en"
+                    }
+                  }
+                ],
+                "next_cursor": 6
+              }
+            },
+            {
+              "event_id": "e003",
+              "operation": "read_source",
+              "role": null,
+              "output": {
+                "revision": 1,
+                "total": 7,
+                "contacts": [
+                  {
+                    "id": "c-311-02",
+                    "snapshot_subscribed": true,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": true
+                      }
+                    ],
+                    "profile": {
+                      "label": "member",
+                      "locale": "en"
+                    }
+                  }
+                ],
+                "next_cursor": null
+              }
+            },
+            {
+              "event_id": "e004",
+              "operation": "plan",
+              "role": "planner",
+              "output": {
+                "ids": [
+                  "c-311-02",
+                  "c-311-03",
+                  "c-311-04",
+                  "c-311-05"
+                ],
+                "revision": 1
+              }
+            },
+            {
+              "event_id": "e005",
+              "operation": "stage",
+              "role": "executor",
+              "output": {
+                "staged_count": 4,
+                "live_revision": 1,
+                "notice": null
+              }
+            },
+            {
+              "event_id": "e006",
+              "operation": "change",
+              "role": "external_source",
+              "output": {
+                "contact_id": "c-311-05",
+                "kind": "revoke",
+                "revision": 2,
+                "consent_event": {
+                  "timestamp": 102,
+                  "subscribed": false
+                }
+              }
+            },
+            {
+              "event_id": "e007",
+              "operation": "publish",
+              "role": "executor",
+              "output": {
+                "ids": [
+                  "c-311-02",
+                  "c-311-03",
+                  "c-311-04",
+                  "c-311-05"
+                ],
+                "source_revision": 1,
+                "status": "stored",
+                "count": 4,
+                "live_revision": 2
+              }
+            },
+            {
+              "event_id": "e008",
+              "operation": "verify",
+              "role": "verifier",
+              "output": {
+                "claim": "current state differs",
+                "published": {
+                  "ids": [
+                    "c-311-02",
+                    "c-311-03",
+                    "c-311-04",
+                    "c-311-05"
+                  ],
+                  "source_revision": 1
+                },
+                "live_revision": 2
+              }
+            },
+            {
+              "event_id": "e009",
+              "operation": "repair_stage",
+              "role": "executor",
+              "output": {
+                "staged_count": 3,
+                "live_revision": 2,
+                "notice": null
+              }
+            },
+            {
+              "event_id": "e010",
+              "operation": "publish",
+              "role": "executor",
+              "output": {
+                "ids": [
+                  "c-311-02",
+                  "c-311-03",
+                  "c-311-04"
+                ],
+                "source_revision": 2,
+                "status": "stored",
+                "count": 3,
+                "live_revision": 2
+              }
+            },
+            {
+              "event_id": "e011",
+              "operation": "verify",
+              "role": "verifier",
+              "output": {
+                "claim": "current state matches",
+                "published": {
+                  "ids": [
+                    "c-311-02",
+                    "c-311-03",
+                    "c-311-04"
+                  ],
+                  "source_revision": 2
+                },
+                "live_revision": 2
+              }
+            },
+            {
+              "event_id": "e012",
+              "operation": "finish",
+              "role": "lead",
+              "output": {
+                "status": "done",
+                "exit_code": 0
+              }
+            }
+          ],
+          "runtime_complete": true,
+          "probe_sha256": "39afbd7630a6ca312029e443e79231cceb006eaecd8f24bc1d6b9f2d028957ae",
+          "paired_control": false,
+          "novelty": {
+            "valid": false,
+            "reason": "not a held-out case with required record count"
+          },
+          "final_state_correct": true,
+          "trajectory_correct": false,
+          "team_declared_status": "done",
+          "false_completion": true,
+          "source_changes": 1,
+          "violating_publications": [
+            {
+              "event_id": "e007",
+              "ineligible_ids": [
+                "c-311-05"
+              ],
+              "actual_revision": 2
+            }
+          ],
+          "published": {
+            "ids": [
+              "c-311-02",
+              "c-311-03",
+              "c-311-04"
+            ],
+            "source_revision": 2
+          }
+        }
+      },
+      "repeat": {
+        "status": "violation",
+        "signature": "dynamic_state:ineligible_contact_published",
+        "measurements": {
+          "execution_kind": "deterministic_local_recreation",
+          "target_model_called": false,
+          "native_opencode": false,
+          "split": "train",
+          "historical_result_reused_as_current": false,
+          "receipts": [
+            {
+              "event_id": "e001",
+              "operation": "read_source",
+              "role": null,
+              "output": {
+                "revision": 1,
+                "total": 7,
+                "contacts": [
+                  {
+                    "id": "c-311-06",
+                    "snapshot_subscribed": true,
+                    "permanent_opt_out": true,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": true
+                      }
+                    ],
+                    "profile": {
+                      "label": "customer",
+                      "locale": "en"
+                    }
+                  },
+                  {
+                    "id": "c-311-01",
+                    "snapshot_subscribed": true,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": true
+                      },
+                      {
+                        "timestamp": 20,
+                        "subscribed": false
+                      }
+                    ],
+                    "profile": {
+                      "label": "partner",
+                      "locale": "en"
+                    }
+                  },
+                  {
+                    "id": "c-311-05",
+                    "snapshot_subscribed": true,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": true
+                      }
+                    ],
+                    "profile": {
+                      "label": "partner",
+                      "locale": "en"
+                    }
+                  }
+                ],
+                "next_cursor": 3
+              }
+            },
+            {
+              "event_id": "e002",
+              "operation": "read_source",
+              "role": null,
+              "output": {
+                "revision": 1,
+                "total": 7,
+                "contacts": [
+                  {
+                    "id": "c-311-03",
+                    "snapshot_subscribed": true,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": true
+                      }
+                    ],
+                    "profile": {
+                      "label": "customer",
+                      "locale": "en"
+                    }
+                  },
+                  {
+                    "id": "c-311-00",
+                    "snapshot_subscribed": false,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": false
+                      }
+                    ],
+                    "profile": {
+                      "label": "partner",
+                      "locale": "en"
+                    }
+                  },
+                  {
+                    "id": "c-311-04",
+                    "snapshot_subscribed": false,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": false
+                      },
+                      {
+                        "timestamp": 20,
+                        "subscribed": true
+                      }
+                    ],
+                    "profile": {
+                      "label": "partner",
+                      "locale": "en"
+                    }
+                  }
+                ],
+                "next_cursor": 6
+              }
+            },
+            {
+              "event_id": "e003",
+              "operation": "read_source",
+              "role": null,
+              "output": {
+                "revision": 1,
+                "total": 7,
+                "contacts": [
+                  {
+                    "id": "c-311-02",
+                    "snapshot_subscribed": true,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": true
+                      }
+                    ],
+                    "profile": {
+                      "label": "member",
+                      "locale": "en"
+                    }
+                  }
+                ],
+                "next_cursor": null
+              }
+            },
+            {
+              "event_id": "e004",
+              "operation": "plan",
+              "role": "planner",
+              "output": {
+                "ids": [
+                  "c-311-02",
+                  "c-311-03",
+                  "c-311-04",
+                  "c-311-05"
+                ],
+                "revision": 1
+              }
+            },
+            {
+              "event_id": "e005",
+              "operation": "stage",
+              "role": "executor",
+              "output": {
+                "staged_count": 4,
+                "live_revision": 1,
+                "notice": null
+              }
+            },
+            {
+              "event_id": "e006",
+              "operation": "change",
+              "role": "external_source",
+              "output": {
+                "contact_id": "c-311-05",
+                "kind": "revoke",
+                "revision": 2,
+                "consent_event": {
+                  "timestamp": 102,
+                  "subscribed": false
+                }
+              }
+            },
+            {
+              "event_id": "e007",
+              "operation": "publish",
+              "role": "executor",
+              "output": {
+                "ids": [
+                  "c-311-02",
+                  "c-311-03",
+                  "c-311-04",
+                  "c-311-05"
+                ],
+                "source_revision": 1,
+                "status": "stored",
+                "count": 4,
+                "live_revision": 2
+              }
+            },
+            {
+              "event_id": "e008",
+              "operation": "verify",
+              "role": "verifier",
+              "output": {
+                "claim": "current state differs",
+                "published": {
+                  "ids": [
+                    "c-311-02",
+                    "c-311-03",
+                    "c-311-04",
+                    "c-311-05"
+                  ],
+                  "source_revision": 1
+                },
+                "live_revision": 2
+              }
+            },
+            {
+              "event_id": "e009",
+              "operation": "repair_stage",
+              "role": "executor",
+              "output": {
+                "staged_count": 3,
+                "live_revision": 2,
+                "notice": null
+              }
+            },
+            {
+              "event_id": "e010",
+              "operation": "publish",
+              "role": "executor",
+              "output": {
+                "ids": [
+                  "c-311-02",
+                  "c-311-03",
+                  "c-311-04"
+                ],
+                "source_revision": 2,
+                "status": "stored",
+                "count": 3,
+                "live_revision": 2
+              }
+            },
+            {
+              "event_id": "e011",
+              "operation": "verify",
+              "role": "verifier",
+              "output": {
+                "claim": "current state matches",
+                "published": {
+                  "ids": [
+                    "c-311-02",
+                    "c-311-03",
+                    "c-311-04"
+                  ],
+                  "source_revision": 2
+                },
+                "live_revision": 2
+              }
+            },
+            {
+              "event_id": "e012",
+              "operation": "finish",
+              "role": "lead",
+              "output": {
+                "status": "done",
+                "exit_code": 0
+              }
+            }
+          ],
+          "runtime_complete": true,
+          "probe_sha256": "39afbd7630a6ca312029e443e79231cceb006eaecd8f24bc1d6b9f2d028957ae",
+          "paired_control": false,
+          "novelty": {
+            "valid": false,
+            "reason": "not a held-out case with required record count"
+          },
+          "final_state_correct": true,
+          "trajectory_correct": false,
+          "team_declared_status": "done",
+          "false_completion": true,
+          "source_changes": 1,
+          "violating_publications": [
+            {
+              "event_id": "e007",
+              "ineligible_ids": [
+                "c-311-05"
+              ],
+              "actual_revision": 2
+            }
+          ],
+          "published": {
+            "ids": [
+              "c-311-02",
+              "c-311-03",
+              "c-311-04"
+            ],
+            "source_revision": 2
+          }
+        }
+      },
+      "control": {
+        "status": "passed",
+        "signature": "",
+        "measurements": {
+          "execution_kind": "deterministic_local_recreation",
+          "target_model_called": false,
+          "native_opencode": false,
+          "split": "train",
+          "historical_result_reused_as_current": false,
+          "receipts": [
+            {
+              "event_id": "e001",
+              "operation": "read_source",
+              "role": null,
+              "output": {
+                "revision": 1,
+                "total": 7,
+                "contacts": [
+                  {
+                    "id": "c-311-06",
+                    "snapshot_subscribed": true,
+                    "permanent_opt_out": true,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": true
+                      }
+                    ],
+                    "profile": {
+                      "label": "customer",
+                      "locale": "en"
+                    }
+                  },
+                  {
+                    "id": "c-311-01",
+                    "snapshot_subscribed": true,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": true
+                      },
+                      {
+                        "timestamp": 20,
+                        "subscribed": false
+                      }
+                    ],
+                    "profile": {
+                      "label": "partner",
+                      "locale": "en"
+                    }
+                  },
+                  {
+                    "id": "c-311-05",
+                    "snapshot_subscribed": true,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": true
+                      }
+                    ],
+                    "profile": {
+                      "label": "partner",
+                      "locale": "en"
+                    }
+                  }
+                ],
+                "next_cursor": 3
+              }
+            },
+            {
+              "event_id": "e002",
+              "operation": "read_source",
+              "role": null,
+              "output": {
+                "revision": 1,
+                "total": 7,
+                "contacts": [
+                  {
+                    "id": "c-311-03",
+                    "snapshot_subscribed": true,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": true
+                      }
+                    ],
+                    "profile": {
+                      "label": "customer",
+                      "locale": "en"
+                    }
+                  },
+                  {
+                    "id": "c-311-00",
+                    "snapshot_subscribed": false,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": false
+                      }
+                    ],
+                    "profile": {
+                      "label": "partner",
+                      "locale": "en"
+                    }
+                  },
+                  {
+                    "id": "c-311-04",
+                    "snapshot_subscribed": false,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": false
+                      },
+                      {
+                        "timestamp": 20,
+                        "subscribed": true
+                      }
+                    ],
+                    "profile": {
+                      "label": "partner",
+                      "locale": "en"
+                    }
+                  }
+                ],
+                "next_cursor": 6
+              }
+            },
+            {
+              "event_id": "e003",
+              "operation": "read_source",
+              "role": null,
+              "output": {
+                "revision": 1,
+                "total": 7,
+                "contacts": [
+                  {
+                    "id": "c-311-02",
+                    "snapshot_subscribed": true,
+                    "permanent_opt_out": false,
+                    "events": [
+                      {
+                        "timestamp": 10,
+                        "subscribed": true
+                      }
+                    ],
+                    "profile": {
+                      "label": "member",
+                      "locale": "en"
+                    }
+                  }
+                ],
+                "next_cursor": null
+              }
+            },
+            {
+              "event_id": "e004",
+              "operation": "plan",
+              "role": "planner",
+              "output": {
+                "ids": [
+                  "c-311-02",
+                  "c-311-03",
+                  "c-311-04",
+                  "c-311-05"
+                ],
+                "revision": 1
+              }
+            },
+            {
+              "event_id": "e005",
+              "operation": "stage",
+              "role": "executor",
+              "output": {
+                "staged_count": 4,
+                "live_revision": 1,
+                "notice": null
+              }
+            },
+            {
+              "event_id": "e006",
+              "operation": "publish",
+              "role": "executor",
+              "output": {
+                "ids": [
+                  "c-311-02",
+                  "c-311-03",
+                  "c-311-04",
+                  "c-311-05"
+                ],
+                "source_revision": 1,
+                "status": "stored",
+                "count": 4,
+                "live_revision": 1
+              }
+            },
+            {
+              "event_id": "e007",
+              "operation": "verify",
+              "role": "verifier",
+              "output": {
+                "claim": "current state matches",
+                "published": {
+                  "ids": [
+                    "c-311-02",
+                    "c-311-03",
+                    "c-311-04",
+                    "c-311-05"
+                  ],
+                  "source_revision": 1
+                },
+                "live_revision": 1
+              }
+            },
+            {
+              "event_id": "e008",
+              "operation": "repair_stage",
+              "role": "executor",
+              "output": {
+                "staged_count": 4,
+                "live_revision": 1,
+                "notice": null
+              }
+            },
+            {
+              "event_id": "e009",
+              "operation": "publish",
+              "role": "executor",
+              "output": {
+                "ids": [
+                  "c-311-02",
+                  "c-311-03",
+                  "c-311-04",
+                  "c-311-05"
+                ],
+                "source_revision": 1,
+                "status": "stored",
+                "count": 4,
+                "live_revision": 1
+              }
+            },
+            {
+              "event_id": "e010",
+              "operation": "verify",
+              "role": "verifier",
+              "output": {
+                "claim": "current state matches",
+                "published": {
+                  "ids": [
+                    "c-311-02",
+                    "c-311-03",
+                    "c-311-04",
+                    "c-311-05"
+                  ],
+                  "source_revision": 1
+                },
+                "live_revision": 1
+              }
+            },
+            {
+              "event_id": "e011",
+              "operation": "finish",
+              "role": "lead",
+              "output": {
+                "status": "done",
+                "exit_code": 0
+              }
+            }
+          ],
+          "runtime_complete": true,
+          "probe_sha256": "0c5d72df7a11aca36dba6eff1ecd7221b123f2821db3369027a5473c47050733",
+          "paired_control": true,
+          "novelty": {
+            "valid": false,
+            "reason": "paired negative control"
+          },
+          "final_state_correct": true,
+          "trajectory_correct": true,
+          "team_declared_status": "done",
+          "false_completion": false,
+          "source_changes": 0,
+          "violating_publications": [],
+          "published": {
+            "ids": [
+              "c-311-02",
+              "c-311-03",
+              "c-311-04",
+              "c-311-05"
+            ],
+            "source_revision": 1
+          }
+        }
+      },
+      "verified_local_fixture_condition": true,
+      "new_hosted_model_finding": false
+    }
+  ]
+}

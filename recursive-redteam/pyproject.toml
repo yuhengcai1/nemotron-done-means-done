@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "recursive-redteam"
+version = "0.1.0"
+description = "Model-driven, durable recursive evaluation teams for Crusoe Managed Inference"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+recursive-redteam = "recursive_redteam.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["recursive_redteam*"]

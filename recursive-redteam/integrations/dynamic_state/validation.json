@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "status": "offline_checks_passed",
+  "new_live_inference_calls": 0,
+  "test_command": "python3 -m unittest tests.test_existing_bridge tests.test_dynamic_state_integration -v",
+  "tests_run": 24,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "historical_counts": {
+    "passed": 6,
+    "violation": 3,
+    "inconclusive": 4
+  },
+  "historical_framework_findings_added": 0,
+  "configuration_hashes": {
+    "agentic.json": "74706f31792ee54a10827c76b50a2a1a7870fc1b271efcdc11c513f07009eedf",
+    "dynamic-state.json": "eab8f4ce940635c6ecb517312221ba4f4b1a57e132a878903290ae8cae7d1414"
+  },
+  "sources": [
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/examples/agentic_bridge.py",
+      "sha256": "047adfa50ce21e2a4a46958eda615c62c2fc254e22e598e94a55487f9c7e8f23"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/examples/dynamic_state_target.py",
+      "sha256": "484d7b4ed496c2b4b45905c48d82634189a0725dcc9b91d6ea10adf07bb2e365"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/tests/test_existing_bridge.py",
+      "sha256": "e9db2634a4431e6281ada730bece69e4ad82ba68b7cb8bf509e3f2bf46ea75d1"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/tests/test_dynamic_state_integration.py",
+      "sha256": "cd31fc86e51698041b621d5b5bb36646c2282aaef4d6074af332be6720fcb791"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/dynamic_state/audit.py",
+      "sha256": "f16228c82327bf2075a29417402e2b88a5db32f631982a89836021e63d074b36"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/dynamic_state/contract.py",
+      "sha256": "2add65bc06544596e95276cccb0d690ec07480bcc564683d514be0e4ccfb59a8"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/dynamic_state/experience.json",
+      "sha256": "2073acdf4e2047d3ad990b00f2f4df5c00402ad354abde71fb9bc6be311e9c10"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/dynamic_state/world.py",
+      "sha256": "46447a75e3b22868e4f943622fe5a6f5e5ff2c30b2c2fc5668668841220ad657"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/dynamic_state/historical-replay.json",
+      "sha256": "4c85dee2d439b7db06d703321ad77e3a5484c04e14dfdae70c20b78dc5d1640e"
+    }
+  ]
+}

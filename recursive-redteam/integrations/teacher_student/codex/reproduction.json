@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "teacher": "Codex collaborative agent /root/codex_teacher",
+  "actual_teacher_execution": "This finding was produced and reproduced by the collaborative Codex session; no Astra authorship is asserted.",
+  "frozen_finding_verified": true,
+  "teacher_verification": {
+    "verified": true,
+    "discoveries": [
+      {
+        "verified": true,
+        "signature": "stale_lease_generation_accepted",
+        "probe": {
+          "reacquisition": "after_expiry",
+          "stale_action": "finish",
+          "reuse_identity": true,
+          "lease_seconds": 10
+        },
+        "control": {
+          "reacquisition": "after_expiry",
+          "stale_action": "finish",
+          "reuse_identity": false,
+          "lease_seconds": 10
+        },
+        "trials": [
+          {
+            "id": "teacher:0:replay:0",
+            "result": {
+              "status": "violation",
+              "signature": "stale_lease_generation_accepted",
+              "measurements": {
+                "retired_original_lease": true,
+                "replacement_claimed": true,
+                "stale_operation_accepted": true,
+                "replacement_lease_live_after_action": false,
+                "observations_written": 1,
+                "lease_until_before": "1970-01-01T00:02:01+00:00",
+                "lease_until_after": null,
+                "trace": [
+                  {
+                    "at": 100.0,
+                    "actor": "old",
+                    "operation": "claim",
+                    "accepted": true
+                  },
+                  {
+                    "at": 110.0,
+                    "actor": "old",
+                    "operation": "renew_at_expiry",
+                    "accepted": false
+                  },
+                  {
+                    "at": 111.0,
+                    "actor": "replacement",
+                    "operation": "claim",
+                    "accepted": true
+                  },
+                  {
+                    "at": 112.0,
+                    "actor": "old",
+                    "operation": "finish",
+                    "accepted": true
+                  },
+                  {
+                    "at": 112.0,
+                    "actor": "replacement",
+                    "operation": "renew_after_stale_action",
+                    "accepted": false
+                  }
+                ],
+                "snapshot_sha256": "2a849f418fec92a6c8d81a2e38dd4275780c7bd474e563b5ca54575f4b8c3733",
+                "fixture_scope": "deterministic clock and temporary SQLite, actual frozen framework APIs"
+              }
+            }
+          },
+          {
+            "id": "teacher:0:replay:1",
+            "result": {
+              "status": "violation",
+              "signature": "stale_lease_generation_accepted",
+              "measurements": {
+                "retired_original_lease": true,
+                "replacement_claimed": true,
+                "stale_operation_accepted": true,
+                "replacement_lease_live_after_action": false,
+                "observations_written": 1,
+                "lease_until_before": "1970-01-01T00:02:01+00:00",
+                "lease_until_after": null,
+                "trace": [
+                  {
+                    "at": 100.0,
+                    "actor": "old",
+                    "operation": "claim",
+                    "accepted": true
+                  },
+                  {
+                    "at": 110.0,
+                    "actor": "old",
+                    "operation": "renew_at_expiry",
+                    "accepted": false
+                  },
+                  {
+                    "at": 111.0,
+                    "actor": "replacement",
+                    "operation": "claim",
+                    "accepted": true
+                  },
+                  {
+                    "at": 112.0,
+                    "actor": "old",
+                    "operation": "finish",
+                    "accepted": true
+                  },
+                  {
+                    "at": 112.0,
+                    "actor": "replacement",
+                    "operation": "renew_after_stale_action",
+                    "accepted": false
+                  }
+                ],
+                "snapshot_sha256": "2a849f418fec92a6c8d81a2e38dd4275780c7bd474e563b5ca54575f4b8c3733",
+                "fixture_scope": "deterministic clock and temporary SQLite, actual frozen framework APIs"
+              }
+            }
+          },
+          {
+            "id": "teacher:0:control",
+            "result": {
+              "status": "passed",
+              "signature": "",
+              "measurements": {
+                "retired_original_lease": true,
+                "replacement_claimed": true,
+                "stale_operation_accepted": false,
+                "replacement_lease_live_after_action": true,
+                "observations_written": 0,
+                "lease_until_before": "1970-01-01T00:02:01+00:00",
+                "lease_until_after": "1970-01-01T00:02:01+00:00",
+                "trace": [
+                  {
+                    "at": 100.0,
+                    "actor": "old",
+                    "operation": "claim",
+                    "accepted": true
+                  },
+                  {
+                    "at": 110.0,
+                    "actor": "old",
+                    "operation": "renew_at_expiry",
+                    "accepted": false
+                  },
+                  {
+                    "at": 111.0,
+                    "actor": "replacement",
+                    "operation": "claim",
+                    "accepted": true
+                  },
+                  {
+                    "at": 112.0,
+                    "actor": "old",
+                    "operation": "finish",
+                    "accepted": false
+                  },
+                  {
+                    "at": 112.0,
+                    "actor": "replacement",
+                    "operation": "renew_after_stale_action",
+                    "accepted": true
+                  }
+                ],
+                "snapshot_sha256": "2a849f418fec92a6c8d81a2e38dd4275780c7bd474e563b5ca54575f4b8c3733",
+                "fixture_scope": "deterministic clock and temporary SQLite, actual frozen framework APIs"
+              }
+            }
+          }
+        ],
+        "basis": "fresh local oracle replays and a distinct paired control"
+      }
+    ],
+    "lesson_hash": "b21e14c77ae6ff9dfaa0945e99fb6e952ed1a84e3838e65af346151279a2829f",
+    "teacher_probes_hash": "0a3720013e7241cbdd61f8c314006c0152fb73f1da4a075e9404b0e4e934b846"
+  },
+  "current_source_sha256": "5046f610856a96028ef3383598fc1b50faa0d976dd45ad5cb22f2d5ac68e468f",
+  "current_source_rejects_stale_finish": true,
+  "current_measurements": [
+    {
+      "retired_original_lease": true,
+      "replacement_claimed": true,
+      "stale_operation_accepted": false,
+      "replacement_lease_live_after_action": true,
+      "observations_written": 0,
+      "lease_until_before": "1970-01-01T00:02:01+00:00",
+      "lease_until_after": "1970-01-01T00:02:01+00:00",
+      "trace": [
+        {
+          "at": 100.0,
+          "actor": "old",
+          "operation": "claim",
+          "accepted": true
+        },
+        {
+          "at": 110.0,
+          "actor": "old",
+          "operation": "renew_at_expiry",
+          "accepted": false
+        },
+        {
+          "at": 111.0,
+          "actor": "replacement",
+          "operation": "claim",
+          "accepted": true
+        },
+        {
+          "at": 112.0,
+          "actor": "old",
+          "operation": "finish",
+          "accepted": false
+        },
+        {
+          "at": 112.0,
+          "actor": "replacement",
+          "operation": "renew_after_stale_action",
+          "accepted": true
+        }
+      ]
+    }
+  ],
+  "scope": "Local framework correctness; deterministic clock, real SQLite transactions and public APIs. No remote target or hosted model calls."
+}

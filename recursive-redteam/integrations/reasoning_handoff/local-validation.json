@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "classification": "local_integration_tests_and_historical_replay_only",
+  "new_live_calls": 0,
+  "tests_run": 19,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "utc": "2026-10-17T21:46:58.077767+00:00",
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v tests.test_reasoning_handoff_integration",
+  "source_hashes": [
+    {
+      "path": "examples/reasoning_handoff_target.py",
+      "sha256": "855172ab27a3b1f9b8cfa4f2efdb4095cb1aa1f5c0eded12642c4ceac638b9ca"
+    },
+    {
+      "path": "examples/reasoning-handoff.json",
+      "sha256": "6281ad4e57992dc5f473244a34d9ebb33fa93d8513f187f6231deaa859122df4"
+    },
+    {
+      "path": "tests/test_reasoning_handoff_integration.py",
+      "sha256": "25f948c0414ae6bdb5d788ee1e4ef8f1641aeffd6d4e25ea351ee6d7ea1a7c55"
+    },
+    {
+      "path": "integrations/reasoning_handoff/configure.py",
+      "sha256": "3927954bf2fae8daa55feeab92e27a44b1bdb712e5ee830cb928d7c4592c6a43"
+    },
+    {
+      "path": "integrations/reasoning_handoff/replay.py",
+      "sha256": "1eef9c760d4ffb401d69df549117c013c5c696da4f75024263f09096f59ad411"
+    },
+    {
+      "path": "integrations/reasoning_handoff/experience.json",
+      "sha256": "ca57d4594fd4a611892731039785168c1781be6f94e799896a1d7023bb4edc24"
+    },
+    {
+      "path": "integrations/reasoning_handoff/configs/direct.json",
+      "sha256": "3640f84809b0599e27e59db65ff34b6bcf52cbea88e561a3a3d96d2eef56d10b"
+    },
+    {
+      "path": "integrations/reasoning_handoff/configs/low_effort.json",
+      "sha256": "6281ad4e57992dc5f473244a34d9ebb33fa93d8513f187f6231deaa859122df4"
+    },
+    {
+      "path": "integrations/reasoning_handoff/configs/thinking.json",
+      "sha256": "9b257a1cd6211ee18b1b3fb12c43b8847704cc8a3d2f490dded87fecbc49f77c"
+    }
+  ],
+  "test_output": "test_all_33_historical_requests_align_without_new_inference (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_change_notice_not_exposed_until_next_successful_model_call (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_cli_plugin_entry_uses_budgeted_model (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_experience_enters_coordinator_and_worker_inputs (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_experience_hashes_and_external_import_remain_unverified (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_format_error_maps_to_engine_inconclusive_not_finding (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_inline_and_all_json_are_trusted_diagnostic_modes (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_invalid_candidates_cannot_override_parameters_or_call_model (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_missing_execution_empty_truncation_and_unreached_condition_are_errors (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_phase_transition_does_not_consult_eligibility_oracle (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_profile_label_mismatch_rejected_before_model_call (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_replay_rejects_changed_model_inputs (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_separate_phase_tools_then_json_and_exposure (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_shared_gateway_budget_and_logs (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_source_pins_prevent_silent_changed_plugin_resume (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_stable_candidate_and_controls_have_distinct_exposure (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_strict_json_errors_do_not_become_findings (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_three_profiles_reach_actual_request_envelope (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_valid_done_with_wrong_business_state_is_violation (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\n\n----------------------------------------------------------------------\nRan 19 tests in 0.136s\n\nOK\n"
+}

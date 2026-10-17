@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "status": "ready_for_live",
+  "ready_for_live": true,
+  "source_frozen": true,
+  "module": "integrations.teacher_student.dynamic.suite",
+  "factory": "build_suite",
+  "reference_student_adapter": "integrations.teacher_student.dynamic.student:exercise",
+  "tests": {
+    "command": "python3 -m unittest tests.test_teaching_dynamic -v",
+    "run": 13,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "teacher": {
+    "historical_real_finding": {
+      "complete_runs": 3,
+      "violations": 2,
+      "passes": 1,
+      "normal_control": "passed",
+      "classification": "historical_live_target_observation"
+    },
+    "current_local_probe": {
+      "fresh_repetitions": 2,
+      "violation_signature_matches": true,
+      "paired_control": "passed",
+      "classification": "deterministic_local_recreation"
+    }
+  },
+  "student": {
+    "protocol_fixture_tested": true,
+    "scripted_fixture_outcomes": [
+      "passed",
+      "violation",
+      "error"
+    ],
+    "verified_local_fixture_discoveries": 1,
+    "live_model_result": "not_run",
+    "learning_improvement_established": false
+  },
+  "new_live_api_calls": 0,
+  "pending": [
+    "Main-thread live Nemotron student run and independent verification",
+    "Matched lesson/no-lesson evidence before any learning-gain claim"
+  ],
+  "source_hashes": [
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/teacher_student/dynamic/suite.py",
+      "sha256": "22f76a4cf6f14463e28710017df91ba2d6d168e6b5fc2d50340929180d3a7571"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/teacher_student/dynamic/student.py",
+      "sha256": "1c5a3a5e03bcbb0e9aa4ec9be32e117b98ebc55f72c542456e0c081eaf035169"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/teacher_student/dynamic/evidence.py",
+      "sha256": "8af1a4f661ec9c855cdc6a4ff35d47e5064db57bf9911269505c8b46d5b4d9a2"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/teacher_student/dynamic/lesson.json",
+      "sha256": "80d75d11275c791b5444a703df85e2686176aa95ab312062b412be1c242d3e27"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/teacher_student/dynamic/holdout.private.json",
+      "sha256": "5ac50919dc545a75208337bd7b3107dad87ac6841db7498d5faf6cb11ad9d403"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/teacher_student/dynamic/CONTRACT.json",
+      "sha256": "a42b305045c26e87694bf1939d964dbbd85c8ea3151d88249ce64e4ac07f5e59"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/teacher_student/dynamic/README.md",
+      "sha256": "c4580d663e89971dd8f8e5403009d3fa8bab608db449d06617ebddacf8c1001e"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/teacher_student/dynamic/evidence/historical.json",
+      "sha256": "f4be61ad96f0786d5498780dc8a7eb4ddeec8bbb9552edbf6cab8f155372f7f9"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/integrations/teacher_student/dynamic/evidence/teacher-fixture.json",
+      "sha256": "e1eaf5cb48121956c0ca5a26fdc48c898575876826db6170ed0a12b653e8b5c9"
+    },
+    {
+      "path": "/Users/caiyuheng/Documents/ChatGPT/hackthon/recursive-redteam/tests/test_teaching_dynamic.py",
+      "sha256": "f7c395168484073c79f9d2a80a4f17ceef4f6521faa8241bfab1eea7d24439a7"
+    }
+  ],
+  "stop_editing_reason": "Main thread requested frozen sources for unified live execution."
+}

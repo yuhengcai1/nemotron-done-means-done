@@ -1,0 +1,88 @@
+{
+  "status": "demo_ready_with_inconclusive_repair_evidence",
+  "stage_run": "nemotron-self-debug-20261017",
+  "runs": [
+    {
+      "run_id": "nemotron-self-debug-20261017",
+      "status": "inconclusive",
+      "teacher_in_runtime": false,
+      "model_identity_verified": true,
+      "logical_calls": 11,
+      "failed_calls": 0,
+      "source_snapshots_intact": true,
+      "model_proposed_nonempty_edits": 1,
+      "before": {
+        "passed": 15,
+        "failed": 7,
+        "total": 22
+      },
+      "after": {
+        "passed": 15,
+        "failed": 7,
+        "total": 22
+      },
+      "repair_qualified": false,
+      "verified_memory_stored": false,
+      "report": "runs/nemotron-self-debug-20261017/report.json",
+      "journal": "runs/nemotron-self-debug-20261017/model-journal.json"
+    },
+    {
+      "run_id": "nemotron-self-debug-20261017-v2",
+      "status": "inconclusive",
+      "teacher_in_runtime": false,
+      "model_identity_verified": true,
+      "logical_calls": 5,
+      "failed_calls": 2,
+      "source_snapshots_intact": true,
+      "model_proposed_nonempty_edits": 1,
+      "before": {
+        "passed": 15,
+        "failed": 7,
+        "total": 22
+      },
+      "after": {
+        "passed": 15,
+        "failed": 7,
+        "total": 22
+      },
+      "repair_qualified": false,
+      "verified_memory_stored": false,
+      "report": "runs/nemotron-self-debug-20261017-v2/report.json",
+      "journal": "runs/nemotron-self-debug-20261017-v2/model-journal.json"
+    }
+  ],
+  "scope": "Model-authored debugging of an isolated historical evaluator revision; not unrestricted self-improvement. Initial framework and tests authored by Codex. No successful repair claimed.",
+  "presentation_language": "English",
+  "script_seconds": 180,
+  "source_hashes": {
+    "examples/self_debug.py": "6bbf496b857576335f7c274c022b5793e594afc070edd159828c7dd3675a3e1a",
+    "examples/recall_repair.py": "bda823b163c03fb4c65d6776229303a3db893a78447abea7d9b26a1551d81a4a",
+    "demo/repair_checks.py": "dbe12027339b2dfe406b7670281c8b4590a4c5f517d4765495426584cffb3f10",
+    "demo/server.py": "b4994d596f8962c0b3437213bcbd8da302e91affa247318adcfe91f4b1e14891",
+    "demo/build_data.py": "f46e58e8327bbde4279171e41201876caef9177f84cdb7e1124e8ebe1e6d7592"
+  },
+  "resume_note": "v2 reuses exact completed planner/read requests. Its captured report undercounts cached responses because of a reporting bug fixed afterward; the preserved request journal is authoritative.",
+  "server_url": "http://127.0.0.1:8765/?stage=1",
+  "regression_suite": {
+    "command": "python3 -m unittest discover -s tests -q",
+    "tests": 324,
+    "duration_seconds": 12.025,
+    "result": "OK"
+  },
+  "presentation": {
+    "pptx": "demo/presentation/Recursive-Lab-3min-demo.pptx",
+    "script": "demo/presentation/3-minute-script.txt",
+    "slides": 5,
+    "language": "English",
+    "rendered_and_inspected": true,
+    "frontend_screenshot": "demo/presentation/frontend.jpg",
+    "verification_screenshot": "demo/presentation/frontend-verification.jpg"
+  },
+  "frontend_verification": {
+    "desktop_width": 1440,
+    "mobile_width": 390,
+    "controls_checked": true,
+    "fresh_local_verification": "rejected_incomplete_repair",
+    "hosted_model_calls": 0
+  }
+}

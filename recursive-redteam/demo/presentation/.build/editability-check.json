@@ -1,0 +1,38 @@
+{
+  "slides": [
+    {
+      "slide": 1,
+      "editable_text_shapes": 3,
+      "images": 0
+    },
+    {
+      "slide": 2,
+      "editable_text_shapes": 6,
+      "images": 0
+    },
+    {
+      "slide": 3,
+      "editable_text_shapes": 2,
+      "images": 1
+    },
+    {
+      "slide": 4,
+      "editable_text_shapes": 9,
+      "images": 0
+    },
+    {
+      "slide": 5,
+      "editable_text_shapes": 4,
+      "images": 0
+    }
+  ],
+  "notes_count": 5,
+  "final_sha256": "cd4315b39b2f72b6a8b352810e3d5a418e5c699ee43218579f22a7f81368c379",
+  "visual_inspection_pending": false,
+  "visual_review": {
+    "all_five_final_slides_rendered_and_inspected": true,
+    "unintended_overlap_or_clipping": false,
+    "native_powerpoint_tested": false,
+    "notes": "Slide 3 is a screenshot transition into the live local app. Detailed code is shown in the app, not read from the projected slide."
+  }
+}

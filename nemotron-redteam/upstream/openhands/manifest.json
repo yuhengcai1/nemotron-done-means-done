@@ -1,0 +1,18 @@
+{
+  "repository": "https://github.com/OpenHands/software-agent-sdk",
+  "commit": "5966c781ed014efc96c028a99bddd4ff78426741",
+  "files": {
+    "stuck_detector.py": {
+      "url": "https://raw.githubusercontent.com/OpenHands/software-agent-sdk/5966c781ed014efc96c028a99bddd4ff78426741/openhands-sdk/openhands/sdk/conversation/stuck_detector.py",
+      "sha256": "3bf25f2d722404398e4744ae188f575f628463732b3606a8da6049fb8ff0039e"
+    },
+    "types.py": {
+      "url": "https://raw.githubusercontent.com/OpenHands/software-agent-sdk/5966c781ed014efc96c028a99bddd4ff78426741/openhands-sdk/openhands/sdk/conversation/types.py",
+      "sha256": "d5e955b491e9decc987595d4a61803368c2f7fdf9b6cceded60f753a5b6d34ef"
+    },
+    "LICENSE": {
+      "url": "https://raw.githubusercontent.com/OpenHands/software-agent-sdk/5966c781ed014efc96c028a99bddd4ff78426741/LICENSE",
+      "sha256": "14a9b631c658eee682c6c2973525fbdf808c3457176bc47513052c559cc5ce86"
+    }
+  }
+}

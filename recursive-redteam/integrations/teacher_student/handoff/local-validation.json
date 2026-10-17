@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "classification": "local_teacher_student_protocol_and_regression_tests",
+  "status": "passed",
+  "tests_run": 37,
+  "failures": 0,
+  "errors": 0,
+  "new_live_calls": 0,
+  "source_hashes": [
+    {
+      "path": "integrations/teacher_student/handoff/suite.py",
+      "sha256": "152b012ccca464ff5317f84ac7ab527342399691b9ba5430457cdcbbdb36f22b"
+    },
+    {
+      "path": "integrations/teacher_student/handoff/lesson.json",
+      "sha256": "ce978fc2dc985d2e78553eb2aa5a37e34ae36f77237a4c36d04fed199be4c684"
+    },
+    {
+      "path": "integrations/teacher_student/handoff/verify.py",
+      "sha256": "d1831772037b5cfff026eef361184eef374b67d425380a761b2f9728cd5a3387"
+    },
+    {
+      "path": "examples/reasoning_handoff_target.py",
+      "sha256": "15345daff8162e65469455bec5bcdbae16f679a8d83a01a750dad4c04ab22c58"
+    },
+    {
+      "path": "tests/test_teaching_handoff.py",
+      "sha256": "ddea6658eb1adc2af1bcc9d3352554300472c819c5f1cb1a967d38a71ba085f8"
+    },
+    {
+      "path": "examples/reasoning-handoff.json",
+      "sha256": "a5d68755cd2aa5296bfa6b84934d20a4c2d5f7ec2f3bd1f13dbe3ac9f2c299ff"
+    },
+    {
+      "path": "integrations/reasoning_handoff/configs/direct.json",
+      "sha256": "45ec6e6448c249755a7aa4689fb754e3a6d5c6a1750626d19d717b9c19e292d2"
+    },
+    {
+      "path": "integrations/reasoning_handoff/configs/low_effort.json",
+      "sha256": "a5d68755cd2aa5296bfa6b84934d20a4c2d5f7ec2f3bd1f13dbe3ac9f2c299ff"
+    },
+    {
+      "path": "integrations/reasoning_handoff/configs/thinking.json",
+      "sha256": "a9feeac8c441612b60a8ef25af228b4547fce4031978d491b08fa70aa0e12647"
+    },
+    {
+      "path": "integrations/teacher_student/handoff/repaired-configs/direct.json",
+      "sha256": "45ec6e6448c249755a7aa4689fb754e3a6d5c6a1750626d19d717b9c19e292d2"
+    },
+    {
+      "path": "integrations/teacher_student/handoff/repaired-configs/low_effort.json",
+      "sha256": "a5d68755cd2aa5296bfa6b84934d20a4c2d5f7ec2f3bd1f13dbe3ac9f2c299ff"
+    },
+    {
+      "path": "integrations/teacher_student/handoff/repaired-configs/thinking.json",
+      "sha256": "a9feeac8c441612b60a8ef25af228b4547fce4031978d491b08fa70aa0e12647"
+    }
+  ],
+  "test_output": "test_actual_frozen_source_and_training_reproduction (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_bounds_types_unknown_fields_and_no_mutation (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_claims_or_arbitrary_code_are_not_probe_operations (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_current_plugin_fixed_temporal_precondition (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_current_plugin_fixed_without_losing_framework_metadata (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_current_plugin_format_facts_cannot_collide_or_raise_typeerror (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_execution_correct_but_format_invalid_is_a_correct_rejection (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_holdout_changes_temporal_precondition_not_just_names (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_no_heldout_answers_in_public_description_or_lesson (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_normal_refresh_and_handoff_pass_without_collision (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_owned_guard_preserves_diagnostics_without_overriding_facts (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_paired_negative_control_preserves_work_and_correctly_rejects (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_public_objects_are_detached (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_source_integrity_errors_cannot_be_findings (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_student_probe_requires_host_replays_and_control (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_teacher_evidence_and_student_fixture_labels (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_teacher_sequence_is_not_novel_holdout_and_cannot_be_verified (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_valid_json_wrong_schema_and_incomplete_are_not_discoveries (tests.test_teaching_handoff.HandoffTeachingTests) ... ok\ntest_all_33_historical_requests_align_without_new_inference (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_change_notice_not_exposed_until_next_successful_model_call (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_cli_plugin_entry_uses_budgeted_model (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_experience_enters_coordinator_and_worker_inputs (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_experience_hashes_and_external_import_remain_unverified (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_format_error_maps_to_engine_inconclusive_not_finding (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_inline_and_all_json_are_trusted_diagnostic_modes (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_invalid_candidates_cannot_override_parameters_or_call_model (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_missing_execution_empty_truncation_and_unreached_condition_are_errors (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_phase_transition_does_not_consult_eligibility_oracle (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_profile_label_mismatch_rejected_before_model_call (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_replay_rejects_changed_model_inputs (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_separate_phase_tools_then_json_and_exposure (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_shared_gateway_budget_and_logs (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_source_pins_prevent_silent_changed_plugin_resume (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_stable_candidate_and_controls_have_distinct_exposure (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_strict_json_errors_do_not_become_findings (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_three_profiles_reach_actual_request_envelope (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\ntest_valid_done_with_wrong_business_state_is_violation (tests.test_reasoning_handoff_integration.ReasoningHandoffIntegrationTests) ... ok\n\n----------------------------------------------------------------------\nRan 37 tests in 0.203s\n\nOK\n",
+  "utc": "2026-10-17T22:20:23.486277+00:00"
+}

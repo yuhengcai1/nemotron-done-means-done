@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "capability": "dynamic_state_teacher_student",
+  "module": "integrations.teacher_student.dynamic.suite",
+  "factory": "build_suite",
+  "status": "ready",
+  "interface": {
+    "describe(split)": "Student-visible task and bounded JSON operation-sequence schema; train/holdout opaque case IDs only",
+    "lesson()": "General teaching JSON; no holdout IDs, policies, expected outcomes or solution sequence",
+    "teacher_probes()": "Training-only sequence that demonstrates a trajectory violation after final repair",
+    "evaluate(probe, split=...)": "Fresh local replica, host computes passed/violation/error; signature and measurements with receipts",
+    "control(probe, split=...)": "Portable paired negative-control probe with changes removed; structural proof and source hash validated by host.",
+    "novelty(probe)": "Holdout requires grant and revoke after an already verified initial publication; training sequence cannot qualify"
+  },
+  "boundaries": [
+    "No actual target model is called by suite.evaluate; target is an explicit local behavior replica",
+    "Real historical finding frozen separately from current fixture verification",
+    "Student real model calls belong to the main injected-model runner; none executed here",
+    "Only own dynamic directory and tests/test_teaching_dynamic.py modified"
+  ],
+  "holdout_rule": "Must add a post-verification lifecycle with opposing authorization changes and additional publication; changing IDs or contact counts alone is not novelty."
+}

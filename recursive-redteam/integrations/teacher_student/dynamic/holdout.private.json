@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "visibility": "host_only_never_student_messages",
+  "cases": {
+    "case-47c": {
+      "seed": 7321,
+      "behavior": "refresh"
+    },
+    "case-8b2": {
+      "seed": 7813,
+      "behavior": "cached"
+    },
+    "case-f06": {
+      "seed": 8167,
+      "behavior": "interrupted"
+    }
+  },
+  "substantive_novelty": "Opposing source changes after an already published-and-verified lifecycle; not contact renaming."
+}

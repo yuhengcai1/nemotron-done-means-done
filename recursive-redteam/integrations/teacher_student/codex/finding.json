@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "id": "memory-lease-generation-aba",
+  "title": "A retired worker can mutate a successor lease when task identity is reused",
+  "teacher": {
+    "identity": "Codex collaborative agent /root/codex_teacher",
+    "role": "discoverer and teacher",
+    "evidence": "Independent local code review and executed Python reproductions during this session",
+    "astra_authorship": false
+  },
+  "recorded_at": "2026-10-17T22:12:49.401221+00:00",
+  "status": "teacher_verified_on_frozen_pre_fix_source; production_fixed",
+  "source": {
+    "source_path": "recursive_redteam/memory.py",
+    "source_sha256": "2a849f418fec92a6c8d81a2e38dd4275780c7bd474e563b5ca54575f4b8c3733",
+    "snapshot": "frozen_memory.py",
+    "status": "pre_fix_production_source",
+    "teacher": "Codex collaborative agent /root/codex_teacher; actual session model identity not exposed as public API metadata"
+  },
+  "invariant": "A worker whose acquisition expired or was released must not renew, finish, or release a later acquisition, even if campaign and candidate identifiers match.",
+  "preconditions": [
+    "Two worker executions can use the same campaign and candidate identifiers",
+    "The original worker survives expiration or release while a replacement acquires the input"
+  ],
+  "steps": [
+    {
+      "time": 100,
+      "actor": "old connection",
+      "action": "claim same input, campaign, candidate with lease_seconds=10"
+    },
+    {
+      "time": 110,
+      "actor": "old connection",
+      "action": "renew returns False, confirming original lease has expired"
+    },
+    {
+      "time": 111,
+      "actor": "replacement connection",
+      "action": "claim the same logical identity returns claimed=True and reason=reclaimed"
+    },
+    {
+      "time": 112,
+      "actor": "old connection",
+      "action": "finish with an old result"
+    },
+    {
+      "time": 112,
+      "actor": "replacement connection",
+      "action": "renew its lease and inspect observation count"
+    }
+  ],
+  "expected": {
+    "stale_finish_accepted": false,
+    "observations_written": 0,
+    "replacement_lease_live": true
+  },
+  "observed_on_frozen_source": {
+    "stale_finish_accepted": true,
+    "observations_written": 1,
+    "replacement_lease_live": false
+  },
+  "root_cause": "Ownership is checked only by campaign/candidate names and lease_until. No acquisition generation identifies which attempt owns that row, so reusing names revives stale write authority.",
+  "controls": {
+    "positive": "Repeat the retired worker finish against a fresh temporary SQLite store twice",
+    "negative": "Change only the replacement candidate identifier; the stale finish is rejected and replacement remains live"
+  },
+  "independent_reproduction": "reproduction.json",
+  "repro_command": "python3 -m integrations.teacher_student.codex.reproduce --output integrations/teacher_student/codex/reproduction.json",
+  "verification": {
+    "frozen_replays": 2,
+    "frozen_replays_violated": 2,
+    "paired_control_passed": true,
+    "current_source_rejects_stale_finish": true
+  },
+  "fix": {
+    "source": "recursive_redteam/memory.py",
+    "source_sha256": "5046f610856a96028ef3383598fc1b50faa0d976dd45ad5cb22f2d5ac68e468f",
+    "behavior": "Each successful claim rotates a unique acquisition token; renew, finish and release compare the token. Engine explicitly forwards the token. Sequential legacy callers use the latest token cached on their own instance.",
+    "compatibility_limit": "Same-instance concurrent acquisitions must pass lease_token explicitly; the implicit cache only represents the latest claim on that instance."
+  },
+  "tests": {
+    "new_test_command": "python3 -m unittest discover -s tests -p test_teacher_codex_discoveries.py -v",
+    "new_tests": 7,
+    "current_source_lifecycle_action_identity_combinations": 18,
+    "existing_memory_and_reuse_tests": 27,
+    "result": "passed"
+  },
+  "lesson": {
+    "teacher": "Codex collaborative agent /root/codex_teacher, independently executed Python reproduction",
+    "preconditions": [
+      "Durable ownership can expire and later be reacquired.",
+      "Different executions may reuse the same logical identity."
+    ],
+    "search_strategy": [
+      "Distinguish the identity of a logical task from the identity of one acquisition attempt.",
+      "Keep the earlier worker alive after ending its ownership, then acquire a successor lease from another connection.",
+      "Test whether an operation from the earlier worker changes the successor's state.",
+      "Use distinct successor identities as a paired control, and compare multiple lifecycle transitions and operations."
+    ],
+    "oracle": "A retired attempt must not regain mutation rights merely because its logical names reappear. Check persisted state and the successor's ownership, not only a returned status.",
+    "nonexamples": [
+      "A still-active attempt renewing its own acquisition is valid.",
+      "A new attempt claiming after expiry is valid; acceptance of a stale attempt is the defect.",
+      "A local deterministic lease test does not establish a hosted model behavior."
+    ],
+    "scope": "External-memory instruction, no model weight update; frozen pre-fix code."
+  },
+  "student_assessment": {
+    "heldout_requirement": "Change ownership lifecycle and stale operation; renaming values is insufficient",
+    "live_student_status": "Not run by this teacher; main-thread runner owns actual Nemotron evaluation"
+  },
+  "limitations": [
+    "This proves local framework lease correctness behavior, not a hosted model vulnerability",
+    "Teaching uses frozen pre-fix production code and clearly labels that scope",
+    "Production repair has local regression evidence; cross-process mixed-version deployments are not supported by this test"
+  ]
+}

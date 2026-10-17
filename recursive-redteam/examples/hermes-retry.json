@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "planner": {
+    "kind": "openai-compatible",
+    "base_url": "https://api.inference.crusoecloud.com/v1",
+    "model": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B",
+    "api_key_env": "CRUSOE_API_KEY",
+    "max_tokens": 4096,
+    "temperature": 1.0,
+    "max_retries": 1,
+    "request_parameters": {
+      "top_p": 0.95
+    }
+  },
+  "target": {
+    "kind": "plugin",
+    "factory": "examples.hermes_retry_target:make_target",
+    "options": {
+      "max_steps": 8,
+      "expected_source_sha256": "1c633fc2818b2dcbc48ec52ce724c163107e91a4bd4fe43c70ec931e81539b1f"
+    },
+    "model": {
+      "kind": "openai-compatible",
+      "base_url": "https://api.inference.crusoecloud.com/v1",
+      "model": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B",
+      "api_key_env": "CRUSOE_API_KEY",
+      "max_tokens": 4096,
+      "temperature": 1.0,
+      "max_retries": 1,
+      "request_parameters": {
+        "top_p": 0.95
+      }
+    }
+  },
+  "request_interval_seconds": 8,
+  "limits": {
+    "max_rounds": 1,
+    "parallelism": 1,
+    "max_depth": 0,
+    "max_candidates": 1,
+    "replays": 1,
+    "max_model_calls": 80
+  },
+  "memory": {
+    "enabled": true,
+    "path": "../integrations/hermes_retry/artifacts/live-knowledge.sqlite",
+    "target_revision": "hermes-retry-compatible-v1",
+    "conclusion_ttl_seconds": 86400,
+    "force_retest": false
+  }
+}
