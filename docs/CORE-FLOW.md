@@ -1,103 +1,101 @@
-# Recursive Lab — Core Architecture
+# Recursive Lab — Architecture
 
-Nemotron chooses actions. Native tools execute them. Independent checks determine the outcome. Evidence and version history are retained.
+**The model chooses the work. Tools execute it. Verification decides what counts.**
+
+## High-level loop
+
+```mermaid
+flowchart LR
+    A["DECIDE<br/>Nemotron selects the next action"] --> B["EXECUTE<br/>Native tools and agent sessions"]
+    B --> C["VERIFY<br/>Check actual outcomes"]
+    C --> D["REMEMBER<br/>Keep evidence and version history"]
+    D -->|Feedback: revise, re-plan, continue or stop| A
+```
+
+| Nemotron owns | Our framework owns |
+|---|---|
+| Planning, tool selection, execution and proposed improvements | Execution bounds, evidence capture, outcome checks and version gates |
+
+**Current boundaries:** native team execution has a verified live run. Code investigation uses a separate runner with operator-assisted compatibility review. A successful live N→N+1 improvement has not yet been demonstrated.
+
+## Low-level details
+
+Expand only the part you want to inspect.
+
+<details>
+<summary><strong>1. Execution team — planner, executor and verifier</strong></summary>
 
 ```mermaid
 flowchart TB
-    U["USER GOAL<br/>Execute a task or investigate a real codebase"]
-
-    subgraph A["A · AUTONOMOUS TASK EXECUTION — LIVE VALIDATED"]
-      C["Nemotron Controller<br/>Choose tasks, inspect evidence, propose improvements, stop"]
-      B["Host Execution Bounds<br/>Controller request ledger · Native runtime limits"]
-      L["Load Accepted Playbook<br/>Version identity + content hash"]
-      LEAD["Nemotron Lead<br/>Native OpenCode task delegation"]
-      P["Planner · Separate Session<br/>Read policy and source data<br/>Return a plan and constraints"]
-      E["Executor · Separate Session<br/>Recheck current state<br/>Perform actual operations"]
-      V["Verifier · Separate Session<br/>Independently read policy, data and results<br/>Report pass or specific problems"]
-      W[("Local Task Environment<br/>MCP tools + SQLite<br/>State and action history")]
-      CLAIM["Lead Completion Claim<br/>done / incomplete"]
-      O["Independent Python Oracle<br/>Task state · Historical violations<br/>Native execution completeness"]
-      R["Evidence-backed Outcome<br/>Pass / Fail / Inconclusive"]
-      C --> B --> L --> LEAD
-      LEAD -->|Delegate| P
-      P -->|Plan| LEAD
-      LEAD -->|Delegate| E
-      E -->|Execution result| LEAD
-      LEAD -->|Delegate| V
-      V -->|Verification feedback| LEAD
-      P <-->|Read only| W
-      E <-->|Read and write| W
-      V <-->|Read only| W
-      LEAD --> CLAIM --> O
-      W --> O --> R
-      R -->|Inspect, re-plan, continue or stop| C
-    end
-
-    subgraph M["DURABLE EVIDENCE AND MEMORY"]
-      T[("Raw Evidence<br/>Model responses · Tool events · Native sessions<br/>Test receipts · Source identities")]
-      X[("Experiment Memory<br/>Successful and failed attempts<br/>Conditions and applicability")]
-      VS[("Version Store<br/>Parent version · Candidate content<br/>Evaluation evidence · Active version")]
-      T --> X
-    end
-
-    subgraph N["B · VERSION N+1 — IMPLEMENTED; LIVE IMPROVEMENT NOT YET DEMONSTRATED"]
-      I["Nemotron Inspects Exploration Traces"]
-      S["Nemotron Writes a Candidate Playbook<br/>Linked to its parent and observed evidence"]
-      H["Host Freezes Fresh Evaluation Instances<br/>Held-out traces unavailable to the controller"]
-      AB["Paired Baseline / Candidate Execution<br/>Equal configuration and budget · Separate worlds"]
-      G{"Promotion Gate<br/>Complete executions + proven skill reads<br/>All candidate tasks pass without violations<br/>At least one baseline task fails"}
-      YES["Accept Candidate<br/>Advance active version"]
-      NO["Reject or Mark Inconclusive<br/>Keep previous active version and evidence"]
-      NEXT["Next Real Task Loads Accepted Version<br/>Verify full-read receipt and content hash"]
-      F["Independent Follow-up Check<br/>Record loaded and task passed separately"]
-      I --> S --> H --> AB --> G
-      G -->|Meets criteria| YES
-      G -->|Regression, no gain or insufficient evidence| NO
-      YES --> NEXT --> F
-    end
-
-    subgraph D["C · OPEN-ENDED CODE INVESTIGATION — SEPARATE RUNNER"]
-      CP["Copy Current Real Source<br/>Preserve original code and baseline tests<br/>No planted defect or supplied patch"]
-      AG["Nemotron + OpenCode Coding Agent<br/>Inspect code · Select hypotheses · Run experiments"]
-      TEST["Model Writes a Reproducer"]
-      PATCH["Model Edits the Source Copy"]
-      CHECK["Host Reruns Checks<br/>New test on original and modified code<br/>Full existing regression suite"]
-      REV["Defect Validity and Compatibility Review<br/>Currently operator-assisted"]
-      DQ{"Sufficient Evidence to Accept?"}
-      FB["Retain Candidate and Counterexample<br/>Return feedback for correction or withdrawal"]
-      HOLD["Retain Reviewable Candidate<br/>No automatic installation into subsequent tasks"]
-      CP --> AG --> TEST --> PATCH --> CHECK --> REV --> DQ
-      DQ -->|Regression or insufficient evidence| FB --> AG
-      DQ -->|Review passes| HOLD
-    end
-
-    U -->|Task execution| C
-    U -->|Code investigation| CP
-    P --> T
-    E --> T
-    V --> T
-    R --> T
-    AG --> T
-    CHECK --> T
-    REV --> T
-    X -->|Historical context, not automatic execution rules| C
-    C -->|Choose improvement tools| I
-    S --> VS
-    YES --> VS
-    NO --> VS
-    VS --> L
-    NO -->|Evaluation summary| C
-    F -->|Continue working| C
-    HOLD -. "NOT CONNECTED: unified repair acceptance, deployment and next-task verification" .-> VS
-
-    classDef model fill:#e7efe8,stroke:#386552,color:#153c31;
-    classDef gate fill:#153c31,stroke:#153c31,color:#ffffff;
-    classDef pending fill:#f3ecdd,stroke:#a57a43,color:#4d371c;
-    class C,LEAD,P,E,V,I,S,AG model;
-    class O,G,CHECK,REV gate;
-    class HOLD,NEXT,F pending;
+    C["Nemotron controller selects a task"] --> L["Load accepted playbook"] --> LEAD["Lead · Native OpenCode coordinator"]
+    LEAD --> P["Planner · Read only<br/>Inspect rules and sources; return a plan"]
+    LEAD --> E["Executor · Read + write<br/>Recheck state; perform operations"]
+    LEAD --> V["Verifier · Read only<br/>Independently inspect rules, data and result"]
+    P --> F["Feedback to lead"]
+    E --> F
+    V --> F
+    F -->|Re-delegate when needed| LEAD
+    F --> O["Completion claim + actual state<br/>Independent Python oracle"]
 ```
 
-**Status boundaries:** Path A has a verified live native-team run. Path B is implemented with offline tests, but a live N→N+1 improvement has not been demonstrated. Path C uses a separate coding-agent runner and operator-assisted compatibility review; it does not automatically deploy repairs.
+All roles use Nemotron on Crusoe. These are actual native child sessions, not one response pretending to contain three agents. They access a local MCP / SQLite task environment. The lead can re-delegate after feedback.
 
-Solid arrows show implemented interactions. The dashed arrow marks an integration that is not connected. Memory retains failures; it does not turn unverified changes into accepted execution rules.
+A live rehearsal completed in **67.66 seconds**, with all three roles observed and no violations. This is one local case, not a latency guarantee or general benchmark.
+
+</details>
+
+<details>
+<summary><strong>2. Verification — model reasoning versus host checks</strong></summary>
+
+```mermaid
+flowchart LR
+    A["Actual state + tool receipts"] --> B["Verifier agent<br/>Model-based reasoning"]
+    A --> C["Host checks<br/>State, history and execution completeness"]
+    B --> D["Lead feedback"]
+    C --> E["Pass / Fail / Inconclusive"]
+```
+
+The verifier agent can be wrong. Its conclusion does not replace the host oracle. Code experiments separately run a reproducer on original and modified source, then rerun the existing regression suite.
+
+A candidate passed 43 tests but failed an additional default-parameter compatibility check. It was rejected and the counterexample returned to the model. Defect validity and compatibility review currently include an operator.
+
+</details>
+
+<details>
+<summary><strong>3. Memory and evolution — retaining evidence versus accepting a change</strong></summary>
+
+| Store | Contents | Use |
+|---|---|---|
+| Raw evidence | Model responses, tool events, native sessions, test receipts, source identities | Inspect and reproduce the actual run |
+| Experiment memory | Successes, failures and their conditions | Inform future decisions; not automatically become execution rules |
+| Version store | Parent version, candidate playbook, evaluations, active pointer | Load only the accepted version into subsequent tasks |
+
+```mermaid
+flowchart LR
+    A["Inspect exploration traces"] --> B["Model proposes playbook"] --> C["Fresh paired evaluations"] --> D{"Promotion gate"}
+    D -->|Accept| E["Advance active version"] --> F["Next task loads version"] --> G["Verify read receipt and task outcome"]
+    D -->|Reject / inconclusive| H["Keep old version + failed evidence"]
+```
+
+**Gate:** complete runs, matching skill-read evidence, all candidate tasks pass without violations, and at least one baseline task fails. Evaluation uses equal settings and budgets with separate task worlds. Hidden evaluation traces are not returned to the controller. Loading and succeeding on the next task are separate checks.
+
+**Status:** implemented and offline-tested; live improvement through the full chain is not yet demonstrated. Two fresh instances of one task family do not establish broad generalization.
+
+</details>
+
+<details>
+<summary><strong>4. Open-ended code investigation — a separate experimental runner</strong></summary>
+
+```mermaid
+flowchart LR
+    A["Copy actual source<br/>Preserve baseline"] --> B["Nemotron investigates<br/>No supplied defect or patch"]
+    B --> C["Write reproducer + edit code"] --> D["Host reruns tests"] --> E["Compatibility and defect review<br/>Operator-assisted"]
+    E -->|Regression / insufficient evidence| F["Retain evidence + return counterexample"] --> B
+    E -->|Review passes| G["Retain reviewable candidate"]
+```
+
+This coding-agent path does not automatically install repairs into subsequent agents. Connecting repair acceptance, deployment and next-task verification remains unfinished.
+
+</details>
+
+[Full connection diagram](CORE-FLOW-FULL.md) · [Technical architecture](ARCHITECTURE.md) · [Interactive presentation source](architecture.html)
