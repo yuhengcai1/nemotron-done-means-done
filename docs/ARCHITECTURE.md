@@ -1,5 +1,7 @@
 # Architecture
 
+[**Complete core flowchart (English)**](CORE-FLOW.md) — execution, verification, memory, evolution and code investigation.
+
 `lab.py` / `nemotron_lab` is the common user-facing layer: command registry,
 caller-relative path resolution, offline prerequisite checks, read-only report
 views and isolated test execution. It delegates to existing implementations;
