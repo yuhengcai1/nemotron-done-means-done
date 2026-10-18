@@ -1,4 +1,5 @@
 import copy
+import hashlib
 import json
 from pathlib import Path
 import tempfile
@@ -146,14 +147,37 @@ class TeachingHermesTests(unittest.TestCase):
         path = ROOT / "evidence/frozen-native.json"
         if not path.exists(): self.skipTest("freeze command must run before the full evidence check")
         packet = json.loads(path.read_text())
-        self.assertTrue(verify_packet(packet)["verified"])
+        content = {key: value for key, value in packet.items() if key != "content_sha256"}
+        self.assertEqual(hashlib.sha256(json.dumps(content, sort_keys=True).encode()).hexdigest(),
+                         packet["content_sha256"])
         self.assertEqual(len(packet["records"]), 6)
         self.assertEqual(sum(r["outcome"]["duplicate_effect"] for r in packet["records"]), 2)
         self.assertEqual(sum(r["outcome"]["objective_met"] for r in packet["records"]), 4)
         self.assertTrue(all(r["verification"]["matched"] for r in packet["records"]))
         changed = copy.deepcopy(packet)
         changed["records"][0]["ordered_events"].reverse()
-        self.assertFalse(verify_packet(changed)["verified"])
+        self.assertIn("packet_content_hash", verify_packet(changed)["failures"])
+
+    def test_frozen_native_sources_when_original_artifacts_are_available(self):
+        packet = json.loads((ROOT / "evidence/frozen-native.json").read_text())
+        references = [source for record in packet["records"] for source in record["sources"]]
+        references += packet["evaluator_sources"]
+        if any(not Path(source["path"]).is_file() for source in references):
+            self.skipTest("optional original native evidence files are not published")
+        self.assertTrue(verify_packet(packet)["verified"])
+
+    def test_packet_verifier_checks_missing_and_changed_source_files(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "receipt.json"
+            source.write_text('{"committed": true}')
+            packet = {"records": [], "evaluator_sources": [{"path": str(source),
+                "sha256": hashlib.sha256(source.read_bytes()).hexdigest()}]}
+            packet["content_sha256"] = hashlib.sha256(json.dumps(packet, sort_keys=True).encode()).hexdigest()
+            self.assertTrue(verify_packet(packet)["verified"])
+            source.write_text('{"committed": false}')
+            self.assertIn(str(source), verify_packet(packet)["failures"])
+            source.unlink()
+            self.assertIn(str(source), verify_packet(packet)["failures"])
 
 
 if __name__ == "__main__":
