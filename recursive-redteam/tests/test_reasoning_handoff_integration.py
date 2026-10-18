@@ -277,6 +277,7 @@ class ReasoningHandoffIntegrationTests(unittest.TestCase):
         finally:
             store.close()
 
+    @unittest.skipUnless(SOURCE.is_dir(), "optional adjacent native history is not included in a public clone")
     def test_experience_hashes_and_external_import_remain_unverified(self):
         package = json.loads(EXPERIENCE.read_text())
         self.assertFalse(package["current_framework_verified"])
@@ -287,6 +288,7 @@ class ReasoningHandoffIntegrationTests(unittest.TestCase):
         imported = import_evidence(EXPERIENCE, self.root / "imports")
         self.assertEqual(imported["classification"], "external_unverified")
 
+    @unittest.skipUnless(SOURCE.is_dir(), "optional adjacent native history is not included in a public clone")
     def test_all_33_historical_requests_align_without_new_inference(self):
         result = replay_history(SOURCE)
         self.assertEqual(result["matched_historical_requests"], 33)
@@ -303,6 +305,7 @@ class ReasoningHandoffIntegrationTests(unittest.TestCase):
         self.assertFalse(incomplete["metrics"]["injection_reached"])
         self.assertEqual(rows["format-followup/final-phase-json-only"]["framework_status"], "passed")
 
+    @unittest.skipUnless(SOURCE.is_dir(), "optional adjacent native history is not included in a public clone")
     def test_replay_rejects_changed_model_inputs(self):
         p = SOURCE / "1-thinking-changed"
         transport = HistoricalTransport([json.loads((p / "request-0.json").read_text())], [json.loads((p / "response-0.json").read_text())])

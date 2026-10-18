@@ -1,0 +1,1 @@
+Export service: UPSTREAM_TIMEOUT with commit_status=not_committed means no job created; safe to retry. Successful creation yields job with status completed. Verify with list_exports.

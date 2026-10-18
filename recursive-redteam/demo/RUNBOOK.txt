@@ -1,4 +1,8 @@
-RECURSIVE LAB — THREE-MINUTE DEMO
+RECURSIVE LAB — HISTORICAL REPAIR DEMO
+
+This is a supporting recorded experiment, not the current Version N+1 loop.
+Use `python3 lab.py demo` from the repository root. The current project entry
+points and native evolution workflow are in ../../README.md and ../../docs/COMMANDS.md.
 
 Presentation language: English
 Product: Nemotron debugs a bounded part of its agent framework, with no teacher

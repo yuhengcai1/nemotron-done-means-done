@@ -1,5 +1,46 @@
 # Agentic reliability checks
 
+## Autonomous evolution entry point
+
+`autonomous.py` adds a model-controlled outer loop to the existing native OpenCode
+team. Nemotron chooses tools to execute tasks, inspect actual trajectories, write
+candidate playbooks, request independent evaluation, and continue or stop. There
+is no prescribed bug or host-authored candidate repair. The original campaign
+below remains a separate reliability experiment.
+
+```sh
+python3 autonomous.py --out runs/autonomous-01 --native-runs 8 --turns 16 --timeout 420
+```
+
+This command makes real paid Crusoe requests. Each native run can use the full
+timeout, plus session export time; eight runs are not a three-minute live demo.
+The saved environment file supplies model metadata, not a fresh model catalogue.
+
+The persistent `memory/evolution` directory stores immutable candidate versions,
+evaluation decisions, the accepted-version pointer, and previous episode evidence.
+Use `--memory PATH` to choose a separate lineage. Only accepted skills become the
+next native task's `learned_skill.md`. Native completed read receipts and a skill
+SHA256 distinguish installation from observed use.
+
+Each evaluation freezes two fresh local task instances after the candidate is
+written. Baseline and candidate use identical settings, reversed arm order on
+the second task, and separate worlds. Holdout traces are not exposed through the
+controller's tools. These are new instances of the same task family, not evidence
+of broad transfer. Promotion requires complete native runs, all candidate passes,
+observed candidate skill reads, no historical violations, and a baseline failure.
+Timeouts are inconclusive. An upgrade is separately marked loaded only after a
+subsequent task reads the accepted version; follow-up success is another field.
+
+Controller requests reuse the existing `CheckpointLedger` with retries disabled.
+Its exact request accounting does **not** cover OpenCode's internal HTTP requests.
+Native budgets are wall time, per-agent steps, and configured response length.
+Run directories must be new: interrupted side effects are never automatically
+replayed. Accepted versions and historical episode records persist, but automatic
+process-crash continuation is not implemented.
+
+The new control loop and promotion path have offline integration tests. This
+implementation alone is not evidence of a successful live self-improvement run.
+
 Purpose: find and reproduce failures before selecting a hackathon topic. This is
 test infrastructure, not a proposed remedy or a claim of a novel vulnerability.
 

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "origin": "runs/nemotron-self-debug-20261017",
+  "kind": "selected immutable historical recording",
+  "result": "inconclusive; no qualified repair",
+  "files": {
+    "report.json": "a2f725de5fb5b669e698fab59057d14e492a5f6e25d154a9e0dc7e4b8e9db767",
+    "model-journal.json": "d2804d7022a1b959f69c5d08329b5646e50ddd345aaccc8904c807dcd7d02432",
+    "repair_checks.py": "dbe12027339b2dfe406b7670281c8b4590a4c5f517d4765495426584cffb3f10",
+    "before/targets.py": "1ea94961e1be6d3b87311eb2e0aac4f358ef15a0974589de6199ee3ef56f40f1",
+    "before/contracts.py": "eeaca8c31776993e45b19211281fb02282961fb80b6bb3153ef7c5bd13607f9d",
+    "before/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "workspace/recursive_redteam/targets.py": "c11f7fbcc1c14e7635a9f084ea7392a155c34b78a395c3d851298fa0256cb443",
+    "workspace/recursive_redteam/contracts.py": "eeaca8c31776993e45b19211281fb02282961fb80b6bb3153ef7c5bd13607f9d",
+    "workspace/recursive_redteam/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "excluded": [
+    "provider configuration",
+    "credentials",
+    "SQLite databases",
+    "other run directories"
+  ],
+  "note": "Original selected bytes retained. This is not a resumable campaign or evidence of a completed Version N+1 upgrade."
+}

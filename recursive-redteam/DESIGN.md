@@ -1,6 +1,12 @@
-# Recursive Lab — hackathon design
+# Historical maintenance and evaluation design
 
-## Final demonstration scope
+This document describes the earlier repair experiment and underlying evaluation
+engine. The current project is [Nemotron Lab — Version N+1](../README.md); its
+native evolution path and shared entry point are documented in
+[Architecture](../docs/ARCHITECTURE.md). The maintenance demonstration below is a
+supporting experiment, not the project's current end-to-end evolution design.
+
+## Historical maintenance demonstration scope
 
 Nemotron maintains the agent framework through a bounded debugging loop. A
 Nemotron planner delegates a repair worker. That worker reads the framework

@@ -5,5 +5,12 @@ __pycache__/
 node_modules/
 .env
 .env.*
+!.env.example
 .DS_Store
 recursive-redteam/demo/presentation/.build/node_modules
+/runs/
+/state/
+agentic-redteam/memory/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm

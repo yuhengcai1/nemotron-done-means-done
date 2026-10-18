@@ -27,7 +27,11 @@ def case_for(condition, trial):
     elif arm == "facts":
         memory = STALE_FACTS
     elif arm.startswith("learned"):
-        memory = (Path(__file__).parent / "runs" / "learning" / f"learned-memory-{arm[7:]}.txt").read_text().strip()
+        name = f"learned-memory-{arm[7:]}.txt"
+        source = Path(__file__).parent / "runs" / "learning" / name
+        if not source.is_file():
+            source = Path(__file__).parent / "fixtures" / "learning" / name
+        memory = source.read_text().strip()
     else:
         memory = ""
     case.update(condition=condition, memory=memory, boundary_arm=arm,

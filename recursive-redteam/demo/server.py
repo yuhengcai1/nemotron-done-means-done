@@ -12,7 +12,7 @@ import threading
 from urllib.parse import urlsplit
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from build_data import ROOT, RUN_ID, build_data, write_data, checked_run_id
+from build_data import ROOT, RUN_ID, build_data, write_data, checked_run_id, recording_path
 
 STATIC = {
     "/": (ROOT / "demo/web/index.html", "text/html; charset=utf-8"),
@@ -25,7 +25,7 @@ STATIC = {
 def replay_command(run_id=RUN_ID):
     run_id = checked_run_id(run_id)
     return (sys.executable, str(ROOT / "examples/self_debug.py"),
-            "--verify-run", str(ROOT / "runs" / run_id), "--json")
+            "--verify-run", str(recording_path(run_id)), "--json")
 
 
 REPLAY_COMMAND = replay_command()
@@ -38,9 +38,9 @@ def demo_data(run_id=RUN_ID):
 
 def recall_command(run_id=RUN_ID):
     run_id = checked_run_id(run_id)
-    run_path = ROOT / "runs" / run_id
+    run_path = recording_path(run_id)
     return (sys.executable, str(ROOT / "examples/recall_repair.py"), "--run", str(run_path),
-            "--out", str(run_path / "memory-recall.json"))
+            "--out", str(ROOT / "runs" / run_id / "memory-recall.json"))
 
 
 def _local_operation(run_id, operation):

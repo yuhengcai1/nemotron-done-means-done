@@ -36,6 +36,17 @@ def checked_run_id(run_id):
     return run_id
 
 
+def recording_path(run_id=RUN_ID):
+    """Prefer local evidence; use the explicitly bundled recording on clean clones.
+
+    Never select a different run or replace an existing partial local report with
+    an older completed one. The bundled files are evidence, not resumable state.
+    """
+    run_id = checked_run_id(run_id)
+    local = ROOT / "runs" / run_id
+    return local if (local / "report.json").exists() else ROOT / "demo/recordings" / run_id
+
+
 def pending_data(run_id=RUN_ID):
     return {
         "schema_version": 1,
@@ -304,7 +315,7 @@ def build_data(report_path=None, *, run_id=RUN_ID):
     """Only publish explicit presentation fields; never expose provider configuration."""
     run_id = checked_run_id(run_id)
     result = pending_data(run_id)
-    report_path = Path(report_path) if report_path is not None else ROOT / "runs" / run_id / "report.json"
+    report_path = Path(report_path) if report_path is not None else recording_path(run_id) / "report.json"
     if not report_path.is_file():
         return result
     raw_bytes = report_path.read_bytes()
@@ -319,6 +330,12 @@ def build_data(report_path=None, *, run_id=RUN_ID):
     run = public.get("run", public)
     source = "runs/" + run_id + "/report.json"
     result["provenance"]["source_sha256"] = hashlib.sha256(raw_bytes).hexdigest()
+    # Keep historical event pointers intact, but expose the actual retained
+    # artifact location separately so a clone can locate the published evidence.
+    try:
+        result["provenance"]["retained_report"] = str(report_path.relative_to(ROOT))
+    except ValueError:
+        result["provenance"]["retained_report"] = "external report"
     for key in ("id", "model", "origin", "summary", "status", "recorded_at"):
         if key in run:
             result["run"][key] = _text(run[key], 4000) if run[key] is not None else None
@@ -378,7 +395,7 @@ def build_data(report_path=None, *, run_id=RUN_ID):
                  and result["run"]["status"] in {"verified", "inconclusive", "completed", "failed"}
                  and isinstance(report.get("artifact_hashes"), dict) and bool(report["artifact_hashes"]))
     result["verification"].update({"available": available, "status": "available" if available else "pending",
-        "command": "python3 examples/self_debug.py --verify-run runs/" + run_id + " --json" if available else None,
+        "command": "python3 examples/self_debug.py --verify-run " + str(report_path.parent.relative_to(ROOT)) + " --json" if available and report_path.is_relative_to(ROOT) else None,
         "source": "examples/self_debug.py" if available else None})
     return result
 

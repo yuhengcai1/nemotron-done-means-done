@@ -1,0 +1,15 @@
+{
+  "description": "Original model-written memory from historical Hermes learning trials. These retained notes allow offline boundary tests without unpublished raw runs; they do not establish general learning gains.",
+  "files": [
+    {
+      "file": "learned-memory-21.txt",
+      "original_path": "nemotron-redteam/hermes_live/runs/learning/learned-memory-21.txt",
+      "sha256": "0bb8d8061cfb033e04690d8f410417a0e552a26b633717506f52e300a358b034"
+    },
+    {
+      "file": "learned-memory-22.txt",
+      "original_path": "nemotron-redteam/hermes_live/runs/learning/learned-memory-22.txt",
+      "sha256": "8fd286055bd03e8265c2ebad8e7d61027e492ebcf7885550387e06ed0b473206"
+    }
+  ]
+}

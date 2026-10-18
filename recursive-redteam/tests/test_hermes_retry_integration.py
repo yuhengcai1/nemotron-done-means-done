@@ -225,7 +225,8 @@ class HermesRetryTests(unittest.TestCase):
 
     def test_historical_failure_success_and_loop_records_preserved(self):
         source = ROOT.parents[1].parent/"nemotron-redteam/hermes_live"
-        if not source.exists(): self.skipTest("optional adjacent historical artifacts are absent")
+        if not (source / "runs").is_dir():
+            self.skipTest("optional adjacent historical artifacts are absent")
         report = audit_history(source)
         self.assertEqual(report["completed_trials"], 53)
         self.assertEqual(report["counts"], {"matched": 43, "inconclusive": 0, "out_of_scope": 10})

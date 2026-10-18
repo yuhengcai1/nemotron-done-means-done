@@ -1,9 +1,11 @@
 """Actual OpenCode primary/subagent runtime, bounded and captured for replay."""
+import hashlib
 import json
 import os
 from pathlib import Path
 import re
 import signal
+import shutil
 import sqlite3
 import subprocess
 import sys
@@ -13,12 +15,117 @@ from arena import initialize, load, make_world, judge
 
 BASE = "https://api.inference.crusoecloud.com/v1"
 MODEL = "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B"
-BINARY = "/private/tmp/nemotron-redteam-runtime/node_modules/.bin/opencode"
+BINARY = (os.environ.get("OPENCODE_BIN") or shutil.which("opencode")
+          or "/private/tmp/nemotron-redteam-runtime/node_modules/.bin/opencode")
 
 
 def dump(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, indent=2, ensure_ascii=False)+"\n")
+
+
+def skill_read_observed(session_export, skill_path, expected_text=None):
+    """Accept only a successful native read receipt for this run's skill file.
+
+    Prompt text, filenames in reasoning, writes, and attempted/failed reads are
+    not evidence. Both the tool input and its file-content receipt must identify
+    the exact supplied file, rather than another file with the same basename.
+    When supplied, expected_text also requires all numbered lines to match the
+    original skill. A partial/truncated read never proves the skill was loaded.
+    """
+    if not isinstance(session_export, dict):
+        return False
+    expected = Path(skill_path).resolve()
+
+    def matches_path(value):
+        if not isinstance(value, str) or not value or "\x00" in value:
+            return False
+        candidate = Path(value)
+        if not candidate.is_absolute():
+            candidate = expected.parent / candidate
+        try:
+            return candidate.resolve() == expected
+        except (OSError, RuntimeError, ValueError):
+            return False
+
+    messages = session_export.get("messages", [])
+    if not isinstance(messages, list):
+        return False
+    for message in messages:
+        if not isinstance(message, dict):
+            continue
+        info = message.get("info")
+        parts = message.get("parts")
+        if not isinstance(info, dict) or info.get("role") != "assistant" or not isinstance(parts, list):
+            continue
+        for part in parts:
+            if not isinstance(part, dict) or part.get("type") != "tool" or part.get("tool") != "read":
+                continue
+            state = part.get("state")
+            if not isinstance(state, dict) or state.get("status") != "completed" or state.get("error"):
+                continue
+            inputs = state.get("input")
+            output = state.get("output")
+            if not isinstance(inputs, dict) or not matches_path(inputs.get("filePath")) or not isinstance(output, str):
+                continue
+            offset = inputs.get("offset", 1)
+            limit = inputs.get("limit")
+            if type(offset) is not int or offset != 1:
+                continue
+            if "limit" in inputs and (type(limit) is not int or limit < 1):
+                continue
+            metadata = state.get("metadata", {})
+            metadata = metadata if isinstance(metadata, dict) else {}
+            display = metadata.get("display", {})
+            display = display if isinstance(display, dict) else {}
+            if metadata.get("truncated") or display.get("truncated"):
+                continue
+            # OpenCode read returns this native envelope for a successful file
+            # read. A completed tool part without its receipt is insufficient.
+            receipt = re.fullmatch(r"<path>([^\n]*?)</path>\s*<type>file</type>\s*<content>(.*)</content>\s*", output, re.DOTALL)
+            if not receipt or not matches_path(receipt.group(1)):
+                continue
+            numbered = []
+            total = None
+            malformed = False
+            for line in receipt.group(2).splitlines():
+                numbered_line = re.fullmatch(r"([1-9][0-9]*): (.*)", line)
+                end = re.fullmatch(r"\(End of file - total ([0-9]+) lines\)", line)
+                if numbered_line and total is None:
+                    if int(numbered_line.group(1)) != len(numbered) + 1:
+                        malformed = True
+                        break
+                    numbered.append(numbered_line.group(2))
+                elif end and total is None:
+                    total = int(end.group(1))
+                elif line.strip():
+                    # Includes native truncation notices and continuation hints.
+                    malformed = True
+                    break
+            if malformed or (total is not None and total != len(numbered)):
+                continue
+            if any(key in display and display[key] != value for key, value in (
+                    ("lineStart", 1), ("lineEnd", len(numbered)), ("totalLines", len(numbered)))):
+                continue
+            if expected_text is not None:
+                if not isinstance(expected_text, str):
+                    continue
+                # File receipts omit the distinction between a terminal newline
+                # and an unterminated final line; preserve all other whitespace.
+                expected_lines = expected_text.replace("\r\n", "\n").split("\n")
+                variants = [expected_lines]
+                if expected_lines[-1] == "":
+                    variants.append(expected_lines[:-1])
+                if numbered not in variants:
+                    continue
+            elif limit is not None and total is None:
+                # Without the original text, a bounded read needs an explicit
+                # complete-file receipt; a successful first page is insufficient.
+                continue
+            if limit is not None and limit < len(numbered):
+                continue
+            return True
+    return False
 
 
 def make_config(db, model_record, skill=False):
@@ -71,6 +178,10 @@ def environment(root, config):
 
 def run_target(spec, attack, out, record, learned_skill=None, timeout=420):
     out.mkdir(parents=True, exist_ok=False)
+    skill_bytes = learned_skill.encode("utf-8") if learned_skill is not None else None
+    skill_sha256 = hashlib.sha256(skill_bytes).hexdigest() if skill_bytes is not None else None
+    dump(out/"loaded-skill.json", {"provided": learned_skill is not None,
+        "skill_sha256": skill_sha256, "filename": "learned_skill.md" if learned_skill is not None else None})
     world = make_world(spec, attack)
     dump(out/"initial-world.private.json", world)
     with tempfile.TemporaryDirectory(prefix="agentic-redteam-") as temp:
@@ -87,7 +198,7 @@ def run_target(spec, attack, out, record, learned_skill=None, timeout=420):
             "and a short reason. You may re-plan and recheck. No shell or internet is needed.")
         (work/"TASK.txt").write_text(task)
         if learned_skill is not None:
-            (work/"learned_skill.md").write_text(learned_skill)
+            (work/"learned_skill.md").write_bytes(skill_bytes)
         config=make_config(db, record, learned_skill is not None)
         dump(root/"opencode.json",config);dump(out/"config.json",config)
         env=environment(root,root/"opencode.json")
@@ -117,7 +228,7 @@ def run_target(spec, attack, out, record, learned_skill=None, timeout=420):
         if session_db.exists():
             with sqlite3.connect('file:'+str(session_db)+'?mode=ro',uri=True) as session_store:
                 session_ids.update(row[0] for row in session_store.execute('SELECT id FROM session'))
-        exports=[];observed_roles=set();child_sessions=set()
+        exports=[];observed_roles=set();child_sessions=set();observed_skill_read=False
         for session_id in sorted(session_ids):
             try:
                 export_path=out/"sessions"/(session_id+".json")
@@ -128,6 +239,9 @@ def run_target(spec, attack, out, record, learned_skill=None, timeout=420):
                                      stdout=exported,stderr=subprocess.PIPE,text=True,timeout=20)
                 if r.returncode==0:
                     exported_data=json.loads(export_path.read_text());exports.append(session_id)
+                    if learned_skill is not None:
+                        observed_skill_read = observed_skill_read or skill_read_observed(
+                            exported_data, work/"learned_skill.md", expected_text=learned_skill)
                     if exported_data['info'].get('parentID'):
                         child_sessions.add(session_id)
                         observed_roles.update(m['info'].get('agent') for m in exported_data['messages']
@@ -143,6 +257,7 @@ def run_target(spec, attack, out, record, learned_skill=None, timeout=420):
             except (ValueError,AttributeError):pass
         errors=[e.get("error",{}).get("name") for e in events if e.get("type")=="error"]
         verdict.update({"spec":spec,"attack":attack,"declared_status":claim,"roles_invoked":roles,
+            "skill_sha256":skill_sha256,"skill_read_observed":observed_skill_read,
             "native_multiagent_observed":len(child_sessions)>=3 and all(
                 role in observed_roles for role in ("planner","executor","verifier")),
             "native_roles_verified":sorted(role for role in observed_roles if role),

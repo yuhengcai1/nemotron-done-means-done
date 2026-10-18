@@ -36,6 +36,39 @@ def request(method, path, body=b"", headers=None, run_id=server.RUN_ID):
 
 
 class DemoServerTests(unittest.TestCase):
+    def test_clean_clone_resolves_bundled_evidence_and_validates_authorship(self):
+        bundle = ROOT / "demo/recordings" / build_data.RUN_ID
+        with tempfile.TemporaryDirectory() as folder:
+            clean_root = Path(folder)
+            destination = clean_root / "demo/recordings" / build_data.RUN_ID
+            import shutil
+            shutil.copytree(bundle, destination)
+            with patch.object(build_data, "ROOT", clean_root):
+                self.assertEqual(build_data.recording_path(), destination)
+                data = build_data.build_data()
+                self.assertEqual(data["run"]["status"], "inconclusive")
+                # This early report did not pin the orchestrator. Retain that
+                # limitation; publishing it must not invent a complete manifest.
+                self.assertFalse(data["showcase"]["source_hashes_valid"])
+                manifest = json.loads((destination / "recording-manifest.json").read_text())["files"]
+                self.assertTrue(all(build_data.hashlib.sha256((destination / name).read_bytes()).hexdigest() == digest
+                                    for name, digest in manifest.items()))
+                self.assertTrue(data["showcase"]["patch_authorship_verified"])
+                self.assertFalse(data["showcase"]["verified"])
+                self.assertGreater(len(data["events"]), 0)
+                # An unfinished local run must take precedence over the bundled recording.
+                local = clean_root / "runs" / build_data.RUN_ID
+                local.mkdir(parents=True)
+                (local / "report.json").write_text(json.dumps({"run_id": build_data.RUN_ID, "status": "running"}))
+                self.assertEqual(build_data.recording_path(), local)
+                self.assertEqual(build_data.build_data()["run"]["status"], "running")
+
+    def test_unbundled_run_does_not_silently_select_a_different_recording(self):
+        with tempfile.TemporaryDirectory() as folder, patch.object(build_data, "ROOT", Path(folder)):
+            data = build_data.build_data(run_id="nemotron-self-debug-20261017-v99")
+        self.assertEqual(data["run"]["status"], "pending")
+        self.assertFalse(data["verification"]["available"])
+
     def test_run_selection_accepts_only_bounded_retained_ids(self):
         self.assertEqual(build_data.checked_run_id("nemotron-self-debug-20261017-v3"), "nemotron-self-debug-20261017-v3")
         for invalid in ("../other", "/tmp/run", "nemotron-self-debug-20261017/../x", "other-run", "x;echo unsafe"):

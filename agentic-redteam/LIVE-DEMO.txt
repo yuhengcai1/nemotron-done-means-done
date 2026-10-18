@@ -1,0 +1,36 @@
+LIVE DEMO — REAL NEMOTRON, REAL NATIVE DELEGATION
+
+Rehearsal: runs/live-stage-20261017-01
+Native task: 67.66 seconds. Independently verified pass. No violations.
+Real planner, executor and verifier child sessions were exported.
+Controller: 5 real HTTP attempts. This excludes native OpenCode model calls.
+No version was promoted; this is not a self-improvement result.
+
+CURRENT EVIDENCE PAGE
+http://127.0.0.1:8766/
+The current run has finished; the page accurately displays RUN ENDED.
+
+FRESH ON-STAGE RUN (terminal 1, from agentic-redteam)
+python3 autonomous.py --out runs/live-stage-02 --memory memory/live-stage-20261017-01 --native-runs 1 --turns 6 --timeout 180 --goal 'Demonstrate one live autonomous task now. Run one small six-contact task with page_size 3; choose the scenario and whether to include a finite update yourself. Inspect its actual trajectory and independent verdict, explain what happened, and finish honestly. You have only one native run, so do not request paired evaluation or claim an upgrade. Use tools immediately.'
+
+FRESH MONITOR (terminal 2, after the run directory exists)
+python3 live_monitor.py --run runs/live-stage-02 --port 8767
+Open http://127.0.0.1:8767/
+Always choose a new output directory for another attempt. The runner refuses overwrite.
+
+THREE-MINUTE WALKTHROUGH
+00:00 Start the fresh run. Explain: "Nemotron is choosing tools now, not replaying a script."
+00:15 Point to model decisions: status, task selection, then native execution.
+00:35 Explain the task: six synthetic contacts, current consent, exact eligible membership.
+00:50 Show native planner, executor and verifier receipts as they arrive.
+01:30 When the verdict arrives: compare the model's completion claim with the independent oracle.
+02:00 Show Nemotron inspecting the actual trajectory and choosing whether to stop.
+02:30 Close: "Done means independently verified. This demonstrates autonomous execution, not a proven self-upgrade."
+
+FALLBACK
+The rehearsal's 67.66 seconds is not a latency guarantee. A fresh task can take the full
+180-second native timeout plus controller and export time. If still running at 02:00,
+keep its RUNNING state visible and switch to the completed rehearsal tab, explicitly
+saying "This is our previous completed run." Do not trigger another API attempt.
+
+This monitor is read-only. Refreshing it does not call a model.
