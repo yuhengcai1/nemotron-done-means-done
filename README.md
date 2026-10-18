@@ -1,5 +1,7 @@
 # Nemotron Lab — Version N+1
 
+[**Complete core flowchart (English)**](docs/CORE-FLOW.md) — execution, verification, memory, evolution and code investigation.
+
 A Nemotron agent team that attempts to improve its own playbook: execute a task,
 inspect its actual history, propose a change, compare versions on fresh tasks,
 and continue with the accepted version. Hosted inference uses **Crusoe**.
